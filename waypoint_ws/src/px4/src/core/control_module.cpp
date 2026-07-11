@@ -39,7 +39,7 @@ ControlModule::ControlModule(rclcpp::Node * node)
 
     // ── Subscriber ─────────────────────────────────────────────────
     pos_sub_ = node_->create_subscription<px4_msgs::msg::VehicleLocalPosition>(
-        "/fmu/out/vehicle_local_position",
+        "/fmu/out/vehicle_local_position_v1",
         px4_qos,
         [this](const px4_msgs::msg::VehicleLocalPosition::SharedPtr msg) {
             onPosition(msg);

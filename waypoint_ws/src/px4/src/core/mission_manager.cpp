@@ -62,12 +62,13 @@ std::vector<GlobalWaypoint> defaultGlobalWaypoints()
 {
     return {
         // Format: { latitude_deg, longitude_deg, altitude_agl_m }
-        // Ganti nilai di bawah dengan waypoint LLA arena kamu.
-        { -7.310749000, 112.728550000, 1.0 },  // WP1 start/sudut 1
-        { -7.310704084, 112.728550000, 1.0 },  // WP2 maju utara 5m
-        { -7.310704084, 112.728595284, 1.0 },  // WP3 kanan/timur 5m
-        { -7.310749000, 112.728595284, 1.0 },  // WP4 turun selatan 5m
-        { -7.310749000, 112.728550000, 1.0 },  // WP5 balik ke start
+        // Kotak 5x5m relatif terhadap posisi spawn Gazebo saat ini:
+        // lat=47.39797182070629, lon=8.546162905401824.
+        { 47.397971820706, 8.546162905402, 1.0 },  // WP1 start/sudut barat daya
+        { 47.398016736470, 8.546162905402, 1.0 },  // WP2 5m ke utara
+        { 47.398016736470, 8.546229260299, 1.0 },  // WP3 5m ke timur
+        { 47.397971820706, 8.546229260299, 1.0 },  // WP4 5m ke selatan
+        { 47.397971820706, 8.546162905402, 1.0 },  // WP5 kembali ke start
     };
 }
 }  // namespace
