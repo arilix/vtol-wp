@@ -62,6 +62,7 @@ private:
     double takeoffTargetDown() const;
     double currentAltitudeDown() const;
     double currentAltitudeAgl() const;
+    const char * altitudeSourceLabel() const;
     double toPx4DownForAltitudeTarget(double mission_down) const;
     double toPx4North(double mission_north) const;
     double toPx4East(double mission_east) const;

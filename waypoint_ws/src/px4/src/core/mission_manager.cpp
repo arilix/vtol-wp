@@ -14,12 +14,9 @@ namespace
 // WAYPOINTS GLOBAL (LLA)
 // Format input: Latitude [deg], Longitude [deg], target altitude AGL [m].
 //
-// Nanti kalau koordinat GPS waypoint asli sudah ada, ganti isi
-// defaultGlobalWaypoints() dengan lat/lon asli. MissionManager akan
-// konversi otomatis ke NED lokal PX4 relatif ke GPS origin saat start.
-//
-// Dummy saat ini: kotak 1m x 1m dari titik start:
-// WP1 utara 1m, WP2 timur 1m, WP3 selatan 1m, WP4 barat 1m.
+// Ganti isi defaultGlobalWaypoints() dengan koordinat GPS asli arena.
+// MissionManager akan konversi otomatis ke NED lokal PX4 relatif ke GPS
+// origin saat start. Jangan isi offset meter di sini.
 // ==================================================================
 struct GlobalWaypoint
 {
@@ -41,21 +38,6 @@ double radToDeg(double rad)
     return rad * 180.0 / PI;
 }
 
-GlobalWaypoint nedOffsetToGlobal(
-    double origin_lat_deg, double origin_lon_deg,
-    double north_m, double east_m, double altitude_agl_m)
-{
-    const double origin_lat_rad = degToRad(origin_lat_deg);
-    const double d_lat = north_m / EARTH_RADIUS_M;
-    const double d_lon = east_m / (EARTH_RADIUS_M * std::cos(origin_lat_rad));
-
-    return {
-        origin_lat_deg + radToDeg(d_lat),
-        origin_lon_deg + radToDeg(d_lon),
-        altitude_agl_m
-    };
-}
-
 Waypoint globalToNed(
     const GlobalWaypoint & wp,
     double origin_lat_deg, double origin_lon_deg)
@@ -71,16 +53,18 @@ Waypoint globalToNed(
     };
 }
 
-std::vector<GlobalWaypoint> defaultGlobalWaypoints(
-    double origin_lat_deg, double origin_lon_deg)
+double nedBearingDeg(double north_m, double east_m)
 {
-    constexpr double ALTITUDE_AGL_M = 1.0;
+    return radToDeg(std::atan2(east_m, north_m));
+}
 
+std::vector<GlobalWaypoint> defaultGlobalWaypoints()
+{
     return {
-        nedOffsetToGlobal(origin_lat_deg, origin_lon_deg, 1.0, 0.0, ALTITUDE_AGL_M),
-        nedOffsetToGlobal(origin_lat_deg, origin_lon_deg, 1.0, 1.0, ALTITUDE_AGL_M),
-        nedOffsetToGlobal(origin_lat_deg, origin_lon_deg, 0.0, 1.0, ALTITUDE_AGL_M),
-        nedOffsetToGlobal(origin_lat_deg, origin_lon_deg, 0.0, 0.0, ALTITUDE_AGL_M),
+        // Format: { latitude_deg, longitude_deg, altitude_agl_m }
+        // Ganti nilai di bawah dengan waypoint LLA arena kamu.
+        { -7.310749, 112.728550, 1.0 },
+        { -7.310751, 112.728560, 1.0 },
     };
 }
 }  // namespace
@@ -294,7 +278,7 @@ bool MissionManager::ensureMissionWaypointsReady()
     }
 
     std::vector<Waypoint> ned_waypoints;
-    const auto global_waypoints = defaultGlobalWaypoints(origin_lat_deg_, origin_lon_deg_);
+    const auto global_waypoints = defaultGlobalWaypoints();
     ned_waypoints.reserve(global_waypoints.size());
 
     RCLCPP_INFO(this->get_logger(), "=== WAYPOINT GLOBAL LLA -> NED PX4 ===");
@@ -304,12 +288,21 @@ bool MissionManager::ensureMissionWaypointsReady()
         ned_waypoints.push_back(ned);
 
         RCLCPP_INFO(this->get_logger(),
-            "WP%zu LLA=(%.8f, %.8f, AGL %.1fm) -> N=%.2fm E=%.2fm Alt=%.1fm",
+            "WP%zu LLA=(%.9f, %.9f, AGL %.2fm) -> N=%.3fm E=%.3fm Alt=%.2fm",
             i + 1,
             global_waypoints[i].lat_deg,
             global_waypoints[i].lon_deg,
             global_waypoints[i].altitude_agl_m,
             ned.n, ned.e, -ned.d);
+
+        if (i > 0) {
+            const auto & prev = ned_waypoints[i - 1];
+            const double dn = ned.n - prev.n;
+            const double de = ned.e - prev.e;
+            RCLCPP_INFO(this->get_logger(),
+                "  Leg WP%zu->WP%zu: dN=%.3fm dE=%.3fm Dist=%.3fm Bearing=%.1fdeg",
+                i, i + 1, dn, de, std::hypot(dn, de), nedBearingDeg(dn, de));
+        }
     }
 
     waypoints_ = std::make_unique<WaypointHandler>(std::move(ned_waypoints));
@@ -336,6 +329,14 @@ double MissionManager::currentAltitudeDown() const
 double MissionManager::currentAltitudeAgl() const
 {
     return -currentAltitudeDown();
+}
+
+const char * MissionManager::altitudeSourceLabel() const
+{
+    if (use_lidar_altitude_) {
+        return got_lidar_altitude_ ? "lidar" : "lidar-wait";
+    }
+    return "local";
 }
 
 double MissionManager::toPx4DownForAltitudeTarget(double mission_down) const
@@ -608,8 +609,10 @@ void MissionManager::runTakeoff()
         yaw_result.target_yaw);
 
     RCLCPP_INFO(this->get_logger(),
-        "Altitude lidar: %.2fm / %.2fm | raw z: %.2f -> %.2f",
+        "Altitude[%s]: %.2fm / %.2fm | yaw target=%.1fdeg err=%.1fdeg | raw z: %.2f -> %.2f",
+        altitudeSourceLabel(),
         currentAltitudeAgl(), -takeoffTargetDown(),
+        radToDeg(yaw_result.target_yaw), radToDeg(yaw_result.yaw_error),
         origin_down_ + vehicle_.position.down,
         toPx4DownForAltitudeTarget(takeoffTargetDown()));
 
@@ -684,11 +687,16 @@ void MissionManager::runMission()
     const bool is_pure_alt = waypoints_->isPureAltitude(dist);
 
     RCLCPP_INFO(this->get_logger(),
-        "[%s] N=%.1f E=%.1f | Dist:%.2fm | Alt:%.2f->%.1fm%s",
+        "[%s] Pos N=%.2f E=%.2f -> Target N=%.2f E=%.2f | Dist=%.2fm | "
+        "Alt[%s]=%.2f->%.2fm | Yaw tgt=%.1fdeg err=%.1fdeg align=%.2f%s",
         label.c_str(),
         vehicle_.position.north, vehicle_.position.east,
+        wp.n, wp.e,
         dist,
+        altitudeSourceLabel(),
         currentAltitudeAgl(), -wp.d,
+        radToDeg(yaw_result.target_yaw), radToDeg(yaw_result.yaw_error),
+        waypoints_->yawAlignmentFactor(yaw_result.yaw_error),
         is_pure_alt ? " [CLIMB]" : "");
 
     // ── Sudah sampai? ──────────────────────────────────────────────
