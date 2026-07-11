@@ -63,8 +63,11 @@ std::vector<GlobalWaypoint> defaultGlobalWaypoints()
     return {
         // Format: { latitude_deg, longitude_deg, altitude_agl_m }
         // Ganti nilai di bawah dengan waypoint LLA arena kamu.
-        { -7.310749, 112.728550, 1.0 },
-        { -7.310751, 112.728560, 1.0 },
+        { -7.310749000, 112.728550000, 1.0 },  // WP1 start/sudut 1
+        { -7.310704084, 112.728550000, 1.0 },  // WP2 maju utara 5m
+        { -7.310704084, 112.728595284, 1.0 },  // WP3 kanan/timur 5m
+        { -7.310749000, 112.728595284, 1.0 },  // WP4 turun selatan 5m
+        { -7.310749000, 112.728550000, 1.0 },  // WP5 balik ke start
     };
 }
 }  // namespace
