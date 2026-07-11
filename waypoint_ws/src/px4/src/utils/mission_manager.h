@@ -106,6 +106,7 @@ private:
     rclcpp::Time last_range_time_;
     double lidar_altitude_m_ {0.0};
     bool got_lidar_altitude_ {false};
+    bool use_lidar_altitude_ {true};
     bool isLidarStale(double threshold_s) const;
 
     // ── Komponen ───────────────────────────────────────────────────

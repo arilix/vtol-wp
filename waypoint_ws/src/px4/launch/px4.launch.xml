@@ -1,5 +1,6 @@
 <launch>
   <arg name="altitude_command_bias_m" default="0.0"/>
+  <arg name="use_lidar_altitude" default="true"/>
 
   <!--
     Launch mission_manager_node.
@@ -11,5 +12,6 @@
   -->
   <node pkg="px4" exec="px4" name="mission_manager" output="screen">
     <param name="altitude_command_bias_m" value="$(var altitude_command_bias_m)"/>
+    <param name="use_lidar_altitude" value="$(var use_lidar_altitude)"/>
   </node>
 </launch>

@@ -100,6 +100,8 @@ MissionManager::MissionManager()
 
     altitude_command_bias_m_ = this->declare_parameter<double>(
         "altitude_command_bias_m", 0.0);
+    use_lidar_altitude_ = this->declare_parameter<bool>(
+        "use_lidar_altitude", true);
 
     waypoints_ = std::make_unique<WaypointHandler>(std::vector<Waypoint>{});
     control_   = std::make_unique<ControlModule>(this);
@@ -131,6 +133,8 @@ MissionManager::MissionManager()
     RCLCPP_INFO(this->get_logger(), "=== NODE SIAP ===");
     RCLCPP_INFO(this->get_logger(),
         "Altitude command bias: %.2fm", altitude_command_bias_m_);
+    RCLCPP_INFO(this->get_logger(),
+        "Use lidar altitude: %s", use_lidar_altitude_ ? "true" : "false");
     RCLCPP_INFO(this->get_logger(),
         "Waypoint global LLA akan dikonversi ke NED setelah GPS origin valid.");
 }
@@ -323,7 +327,7 @@ double MissionManager::takeoffTargetDown() const
 
 double MissionManager::currentAltitudeDown() const
 {
-    if (got_lidar_altitude_) {
+    if (use_lidar_altitude_ && got_lidar_altitude_) {
         return -lidar_altitude_m_;
     }
     return vehicle_.position.down;
@@ -336,7 +340,7 @@ double MissionManager::currentAltitudeAgl() const
 
 double MissionManager::toPx4DownForAltitudeTarget(double mission_down) const
 {
-    if (got_lidar_altitude_) {
+    if (use_lidar_altitude_ && got_lidar_altitude_) {
         const double target_altitude_agl = -mission_down;
         const double altitude_error = target_altitude_agl - lidar_altitude_m_;
         return origin_down_ + vehicle_.position.down - altitude_error - altitude_command_bias_m_;
@@ -400,7 +404,7 @@ void MissionManager::loop()
         return;
     }
 
-    if (!got_lidar_altitude_ || isLidarStale(0.5)) {
+    if (use_lidar_altitude_ && (!got_lidar_altitude_ || isLidarStale(0.5))) {
         if (phase_ == Phase::INIT || phase_ == Phase::WAIT_ARM) {
             control_->publishHeartbeat(true);
             control_->sendPositionSetpoint(
