@@ -1,0 +1,9 @@
+<!--
+  dict_test.launch.xml - DICT_7X7_50 validation (50/50 PASS)
+
+  Usage:
+    ros2 launch fiducial_detector dict_test.launch.xml
+-->
+<launch>
+  <node pkg="fiducial_detector" exec="dict_test_node" name="dict_test_node" output="screen"/>
+</launch>
