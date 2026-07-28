@@ -132,13 +132,18 @@ Topic ini tidak mengganti `/fiducial/pose`; centering tetap memakai `/fiducial/p
 Saat vision lock aktif:
 
 - Marker dicari setelah takeoff dan di setiap waypoint.
-- Program menahan titik waypoint 5 detik, lalu melakukan pencarian kecil berbentuk lingkaran.
-- Radius pencarian maksimum 0.06 m, tambahan altitude maksimum 0.08 m.
+- Marker awal mode `takeoff` ditahan 5 detik lalu sweep maksimum 0.06 m
+  dengan tambahan altitude maksimum 0.08 m. Mode `airborne_handoff`
+  memakai sweep lebih sempit 0.03 m dan altitude tetap.
+- WP1 YOLO memakai sweep maksimum 0.50 m dengan pertumbuhan 0.05 m/s.
+  WP2 ArUco memakai profil handoff 0.03 m dan altitude tetap.
 - Deteksi dianggap valid setelah 5 sample segar.
 - Centering dilakukan closed-loop dengan `CENTER_KP=0.18`, step maksimum 0.03 m per tick.
 - Target centering dibatasi radius 0.45 m dari waypoint.
 - Lock sukses setelah offset marker berada dalam toleransi selama 6 frame.
 - Toleransi efektif minimal 0.15 m, atau `marker_center_tolerance_m` jika lebih besar.
+- Jika target hilang lebih dari 3 detik saat centering, drone menahan target
+  terakhir lalu kembali ke fase search; tidak menunggu selamanya.
 
 Jika vision lock nonaktif, program tetap melakukan final position hold ke pusat waypoint sampai `dist <= 0.08 m` dan altitude sudah masuk toleransi selama 10 tick.
 
@@ -208,7 +213,7 @@ ringan dari `mission_manager`:
 - `mission_manager` publish `/mission/vision_source_active` (`std_msgs/String`)
   tiap tick 10Hz: `"ARUCO"` (HOVER, TAKEOFF_MARKER, MISSION di WP selain
   WP1), `"YOLO"` (MISSION di WP1), atau `"NONE"` (INIT/WAIT_ARM/TAKEOFF/
-  LAND_CMD/WAIT_DISARM — belum/tidak ada koreksi vision yang dipakai).
+  LAND_CMD/WAIT_DISARM dan selama Livox gate assist memegang kontrol).
 - `aruco_node` dan `yolo_camera_node` subscribe topic ini. Di awal
   callback gambar, kalau sinyal terbaru mengatakan bukan giliran mereka,
   langsung `return` sebelum masuk ke bagian berat (deteksi ArUco penuh /
@@ -318,17 +323,56 @@ Yaw sebelum maju:
 
 - Setiap leg memakai bearing dari waypoint sebelumnya ke waypoint sekarang, bukan bearing sesaat dari posisi aktual.
 - Drone menahan posisi sambil yaw ke arah leg.
-- Yaw command memakai profil akselerasi/deselerasi: max rate sekitar 12 deg/s, akselerasi sekitar 20 deg/s2.
+- Yaw command memakai profil akselerasi/deselerasi: max rate sekitar 20 deg/s, akselerasi sekitar 40 deg/s2.
 - Drone baru boleh maju setelah yaw aktual stabil dalam sekitar 5 deg selama 5 tick.
-- Setelah yaw besar, program melakukan post-yaw shift 10 cm ke arah samping yang dikoreksi, lalu rebase waypoint agar leg berikutnya tetap lurus.
+- Setelah yaw besar, program melakukan post-yaw shift 10 cm. Sekitar 7 cm
+  pertama memakai velocity drive 0.20–0.30 m/s; pada sisa 3 cm berpindah
+  ke position hold untuk mengerem. Shift selesai setelah sisa ≤0.02 m dan
+  speed horizontal ≤0.10 m/s selama 3 tick, atau timeout aman 3 detik.
+- Setelah shift, waypoint sebelumnya dan semua target berikutnya direbase
+  ke posisi aktual agar leg setelah yaw tetap lurus.
 
 Tracking waypoint:
 
 - Saat yaw sudah lock, velocity utama mengikuti arah leg.
-- Forward speed: `clamp(along_track_remaining * 0.35, 0.20, 1.20)` m/s.
+- Forward speed memakai dua zona kontinu: di dalam 2 m tetap
+  `max(0.3, dist * 0.35)`; di luar 2 m naik dengan gain `0.45` sampai
+  maksimum `2.2 m/s`.
 - Cross-track correction: `clamp(cross_track_error * 0.60, -0.25, 0.25)` m/s.
 - Velocity horizontal dikalikan `max(0, cos(yaw_error))` agar gerak melambat jika yaw mulai meleset.
 - Saat sisa along-track <= 0.45 m, mode berubah ke final position hold.
+- Setelah centering ArUco, YOLO, atau final-hold tanpa vision selesai,
+  posisi aktual dikomit sebagai anchor. Seluruh sisa RelativePath digeser
+  dengan delta yang sama sehingga panjang dan bearing leg berikutnya tidak
+  berubah dan drone tidak mengejar koordinat nominal lama secara diagonal.
+
+## Livox Gate Assist (Opt-in)
+
+Livox sepenuhnya terisolasi oleh `gate_centering_enable`, default `false`.
+Saat false, `mission_manager` tidak membuat subscriber `/livox/points`;
+tidak ada callback, copy point cloud, atau koreksi Livox pada mode
+`takeoff` maupun `airborne_handoff`.
+
+Saat `gate_centering_enable=true` pada misi normal, satu gate dapat diproses
+di setiap leg maju:
+
+```text
+APPROACH -> gate terdeteksi -> GATE CENTER -> GATE ADVANCE
+         -> shift lateral RelativePath -> lanjut APPROACH
+```
+
+- CENTER menggunakan position mode dan langkah lateral maksimum 0.03 m.
+- ADVANCE hanya dimulai setelah dua tiang, lebar gate, dan center valid.
+- Heading gate dibekukan agar forward tidak berkelok mengikuti noise yaw.
+- Kecepatan lateral dibatasi 0.30 m/s.
+- Jika gate hilang sebelum bidang gate dilewati, drone berhenti dan CENTER
+  ulang. Setelah bidang gate dilewati, deteksi boleh hilang dan drone tetap
+  lanjut lurus.
+- Setelah gate selesai, sisa jalur digeser hanya pada sumbu lateral menuju
+  center terbaru; sisa jarak forward tidak ditambah.
+
+`start_mode=gate_pass` tetap tersedia sebagai pengujian standalone yang
+melewati ArUco/YOLO/gripper dan mendarat setelah satu gate.
 
 Altitude:
 
@@ -381,6 +425,8 @@ Waypoint reached:
 | `gripper_cmd_topic` | `/gripper_cmd` | Topic command gripper. |
 | `gripper_open_wait_ticks` | `15` | Durasi tunggu setelah `open`, tick 10 Hz. |
 | `gripper_close_wait_ticks` | `15` | Durasi tunggu setelah `close`, tick 10 Hz. |
+| `gate_centering_enable` | `false` | Kill-switch subscriber dan gate assist Livox. |
+| `start_livox_lidar` | `false` | Jalankan driver Livox dari launch. |
 
 ## Parameter TF Mini
 

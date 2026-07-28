@@ -13,6 +13,23 @@ colcon build --symlink-install
 source install/setup.bash
 ```
 
+Jika yang berubah hanya package `src/px4` seperti update ini dan dependency
+workspace sebelumnya sudah pernah berhasil dibangun, cukup:
+
+```bash
+cd ~/wayfix_ws
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+colcon build --packages-select px4 --symlink-install \
+  --cmake-args -DCMAKE_BUILD_TYPE=Release
+source install/setup.bash
+```
+
+Pada workspace baru/bersih, atau jika `px4_msgs`, `tfmini_i2c_ros`, atau
+dependency lain belum tersedia di `install`, gunakan
+`colcon build --packages-up-to px4 --symlink-install` atau build seluruh
+workspace satu kali.
+
 Untuk setiap terminal baru:
 
 ```bash
@@ -27,7 +44,9 @@ Sebelum launch misi, pastikan komponen dasar ini sudah berjalan:
 
 - PX4 SITL atau flight controller fisik.
 - `MicroXRCEAgent`, sebagai bridge PX4 ke ROS 2.
-- Sumber posisi lokal ke `/fmu/out/vehicle_local_position`, misalnya EKF PX4 atau `pose_republisher` jika memakai FastLIO.
+- Sumber posisi lokal ke `/fmu/out/vehicle_local_position`. Untuk validasi
+  non-Livox, gunakan estimator PX4 yang sebelumnya stabil dan pastikan
+  FastLIO/`pose_republisher` tidak berjalan.
 - TF Mini I2C lidar di `/range`; default sudah otomatis dijalankan oleh `px4.launch.xml`.
 - `fiducial_detector` hanya diperlukan kalau mode ArUco/vision lock dipakai.
 - Controller gripper hanya diperlukan kalau `gripper_drop_enable:=true`; package `px4` publish command ke `/gripper_cmd`, sedangkan node/hardware gripper harus subscribe topic itu.
@@ -48,10 +67,12 @@ ros2 topic echo /range --qos-reliability best_effort
 
 ## Pilihan Start Mode
 
-`px4.launch.xml` punya dua mode awal:
+`px4.launch.xml` punya tiga mode awal:
 
 - `start_mode:=takeoff`: mode lama/default. Program arm, masuk offboard, takeoff vertikal, hover, lalu misi.
 - `start_mode:=airborne_handoff`: drone sudah terbang dan ditahan dengan RC Hold. Program ambil alih dari posisi sekarang, tahan N/E, sejajarkan altitude lidar, lalu cari ArUco awal.
+- `start_mode:=gate_pass`: pengujian Livox standalone; melewati misi kamera
+  dan wajib dipasangkan dengan `gate_centering_enable:=true`.
 
 Mode handoff tidak mengubah urutan waypoint. Setelah heading awal terkunci, WP1 tetap maju sesuai `RelativePath`, yaitu `forward(4.9)`.
 
@@ -118,6 +139,7 @@ ros2 launch px4 px4.launch.xml \
   marker_center_tolerance_m:=0.10 \
   marker_search_timeout_s:=20.0 \
   ground_lock_enable:=true \
+  gate_centering_enable:=false \
   yolo_camera_fx_px:=640.0 \
   yolo_camera_fy_px:=640.0 \
   gripper_drop_enable:=true \
@@ -172,6 +194,7 @@ ros2 launch px4 px4.launch.xml \
   marker_heading_front_id:=1 \
   marker_heading_tolerance_deg:=5.0 \
   marker_heading_timeout_s:=8.0 \
+  gate_centering_enable:=false \
   gripper_drop_enable:=true
 ```
 
@@ -228,6 +251,7 @@ ros2 launch px4 px4.launch.xml \
   start_mission_after_hover:=true \
   vision_lock_enable:=true \
   ground_lock_enable:=false \
+  gate_centering_enable:=false \
   gripper_drop_enable:=false \
   camera_mount_yaw_deg:=0.0 \
   marker_center_tolerance_m:=0.10 \
@@ -250,6 +274,7 @@ ros2 launch px4 px4.launch.xml \
   start_mission_after_hover:=true \
   vision_lock_enable:=false \
   ground_lock_enable:=false \
+  gate_centering_enable:=false \
   gripper_drop_enable:=false
 ```
 
@@ -263,6 +288,7 @@ ros2 launch px4 px4.launch.xml \
   start_mission_after_hover:=true \
   vision_lock_enable:=false \
   ground_lock_enable:=false \
+  gate_centering_enable:=false \
   use_lidar_altitude:=false \
   start_tfmini_lidar:=false \
   gripper_drop_enable:=false
@@ -280,7 +306,8 @@ source install/setup.bash
 ros2 launch px4 px4.launch.xml \
   start_mode:=takeoff \
   start_mission_after_hover:=false \
-  use_lidar_altitude:=true
+  use_lidar_altitude:=true \
+  gate_centering_enable:=false
 ```
 
 Tanpa lidar atau untuk Gazebo:
@@ -301,6 +328,76 @@ Log yang dicari:
 Start mission after hover: false (takeoff + hover only)
 HOVER HOLD: anchor takeoff + koreksi ArUco terbatas; misi dinonaktifkan.
 ```
+
+## Urutan Validasi Non-Livox
+
+Selama validasi baseline, selalu gunakan:
+
+```bash
+gate_centering_enable:=false start_livox_lidar:=false
+```
+
+Dengan `gate_centering_enable=false`, `mission_manager` tidak membuat
+subscriber `/livox/points`. Pastikan proses FastLIO dan `pose_republisher`
+eksternal juga berhenti; parameter ini hanya mengisolasi state machine dan
+tidak dapat menghentikan estimator eksternal yang masih mengirim data ke PX4.
+
+Urutan uji yang disarankan:
+
+1. `start_mission_after_hover:=false`: pastikan takeoff naik vertikal dan
+   N/E tetap dekat anchor awal.
+2. Misi tanpa kamera: set `vision_lock_enable:=false`,
+   `ground_lock_enable:=false`, dan `gripper_drop_enable:=false`. Validasi
+   yaw-hold, shift 10 cm, dan dua leg RelativePath.
+3. Aktifkan ArUco dengan YOLO tetap mati. Validasi search dan arah koreksi
+   `camera_mount_yaw_deg`.
+4. Jalankan launch kamera gabungan, aktifkan YOLO WP1 dan gripper terakhir.
+
+Log shift yang normal:
+
+```text
+POST-YAW SHIFT ... DRIVE   # sekitar 7–8 cm awal, 0.20–0.30 m/s
+POST-YAW SHIFT ... BRAKE   # sisa 3 cm, position hold
+POST-YAW SHIFT COMPLETE    # sisa <=2 cm, speed <=0.10 m/s selama 3 tick
+```
+
+Sesudah centering/shift, log `ANCHOR COMMIT` atau
+`jalur direbase dan mulai maju lurus` menandakan target berikutnya sudah
+mengikuti posisi aktual, bukan koordinat nominal lama.
+
+## Livox Gate Assist (Belum Flight-Test)
+
+Gate assist sengaja opt-in. Untuk misi normal dengan satu gate pada setiap
+leg maju:
+
+```bash
+ros2 launch px4 px4.launch.xml \
+  start_mode:=takeoff \
+  start_mission_after_hover:=true \
+  gate_centering_enable:=true \
+  start_livox_lidar:=true
+```
+
+Alurnya `APPROACH -> GATE CENTER -> GATE ADVANCE -> lanjut APPROACH`.
+Setelah gate dilewati, sisa RelativePath digeser lateral mengikuti center
+gate terbaru tanpa menambah sisa jarak forward.
+
+Untuk menguji satu gate secara standalone tanpa ArUco/YOLO/gripper:
+
+```bash
+ros2 launch px4 px4.launch.xml \
+  start_mode:=gate_pass \
+  start_mission_after_hover:=true \
+  gate_centering_enable:=true \
+  start_livox_lidar:=true \
+  vision_lock_enable:=false \
+  ground_lock_enable:=false \
+  gripper_drop_enable:=false
+```
+
+Gate assist belum menggantikan atau mengaktifkan FastLIO sebagai estimator.
+Jika FastLIO dipakai untuk local position PX4, proses dan konfigurasi
+`pose_republisher` harus divalidasi secara terpisah.
 
 ## Lidar TF Mini
 

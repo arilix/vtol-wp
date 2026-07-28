@@ -9,7 +9,7 @@
 namespace px4
 {
 
-ControlModule::ControlModule(rclcpp::Node * node)
+ControlModule::ControlModule(rclcpp::Node * node, bool enable_livox)
 : node_(node)
 {
     // QoS PX4 uXRCE-DDS yang terlihat di graph: BEST_EFFORT + TRANSIENT_LOCAL.
@@ -77,15 +77,17 @@ ControlModule::ControlModule(rclcpp::Node * node)
             onTargetCenter(msg);
         });
 
-    // /livox/points dipublish livox_ros_driver2_node dengan
-    // rclcpp::SensorDataQoS() (BestEffort + Volatile) — samakan di sini.
-    // Livox MID360s bukan bagian dari uXRCE-DDS PX4, jadi bukan px4_qos.
-    livox_sub_ = node_->create_subscription<sensor_msgs::msg::PointCloud2>(
-        "/livox/points",
-        rclcpp::SensorDataQoS(),
-        [this](const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
-            onLivox(msg);
-        });
+    // Isolasi keras Livox: saat fitur gate mati, jangan membuat subscriber
+    // sama sekali. PointCloud2 berukuran besar tidak boleh ikut antre di
+    // executor mission_manager dan mengganggu heartbeat/setpoint 10 Hz.
+    if (enable_livox) {
+        livox_sub_ = node_->create_subscription<sensor_msgs::msg::PointCloud2>(
+            "/livox/points",
+            rclcpp::SensorDataQoS(),
+            [this](const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
+                onLivox(msg);
+            });
+    }
 }
 
 uint64_t ControlModule::nowUs() const

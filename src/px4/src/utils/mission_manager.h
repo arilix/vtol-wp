@@ -105,6 +105,9 @@ private:
     void runTakeoffMarker();
     void runMission();
     void runGatePassMission();
+    bool runMissionGateAssist(
+        double leg_bearing, double along_track_remaining,
+        const std::string & waypoint_label);
     void runLandCmd();
     void runWaitDisarm();
 
@@ -118,7 +121,7 @@ private:
     // dipublish tiap tick ke /mission/vision_source_active supaya
     // aruco_node/yolo_camera_node bisa skip inferensi kalau bukan
     // gilirannya (hemat CPU/NPU) tanpa perlu start/stop proses. Lihat
-    // PROGRAM_OVERVIEW.md bagian "Ground Lock YOLO (WP2)".
+    // PROGRAM_OVERVIEW.md bagian "Ground Lock YOLO (WP1)".
     const char * activeVisionSourceLabel() const;
     double toPx4DownForAltitudeTarget(double mission_down) const;
     double toPx4North(double mission_north) const;
@@ -136,6 +139,7 @@ private:
         double base_north, double base_east,
         double & out_north, double & out_east);
     void resetWaypointVisionState();
+    void commitCurrentWaypointAnchor();
     void applyLatchedMarkerTarget(
         double base_north, double base_east,
         double & out_north, double & out_east);
@@ -233,13 +237,11 @@ private:
     double yolo_camera_fy_px_      {640.0};
 
     // ── Gate centering (Livox MID360s, /livox/points) ────────────────
-    // Kill-switch lapangan, default FALSE: fitur baru, belum diverifikasi
-    // di misi nyata (baru dites komunikasi datanya bekerja dengan sensor
-    // fisik). Saat true, MissionManager cuma LOG hasil deteksi tiap
-    // frame lewat onLivoxUpdate() — belum menyuntikkan koreksi apa pun ke
-    // runMission()/state machine, supaya tidak mengganggu alur
-    // ArUco/YOLO/gripper yang sudah terbukti di lapangan. Lihat
-    // GateCenteringLock untuk matematikanya.
+    // Kill-switch lapangan, default FALSE. Subscriber point cloud hanya
+    // dibuat hanya bila parameter ini true. Karena default false, mode
+    // takeoff/airborne_handoff lama tidak punya callback, copy cloud,
+    // maupun koreksi Livox. Bila sengaja true pada misi normal, gate assist
+    // opt-in bekerja sekali pada setiap leg maju.
     bool   gate_centering_enable_        {false};
     float  gate_centering_roi_forward_min_m_{1.0f};
     float  gate_centering_roi_forward_max_m_{10.0f};
@@ -249,6 +251,7 @@ private:
     float  gate_centering_target_forward_distance_m_{1.75f};
     int    gate_centering_min_cluster_points_{5};
     GateCenteringLock::Result gate_centering_latest_{};
+    double last_gate_sample_s_{-1.0};
 
     // Debounce/freeze untuk hasil GateCenteringLock — reuse VisionLock
     // (sudah teruji: debounce sample berturut-turut, clamp magnitude,
@@ -267,19 +270,33 @@ private:
     // buta tanpa koreksi lateral).
     GatePassStage gate_pass_stage_ {GatePassStage::CENTER};
     int    gate_pass_centered_ticks_ {0};
-    int    gate_pass_engage_ticks_   {0};
     bool   gate_pass_engaged_prev_   {false};
+    PositionNED gate_pass_center_target_ {};
     PositionNED gate_pass_advance_start_position_ {};
     double gate_pass_advance_start_yaw_ {0.0};
     rclcpp::Time gate_pass_stage_started_at_;
 
     float  gate_pass_forward_velocity_m_s_ {1.0f};
     float  gate_pass_proportional_gain_    {0.5f};
-    float  gate_pass_max_lateral_velocity_m_s_{1.0f};
+    float  gate_pass_max_lateral_velocity_m_s_{0.3f};
     float  gate_pass_distance_m_           {3.5f};
     int    gate_pass_required_centered_ticks_{10};
     double gate_pass_center_timeout_s_     {15.0};
     double gate_pass_advance_timeout_s_    {12.0};
+
+    // Gate assist opsional di dalam RelativePath normal. Satu gate per leg:
+    // detector menginterupsi APPROACH, CENTER, ADVANCE, lalu jalur nominal
+    // digeser lateral ke center gate terbaru sebelum approach dilanjutkan.
+    bool mission_gate_active_ {false};
+    bool mission_gate_completed_for_wp_ {false};
+    GatePassStage mission_gate_stage_ {GatePassStage::CENTER};
+    PositionNED mission_gate_center_target_ {};
+    PositionNED mission_gate_advance_start_ {};
+    double mission_gate_heading_ {0.0};
+    double mission_gate_stage_started_s_ {0.0};
+    int mission_gate_centered_ticks_ {0};
+    bool leg_bearing_override_valid_ {false};
+    double leg_bearing_override_ {0.0};
 
     // Feedback centering ArUco (closed-loop, tidak pakai averaging).
     bool   marker_feedback_active_{false};

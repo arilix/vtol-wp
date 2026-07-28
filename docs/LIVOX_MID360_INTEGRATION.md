@@ -121,6 +121,7 @@ precisely because it *isn't* assumed body-aligned).
   additive) — new `LivoxSample` struct, `LivoxCallback`, and a
   `/livox/points` `PointCloud2` subscriber (`SensorDataQoS`, matching the
   driver's publisher QoS) that extracts raw x/y/z into `LivoxSample::points`.
+  Subscriber ini hanya dibuat saat `gate_centering_enable:=true`.
 - **`src/utils/mission_manager.h` / `src/core/mission_manager.cpp`** (edited,
   additive) — `gate_centering_enable_` parameter, **default `false`**
   (kill switch, same convention as `vision_lock_enable_`), a
@@ -139,7 +140,7 @@ precisely because it *isn't* assumed body-aligned).
 | Arg | Default | Purpose |
 |---|---|---|
 | `start_livox_lidar` | `false` | Start `livox_ros_driver2_node` |
-| `gate_centering_enable` | `false` | Kill switch for `GateCenteringLock` logging |
+| `gate_centering_enable` | `false` | Kill switch subscriber dan seluruh koreksi gate |
 | `livox_user_config_path` | `.../livox_ros_driver2/config/MID360_config.json` | Vendor JSON (network config) |
 | `livox_publish_freq` | `10.0` | Hz |
 | `livox_frame_id` | `livox_frame` | TF frame |
@@ -200,13 +201,15 @@ ros2 launch px4 px4.launch.xml \
 - `start_livox_lidar:=false` (default) — Livox driver node doesn't start at
   all, nothing changes vs. before this work.
 - `start_livox_lidar:=true`, `gate_centering_enable:=false` (default) —
-  driver runs and publishes `/livox/points`, but `MissionManager` ignores it
-  (kill switch off, exactly the pre-existing behavior).
-- `gate_centering_enable:=true` — `MissionManager` additionally logs
-  `Gate centering (Livox): ...` lines from `GateCenteringLock` at ~10 Hz.
-  Still **read-only** — no setpoint/command is derived from it yet (see
-  §4 and "Not yet done" below), so this flag is safe to leave on even
-  mid-mission; it won't change how the drone flies.
+  driver boleh publish `/livox/points`, tetapi `MissionManager` tidak
+  membuat subscriber sehingga timing misi normal tidak terpengaruh.
+- `start_mode:=gate_pass gate_centering_enable:=true` — `MissionManager`
+  membuat subscriber cloud dan menjalankan state CENTER/ADVANCE. Kombinasi
+  ini memang mengubah kontrol dan harus diuji sebagai mode terpisah.
+- `start_mode:=takeoff` atau `airborne_handoff` dengan
+  `gate_centering_enable:=true` — gate assist opt-in bekerja sekali pada
+  setiap leg maju: CENTER, ADVANCE, lalu sisa RelativePath digeser lateral
+  mengikuti center gate terbaru.
 
 Tuning knobs live in `wayfix_ws/src/px4/config/gate_centering.yaml`
 (`gate_centering.*` — ROI size, expected gate width, tolerance, etc.) — edit

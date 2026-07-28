@@ -226,6 +226,13 @@ void WaypointHandler::computeApproachVelocity(
     double & vx, double & vy) const
 {
     const double arah  = std::atan2(err_e, err_n);
+    const double speed = computeApproachSpeed(dist);
+    vx = speed * std::cos(arah);
+    vy = speed * std::sin(arah);
+}
+
+double WaypointHandler::computeApproachSpeed(double dist) const
+{
     // Gain lama (0.05) baru mencapai cap lama (1.8 m/s) di jarak ~30m —
     // tidak realistis untuk leg beberapa meter (drone jadi kelihatan
     // "lambat/tidak nemu-nemu"). Gain 0.35 mencapai cap itu di ~5m, masih
@@ -251,8 +258,7 @@ void WaypointHandler::computeApproachVelocity(
         speed = std::min(CRUISE_SPEED_MS,
             brake_zone_speed + (dist - BRAKE_ZONE_M) * CRUISE_GAIN);
     }
-    vx = speed * std::cos(arah);
-    vy = speed * std::sin(arah);
+    return speed;
 }
 
 double WaypointHandler::computeVerticalVelocity(double alt_error) const

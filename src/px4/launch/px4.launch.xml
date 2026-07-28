@@ -18,8 +18,8 @@
   <arg name="marker_heading_align_enable" default="true"/>
   <arg name="marker_heading_back_id" default="0"/>
   <arg name="marker_heading_front_id" default="1"/>
-  <arg name="marker_heading_tolerance_deg" default="2.0"/>
-  <arg name="marker_heading_timeout_s" default="12.0"/>
+  <arg name="marker_heading_tolerance_deg" default="5.0"/>
+  <arg name="marker_heading_timeout_s" default="8.0"/>
   <arg name="marker_heading_yaw_sign" default="1.0"/>
 
   <!-- TF Mini I2C lidar. Node ini publish sensor_msgs/Range ke /range,
@@ -52,12 +52,12 @@
   <arg name="marker_center_tolerance_m" default="0.10"/>
   <arg name="marker_search_timeout_s" default="20.0"/>
 
-  <!-- Ground lock (koreksi posisi via box YOLO, khusus WP2) — lihat
+  <!-- Ground lock (koreksi posisi via box YOLO, khusus WP1) — lihat
        PROGRAM_OVERVIEW.md. Kamera fisik sama dengan ArUco (mount yaw
        dari camera_mount_yaw_deg di atas dipakai juga di sini), jadi
        cukup kalibrasi fokal (fx/fy piksel) kalau berbeda dari default
        placeholder fiducial_detector. ground_lock_enable:=false adalah
-       kill-switch instan khusus jalur YOLO WP2. -->
+       kill-switch instan khusus jalur YOLO WP1. -->
   <arg name="ground_lock_enable" default="true"/>
   <arg name="yolo_camera_fx_px" default="640.0"/>
   <arg name="yolo_camera_fy_px" default="640.0"/>
@@ -69,9 +69,10 @@
 
   <!-- Gate centering (Livox MID360s, /livox/points) — lihat
        docs/LIVOX_MID360_INTEGRATION.md. Kill-switch lapangan, default
-       FALSE: MissionManager cuma LOG deteksi gerbang, belum menyuntikkan
-       koreksi ke misi. Params gate_centering.* ada di
-       config/gate_centering.yaml. -->
+       FALSE dan subscriber point cloud tidak dibuat sama sekali. Saat true,
+       start_mode gate_pass menjalankan test gate standalone; pada misi
+       takeoff/handoff fitur menjadi gate assist opt-in di setiap leg maju.
+       Params gate_centering.* ada di config YAML. -->
   <arg name="gate_centering_enable" default="false"/>
   <arg name="start_livox_lidar" default="false"/>
   <arg name="livox_user_config_path" default="$(find-pkg-share livox_ros_driver2)/config/MID360_config.json"/>

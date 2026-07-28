@@ -16,7 +16,7 @@ mission_manager:
     gate_pass:
       forward_velocity_m_s: 1.0
       proportional_gain: 0.5
-      max_lateral_velocity_m_s: 1.0
+      max_lateral_velocity_m_s: 0.3
       pass_distance_m: 3.5
       required_centered_ticks: 10
       center_timeout_s: 15.0

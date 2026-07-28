@@ -94,6 +94,7 @@ public:
     void computeApproachVelocity(
         double err_n, double err_e, double dist,
         double & vx, double & vy) const;
+    double computeApproachSpeed(double dist) const;
 
     double computeVerticalVelocity(double alt_error) const;
 

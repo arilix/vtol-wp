@@ -36,7 +36,7 @@ class ControlModule
 public:
     // node: pointer ke node ROS2 milik MissionManager — dipakai untuk
     // membuat publisher/subscriber dan logging, BUKAN untuk spin sendiri.
-    explicit ControlModule(rclcpp::Node * node);
+    explicit ControlModule(rclcpp::Node * node, bool enable_livox);
 
     // ── Sample posisi + info reset EKF ────────────────────────────
     // xy_reset_counter/z_reset_counter/heading_reset_counter berubah
