@@ -1,8 +1,6 @@
 build/
 install/
 log/
-.colcon/
 .vscode/
-.idea/
-*.pyc
 __pycache__/
+*.pyc
