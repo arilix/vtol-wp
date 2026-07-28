@@ -13,7 +13,7 @@
   <arg name="marker_size" default="0.05" description="Physical marker size in metres"/>
   <arg name="min_detection_confidence" default="0.50" description="Minimum accepted detector confidence"/>
   <arg name="show_window" default="false"/>
-  <arg name="publish_debug_image" default="false" description="Publish /fiducial/debug_image"/>
+  <arg name="publish_debug_image" default="true" description="Publish /fiducial/debug_image"/>
   <arg name="npu"         default="true"  description="true/false - probe Raspberry Pi AI HAT / Hailo NPU"/>
   <arg name="color_format" default="YUYV" description="RealSense color format"/>
 

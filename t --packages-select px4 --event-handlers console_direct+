@@ -1,0 +1,27 @@
+[1mdiff --git a/src/px4/src/core/control_module.cpp b/src/px4/src/core/control_module.cpp[m
+[1mindex d092c12..06c1aad 100644[m
+[1m--- a/src/px4/src/core/control_module.cpp[m
+[1m+++ b/src/px4/src/core/control_module.cpp[m
+[36m@@ -214,6 +214,12 @@[m [mvoid ControlModule::sendPositionSetpoint([m
+     msg.acceleration = { nan, nan, nan };[m
+     msg.jerk = { nan, nan, nan };[m
+     msg.yaw = static_cast<float>(yaw);[m
+[32m+[m[32m    // Gunakan yaw angle sebagai satu-satunya referensi heading. Jika field[m
+[32m+[m[32m    // ini dibiarkan pada default 0.0, PX4 menerima perintah yaw-rate nol[m
+[32m+[m[32m    // bersamaan dengan target yaw dan dapat menahan rotasi pada beberapa[m
+[32m+[m[32m    // versi/controller. NaN menonaktifkan kontrol yawspeed sesuai kontrak[m
+[32m+[m[32m    // TrajectorySetpoint.[m
+[32m+[m[32m    msg.yawspeed = nan;[m
+     traj_pub_->publish(msg);[m
+ }[m
+ [m
+[36m@@ -233,8 +239,8 @@[m [mvoid ControlModule::sendVelocitySetpoint([m
+     msg.acceleration = { nan, nan, nan };[m
+     msg.jerk = { nan, nan, nan };[m
+     msg.yaw = static_cast<float>(yaw);[m
+[32m+[m[32m    msg.yawspeed = nan;[m
+     traj_pub_->publish(msg);[m
+ }[m
+ [m
+ }  // namespace px4[m
+[31m-[m

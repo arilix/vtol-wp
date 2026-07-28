@@ -1,0 +1,23 @@
+mission_manager:
+  ros__parameters:
+    # gate_centering_enable ada di launch arg (px4.launch.xml), bukan di
+    # sini, supaya satu kill-switch tunggal lewat command line/launch arg.
+    gate_centering:
+      detection_range_min: 1.0
+      detection_range_max: 10.0
+      target_gate_distance: 1.75
+      roi_lateral: 3.0
+      gate_width: 1.5
+      centering_tolerance: 0.2
+      min_cluster_points: 5
+
+    # Dipakai runGatePassMission() (start_mode:=gate_pass). Lihat
+    # docs/LIVOX_MID360_INTEGRATION.md §9.
+    gate_pass:
+      forward_velocity_m_s: 1.0
+      proportional_gain: 0.5
+      max_lateral_velocity_m_s: 1.0
+      pass_distance_m: 3.5
+      required_centered_ticks: 10
+      center_timeout_s: 15.0
+      advance_timeout_s: 12.0

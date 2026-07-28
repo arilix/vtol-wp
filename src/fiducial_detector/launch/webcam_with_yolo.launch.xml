@@ -1,0 +1,82 @@
+<!--
+  webcam_with_yolo.launch.xml
+  Kamera nadir + ArUco (aruco_node) + box detector YOLO (yolo_camera_node,
+  package general_box_detector_ros) SEKALIGUS.
+
+  Kenapa boleh sekaligus (bukan gantian proses): kedua node detector cuma
+  SUBSCRIBE ke /camera/image_raw — sama seperti aruco_node, yolo_camera_node
+  tidak lagi membuka device kamera sendiri (lihat komentar di
+  yolo_camera_node.cpp). Jadi tidak ada rebutan device V4L2 walau dua-duanya
+  jalan bersamaan; capture_node satu-satunya yang pegang device.
+
+  "Gantian" yang dimaksud di PROGRAM_OVERVIEW.md murni soal DATA mana yang
+  dipakai mission_manager untuk centering per waypoint (ArUco utk WP lain,
+  YOLO khusus WP2) — itu diatur software (ground_lock_enable/current_wp_ di
+  mission_manager), bukan lifecycle proses node ini.
+
+  Usage:
+    ros2 launch fiducial_detector webcam_with_yolo.launch.xml
+    ros2 launch fiducial_detector webcam_with_yolo.launch.xml device_id:=2
+    ros2 launch fiducial_detector webcam_with_yolo.launch.xml yolo_model_path:=/path/model.hef
+-->
+<launch>
+  <!-- ── Kamera (capture_node, sama seperti webcam.launch.xml) ─────── -->
+  <arg name="device_id"   default="0"     description="V4L2 device index"/>
+  <arg name="device_path" default=""      description="Optional /dev/videoX (overrides device_id)"/>
+  <arg name="width"       default="640"/>
+  <arg name="height"      default="480"/>
+  <arg name="fps_limit"   default="30.0"/>
+
+  <!-- ── ArUco (aruco_node) ─────────────────────────────────────────── -->
+  <arg name="marker_size" default="0.05"  description="Physical marker size in metres"/>
+  <arg name="show_window" default="false"/>
+  <arg name="npu"         default="true"  description="true/false - probe Raspberry Pi AI HAT / Hailo NPU"/>
+
+  <!-- ── YOLO box detector (yolo_camera_node) ────────────────────────
+       npu (Hailo) dipakai bersama aruco_node kalau npu:=true di atas —
+       dua-duanya boleh probe/pakai NPU yang sama karena ArUco filternya
+       tetap CPU (lihat komentar npu di detector.yaml). -->
+  <arg name="yolo_enable"      default="true"  description="false = jangan jalankan yolo_camera_node sama sekali"/>
+  <arg name="yolo_model_path"  default="/home/vtol/wayfix_ws/src/yolobox/models/model.hef"/>
+  <arg name="yolo_confidence"  default="0.70"/>
+  <arg name="yolo_target_class_id" default="3"/>
+  <arg name="yolo_preprocess_mode" default="letterbox"/>
+
+  <!-- C++ Camera Capture Node (OpenCV VideoCapture via V4L2) -->
+  <node pkg="fiducial_detector" exec="capture_node" name="capture_node" output="screen">
+    <param name="source"       value="webcam"/>
+    <param name="device_id"    value="$(var device_id)"/>
+    <param name="device_path"  value="$(var device_path)"/>
+    <param name="width"        value="$(var width)"/>
+    <param name="height"       value="$(var height)"/>
+    <param name="fps_limit"    value="$(var fps_limit)"/>
+    <param name="output_topic" value="/camera/image_raw"/>
+    <param name="frame_id"     value="camera_optical_frame"/>
+  </node>
+
+  <!-- DICT_7X7_50 Gate Centering Node -->
+  <node pkg="fiducial_detector" exec="aruco_node" name="aruco_node" output="screen">
+    <param from="$(find-pkg-share fiducial_detector)/config/detector.yaml"/>
+    <param name="camera_topic" value="/camera/image_raw"/>
+    <param name="marker_size"  value="$(var marker_size)"/>
+    <param name="show_window"  value="$(var show_window)"/>
+    <param name="npu"          value="$(var npu)"/>
+  </node>
+
+  <!-- Box detector YOLO — sumber centering khusus WP2 (lihat mission_manager) -->
+  <node pkg="general_box_detector_ros" exec="yolo_camera_node" name="general_box_camera"
+        output="screen" if="$(var yolo_enable)">
+    <param name="camera_topic"       value="/camera/image_raw"/>
+    <param name="model_path"         value="$(var yolo_model_path)"/>
+    <param name="confidence"         value="$(var yolo_confidence)"/>
+    <param name="save_video"         value="false"/>
+    <param name="publish_topic"      value="/general_box/image_annotated"/>
+    <param name="count_topic"        value="/general_box/detection_count"/>
+    <param name="boxes_topic"        value="/general_box/detections"/>
+    <param name="center_topic"       value="/general_box/target_center"/>
+    <param name="frame_id"           value="general_box_camera"/>
+    <param name="target_class_id"    value="$(var yolo_target_class_id)"/>
+    <param name="preprocess_mode"    value="$(var yolo_preprocess_mode)"/>
+    <param name="input_color_order"  value="rgb"/>
+  </node>
+</launch>

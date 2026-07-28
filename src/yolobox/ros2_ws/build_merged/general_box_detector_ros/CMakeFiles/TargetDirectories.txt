@@ -1,0 +1,10 @@
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/uninstall.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/general_box_detector_ros_uninstall.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/yolo_camera_node.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/test.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/edit_cache.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/rebuild_cache.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/list_install_components.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/install.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/install/local.dir
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/build_merged/general_box_detector_ros/CMakeFiles/install/strip.dir

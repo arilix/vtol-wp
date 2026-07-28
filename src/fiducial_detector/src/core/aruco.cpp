@@ -233,12 +233,16 @@ void FiducialDetector::initDetectors() {
 
 void FiducialDetector::initPublishers() {
     pub_pose_      = create_publisher<geometry_msgs::msg::PoseStamped>("/fiducial/pose", 10);
+    pub_rviz_markers_ = create_publisher<visualization_msgs::msg::MarkerArray>(
+        "/fiducial/markers", 10);
+    pub_marker_centers_ = create_publisher<std_msgs::msg::Float32MultiArray>(
+        "/fiducial/marker_centers", 10);
     pub_debug_     = create_publisher<sensor_msgs::msg::Image>("/fiducial/debug_image", 10);
     pub_alignment_ = create_publisher<std_msgs::msg::String>("/fiducial/alignment", 10);
     pub_fps_       = create_publisher<std_msgs::msg::Float32>("/fiducial/fps", 10);
     pub_rejected_  = create_publisher<std_msgs::msg::String>("/fiducial/rejected_candidates", 10);
     RCLCPP_INFO(get_logger(),
-        "Publishers: /fiducial/{pose,debug_image,alignment,fps,rejected_candidates}");
+        "Publishers: /fiducial/{pose,markers,marker_centers,debug_image,alignment,fps,rejected_candidates}");
 }
 
 void FiducialDetector::initSubscriber() {
@@ -249,6 +253,20 @@ void FiducialDetector::initSubscriber() {
         "raw", qos.get_rmw_qos_profile());
     cam_connected_ = true;
     RCLCPP_INFO(get_logger(), "Subscribed to '%s'", camera_topic_.c_str());
+
+    // Skip-inferensi (bukan start/stop proses) berdasar sinyal dari
+    // mission_manager (px4) di /mission/vision_source_active — lihat
+    // komentar di visionSourceCallback()/imageCallback().
+    vision_source_sub_ = create_subscription<std_msgs::msg::String>(
+        "/mission/vision_source_active", 10,
+        std::bind(&FiducialDetector::visionSourceCallback, this, std::placeholders::_1));
+}
+
+void FiducialDetector::visionSourceCallback(const std_msgs::msg::String::SharedPtr msg)
+{
+    active_vision_source_    = msg->data;
+    last_active_signal_time_ = now();
+    active_signal_seen_      = true;
 }
 
 void FiducialDetector::imageCallback(
@@ -294,7 +312,48 @@ void FiducialDetector::imageCallback(
     fps_monitor_.tick();
     ++frame_count_;
 
+    // Skip detection ArUco (bagian CPU paling berat: runDetection + pose
+    // estimation + publish) kalau mission_manager (px4) bilang bukan
+    // giliran ArUco (WP1 sedang pakai YOLO). cam_connected_/last_frame_time_/
+    // fps_monitor_ tetap di-update di atas supaya watchdog tidak mengira
+    // kamera mati. Kalau sinyal belum pernah datang atau sudah basi >1s
+    // (mission_manager belum/tidak jalan, mis. tes standalone node ini),
+    // DEFAULT TETAP DETEKSI seperti sebelumnya.
+    // Log ini sengaja DEBUG (bukan INFO) — saat giliran YOLO (WP1), pesan
+    // "bukan giliran ArUco" ini akan terus berulang tiap 2 detik dan cuma
+    // jadi noise; log ARUCO di terminal ini seharusnya cuma muncul saat
+    // ArUco memang sedang dipakai. Naikkan log level ke debug kalau perlu
+    // menelusuri kenapa node ini idle.
+    const bool signal_fresh = active_signal_seen_ &&
+        (now() - last_active_signal_time_).seconds() <= 1.0;
+    if (signal_fresh && active_vision_source_ != "ARUCO") {
+        RCLCPP_DEBUG_THROTTLE(get_logger(), *get_clock(), 2000,
+            "SKIP deteksi ArUco - vision_source_active=%s (bukan giliran ArUco)",
+            active_vision_source_.c_str());
+        return;
+    }
+
     DetectionResult result = runDetection(frame);
+
+    // Jalur khusus heading handoff membutuhkan pasangan marker besar+kecil.
+    // Publikasikan center segera setelah ID berhasil di-decode OpenCV, sebelum
+    // filter confidence/pose untuk centering biasa. Marker kecil sering punya
+    // confidence pose lebih rendah walaupun ID dan sudut gambarnya valid.
+    // Topic pose/centering di bawah tetap memakai result yang sudah difilter,
+    // jadi perilaku mode takeoff lama tidak berubah.
+    {
+        auto centers_msg = std_msgs::msg::Float32MultiArray();
+        centers_msg.data.reserve(2 + result.markers.size() * 3);
+        centers_msg.data.push_back(static_cast<float>(result.frame_size.width));
+        centers_msg.data.push_back(static_cast<float>(result.frame_size.height));
+        for (const auto& marker : result.markers) {
+            centers_msg.data.push_back(static_cast<float>(marker.id));
+            centers_msg.data.push_back(marker.center.x);
+            centers_msg.data.push_back(marker.center.y);
+        }
+        pub_marker_centers_->publish(centers_msg);
+    }
+
     estimatePoses(result);
     computeConfidence(result);
     result.markers.erase(
@@ -587,6 +646,7 @@ void FiducialDetector::publishAll(
             ? "camera_color_optical_frame"
             : "camera")
         : output_frame_id_;
+    publishRvizMarkers(result, frame_id, stamp);
 
     if (publish_debug_image_ || show_window_) {
         auto img_msg = cv_bridge::CvImage(
@@ -627,6 +687,74 @@ void FiducialDetector::publishAll(
                   + std::to_string(result.markers.size()) + "}";
         pub_rejected_->publish(msg);
     }
+}
+
+
+void FiducialDetector::publishRvizMarkers(
+    const DetectionResult& result,
+    const std::string& frame_id,
+    const rclcpp::Time& stamp)
+{
+    visualization_msgs::msg::MarkerArray marker_array;
+
+    visualization_msgs::msg::Marker clear;
+    clear.header.stamp = stamp;
+    clear.header.frame_id = frame_id;
+    clear.ns = "fiducial";
+    clear.id = 0;
+    clear.action = visualization_msgs::msg::Marker::DELETEALL;
+    marker_array.markers.push_back(clear);
+
+    int marker_id = 1;
+    for (const auto& m : result.markers) {
+        if (!m.pose.valid) continue;
+
+        visualization_msgs::msg::Marker cube;
+        cube.header.stamp = stamp;
+        cube.header.frame_id = frame_id;
+        cube.ns = "fiducial_pose";
+        cube.id = marker_id++;
+        cube.type = visualization_msgs::msg::Marker::CUBE;
+        cube.action = visualization_msgs::msg::Marker::ADD;
+        cube.pose.position.x = m.pose.tvec[0];
+        cube.pose.position.y = m.pose.tvec[1];
+        cube.pose.position.z = m.pose.tvec[2];
+        cube.pose.orientation.x = m.pose.quaternion.x();
+        cube.pose.orientation.y = m.pose.quaternion.y();
+        cube.pose.orientation.z = m.pose.quaternion.z();
+        cube.pose.orientation.w = m.pose.quaternion.w();
+        cube.scale.x = marker_size_;
+        cube.scale.y = marker_size_;
+        cube.scale.z = 0.01;
+        cube.color.r = 0.0f;
+        cube.color.g = 1.0f;
+        cube.color.b = 0.15f;
+        cube.color.a = 0.85f;
+        cube.lifetime = rclcpp::Duration::from_seconds(0.5);
+        marker_array.markers.push_back(cube);
+
+        visualization_msgs::msg::Marker text;
+        text.header.stamp = stamp;
+        text.header.frame_id = frame_id;
+        text.ns = "fiducial_id";
+        text.id = marker_id++;
+        text.type = visualization_msgs::msg::Marker::TEXT_VIEW_FACING;
+        text.action = visualization_msgs::msg::Marker::ADD;
+        text.pose.position.x = m.pose.tvec[0];
+        text.pose.position.y = m.pose.tvec[1];
+        text.pose.position.z = m.pose.tvec[2] + marker_size_;
+        text.pose.orientation.w = 1.0;
+        text.scale.z = std::max(0.04, marker_size_ * 0.8);
+        text.color.r = 1.0f;
+        text.color.g = 1.0f;
+        text.color.b = 1.0f;
+        text.color.a = 1.0f;
+        text.text = "ID " + std::to_string(m.id);
+        text.lifetime = rclcpp::Duration::from_seconds(0.5);
+        marker_array.markers.push_back(text);
+    }
+
+    pub_rviz_markers_->publish(marker_array);
 }
 
 void FiducialDetector::reconnectCamera() {

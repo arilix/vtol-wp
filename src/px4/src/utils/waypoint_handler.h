@@ -53,6 +53,7 @@ public:
     const Waypoint & at(size_t idx) const;
     const std::vector<Waypoint> & all() const;
     std::string labelAt(size_t idx) const;
+    void translateWaypointsFrom(size_t start_idx, double delta_n, double delta_e);
 
     // ── Hitung yaw ke target ─────────────────────────────────────────
     // dist_to_target: jarak horizontal drone ke target (untuk deteksi
@@ -128,6 +129,7 @@ private:
     // dan berubah secara bertahap dari yaw saat ini ke yaw target.
     Quaternion smoothed_target_quaternion_ {};
     double smoothed_target_yaw_ {0.0};
+    double smoothed_yaw_rate_rad_s_ {0.0};
     bool has_smoothed_yaw_ {false};
 };
 

@@ -7,9 +7,13 @@
 #include <px4_msgs/msg/vehicle_local_position.hpp>
 #include <px4_msgs/msg/vehicle_status.hpp>
 #include <sensor_msgs/msg/range.hpp>
+#include <sensor_msgs/msg/point_cloud2.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
+#include <std_msgs/msg/float32_multi_array.hpp>
+#include <array>
 
 #include <functional>
+#include <vector>
 
 namespace px4
 {
@@ -47,6 +51,9 @@ public:
         double x{0.0};
         double y{0.0};
         double z{0.0};
+        double vx{0.0};
+        double vy{0.0};
+        double vz{0.0};
         double yaw{0.0};
 
         uint8_t xy_reset_counter{0};
@@ -80,6 +87,52 @@ public:
         double y{0.0};
     };
 
+    struct MarkerCenter
+    {
+        int id{-1};
+        double x_px{0.0};
+        double y_px{0.0};
+    };
+
+    struct MarkerCentersSample
+    {
+        double frame_width_px{0.0};
+        double frame_height_px{0.0};
+        std::vector<MarkerCenter> markers;
+    };
+
+    // Titik tengah box terbaik dari /general_box/target_center
+    // (yolo_camera_node, package general_box_detector_ros). Beda dari
+    // MarkerPoseSample: ini piksel mentah, BUKAN meter — box tidak
+    // punya ukuran fisik pasti seperti marker ArUco, jadi tidak bisa
+    // solvePnP. Konversi piksel->meter (ground-plane projection, butuh
+    // altitude) dilakukan di GroundLock, bukan di sini.
+    struct TargetCenterSample
+    {
+        double frame_width_px{0.0};
+        double frame_height_px{0.0};
+        double cx_px{0.0};
+        double cy_px{0.0};
+        double confidence{0.0};
+        // false = frame ini tidak ada box terdeteksi, ATAU lebih dari satu
+        // box terdeteksi (yolo_camera_node sengaja menolak frame ambigu —
+        // box tidak punya ID unik seperti marker ArUco, jadi kalau lebih
+        // dari satu box kelihatan tidak ada cara aman menentukan mana yang
+        // benar tanpa risiko flicker target antar-frame).
+        bool valid{false};
+    };
+
+    // Titik body-frame Livox MID360s dari /livox/points (PointCloud2),
+    // sudah diekstrak x/y/z mentah (x=forward, y=lateral, z=height,
+    // sama seperti frame sensor asli) — matematika ROI/binning ada di
+    // GateCenteringLock (utils/gate_centering_lock.h), bukan di sini,
+    // sama seperti pola MarkerPoseSample/TargetCenterSample: ControlModule
+    // cuma ekstrak field mentah dari message.
+    struct LivoxSample
+    {
+        std::vector<std::array<float, 3>> points;
+    };
+
     // ── Callback registration ─────────────────────────────────────
     // MissionManager pasang callback ini untuk menerima update posisi
     // dan status drone tanpa ControlModule perlu tahu logic misi.
@@ -87,11 +140,17 @@ public:
     using RangeCallback = std::function<void(const RangeSample &)>;
     using StatusCallback = std::function<void(uint8_t arming_state)>;
     using MarkerPoseCallback = std::function<void(const MarkerPoseSample &)>;
+    using MarkerCentersCallback = std::function<void(const MarkerCentersSample &)>;
+    using TargetCenterCallback = std::function<void(const TargetCenterSample &)>;
+    using LivoxCallback = std::function<void(const LivoxSample &)>;
 
     void setPositionCallback(PositionCallback cb);
     void setRangeCallback(RangeCallback cb);
     void setStatusCallback(StatusCallback cb);
     void setMarkerPoseCallback(MarkerPoseCallback cb);
+    void setMarkerCentersCallback(MarkerCentersCallback cb);
+    void setTargetCenterCallback(TargetCenterCallback cb);
+    void setLivoxCallback(LivoxCallback cb);
 
     // ── Command ke PX4 ─────────────────────────────────────────────
     void arm();
@@ -116,6 +175,12 @@ private:
         const px4_msgs::msg::VehicleStatus::SharedPtr msg);
     void onMarkerPose(
         const geometry_msgs::msg::PoseStamped::SharedPtr msg);
+    void onMarkerCenters(
+        const std_msgs::msg::Float32MultiArray::SharedPtr msg);
+    void onTargetCenter(
+        const std_msgs::msg::Float32MultiArray::SharedPtr msg);
+    void onLivox(
+        const sensor_msgs::msg::PointCloud2::SharedPtr msg);
 
     rclcpp::Node * node_;   // non-owning, milik MissionManager
 
@@ -127,11 +192,17 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::Range>::SharedPtr range_sub_;
     rclcpp::Subscription<px4_msgs::msg::VehicleStatus>::SharedPtr        status_sub_;
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr    marker_pose_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr    marker_centers_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr    target_center_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr       livox_sub_;
 
     PositionCallback   position_cb_;
     RangeCallback      range_cb_;
     StatusCallback     status_cb_;
     MarkerPoseCallback marker_pose_cb_;
+    MarkerCentersCallback marker_centers_cb_;
+    TargetCenterCallback  target_center_cb_;
+    LivoxCallback         livox_cb_;
 };
 
 }  // namespace px4

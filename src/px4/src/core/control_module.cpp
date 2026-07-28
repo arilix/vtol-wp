@@ -1,5 +1,7 @@
 #include "utils/control_module.h"
 
+#include <sensor_msgs/point_cloud2_iterator.hpp>
+
 #include <rclcpp/qos.hpp>
 #include <cmath>
 #include <limits>
@@ -57,6 +59,33 @@ ControlModule::ControlModule(rclcpp::Node * node)
         [this](const geometry_msgs::msg::PoseStamped::SharedPtr msg) {
             onMarkerPose(msg);
         });
+
+    marker_centers_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>(
+        "/fiducial/marker_centers",
+        rclcpp::QoS(rclcpp::KeepLast(5)).reliable(),
+        [this](const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+            onMarkerCenters(msg);
+        });
+
+    // /general_box/target_center dipublish yolo_camera_node (package
+    // general_box_detector_ros) dengan create_publisher default (Reliable
+    // + Volatile) — sama seperti /fiducial/marker_centers.
+    target_center_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>(
+        "/general_box/target_center",
+        rclcpp::QoS(rclcpp::KeepLast(5)).reliable(),
+        [this](const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+            onTargetCenter(msg);
+        });
+
+    // /livox/points dipublish livox_ros_driver2_node dengan
+    // rclcpp::SensorDataQoS() (BestEffort + Volatile) — samakan di sini.
+    // Livox MID360s bukan bagian dari uXRCE-DDS PX4, jadi bukan px4_qos.
+    livox_sub_ = node_->create_subscription<sensor_msgs::msg::PointCloud2>(
+        "/livox/points",
+        rclcpp::SensorDataQoS(),
+        [this](const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
+            onLivox(msg);
+        });
 }
 
 uint64_t ControlModule::nowUs() const
@@ -84,6 +113,21 @@ void ControlModule::setMarkerPoseCallback(MarkerPoseCallback cb)
     marker_pose_cb_ = std::move(cb);
 }
 
+void ControlModule::setMarkerCentersCallback(MarkerCentersCallback cb)
+{
+    marker_centers_cb_ = std::move(cb);
+}
+
+void ControlModule::setTargetCenterCallback(TargetCenterCallback cb)
+{
+    target_center_cb_ = std::move(cb);
+}
+
+void ControlModule::setLivoxCallback(LivoxCallback cb)
+{
+    livox_cb_ = std::move(cb);
+}
+
 void ControlModule::onPosition(
     const px4_msgs::msg::VehicleLocalPosition::SharedPtr msg)
 {
@@ -92,6 +136,9 @@ void ControlModule::onPosition(
         s.x = msg->x;
         s.y = msg->y;
         s.z = msg->z;
+        s.vx = msg->vx;
+        s.vy = msg->vy;
+        s.vz = msg->vz;
         s.yaw = msg->heading;
 
         s.xy_reset_counter = msg->xy_reset_counter;
@@ -141,6 +188,67 @@ void ControlModule::onMarkerPose(
         s.y = msg->pose.position.y;
         marker_pose_cb_(s);
     }
+}
+
+void ControlModule::onMarkerCenters(
+    const std_msgs::msg::Float32MultiArray::SharedPtr msg)
+{
+    if (!marker_centers_cb_ || msg->data.size() < 2) {
+        return;
+    }
+
+    MarkerCentersSample s;
+    s.frame_width_px = msg->data[0];
+    s.frame_height_px = msg->data[1];
+    for (size_t i = 2; i + 2 < msg->data.size(); i += 3) {
+        MarkerCenter marker;
+        marker.id = static_cast<int>(std::lround(msg->data[i]));
+        marker.x_px = msg->data[i + 1];
+        marker.y_px = msg->data[i + 2];
+        s.markers.push_back(marker);
+    }
+    marker_centers_cb_(s);
+}
+
+void ControlModule::onTargetCenter(
+    const std_msgs::msg::Float32MultiArray::SharedPtr msg)
+{
+    if (!target_center_cb_ || msg->data.size() < 2) {
+        return;
+    }
+
+    TargetCenterSample s;
+    s.frame_width_px  = msg->data[0];
+    s.frame_height_px = msg->data[1];
+    // yolo_camera_node cuma menambah cx/cy/confidence kalau ada box
+    // terdeteksi di frame itu (lihat FORMAT di log CENTER_TOPIC node
+    // itu) — array 2 elemen berarti "tidak ada target frame ini".
+    if (msg->data.size() >= 5) {
+        s.cx_px       = msg->data[2];
+        s.cy_px       = msg->data[3];
+        s.confidence  = msg->data[4];
+        s.valid       = true;
+    }
+    target_center_cb_(s);
+}
+
+void ControlModule::onLivox(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
+{
+    if (!livox_cb_ || msg->width * msg->height == 0) {
+        return;
+    }
+
+    LivoxSample s;
+    s.points.reserve(msg->width * msg->height);
+
+    sensor_msgs::PointCloud2ConstIterator<float> iter_x(*msg, "x");
+    sensor_msgs::PointCloud2ConstIterator<float> iter_y(*msg, "y");
+    sensor_msgs::PointCloud2ConstIterator<float> iter_z(*msg, "z");
+    for (; iter_x != iter_x.end(); ++iter_x, ++iter_y, ++iter_z) {
+        s.points.push_back({*iter_x, *iter_y, *iter_z});
+    }
+
+    livox_cb_(s);
 }
 
 void ControlModule::arm()
@@ -214,6 +322,12 @@ void ControlModule::sendPositionSetpoint(
     msg.acceleration = { nan, nan, nan };
     msg.jerk = { nan, nan, nan };
     msg.yaw = static_cast<float>(yaw);
+    // Gunakan yaw angle sebagai satu-satunya referensi heading. Jika field
+    // ini dibiarkan pada default 0.0, PX4 menerima perintah yaw-rate nol
+    // bersamaan dengan target yaw dan dapat menahan rotasi pada beberapa
+    // versi/controller. NaN menonaktifkan kontrol yawspeed sesuai kontrak
+    // TrajectorySetpoint.
+    msg.yawspeed = nan;
     traj_pub_->publish(msg);
 }
 
@@ -233,8 +347,8 @@ void ControlModule::sendVelocitySetpoint(
     msg.acceleration = { nan, nan, nan };
     msg.jerk = { nan, nan, nan };
     msg.yaw = static_cast<float>(yaw);
+    msg.yawspeed = nan;
     traj_pub_->publish(msg);
 }
 
 }  // namespace px4
-

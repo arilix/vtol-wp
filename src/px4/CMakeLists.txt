@@ -14,6 +14,7 @@ find_package(rclcpp      REQUIRED)
 find_package(px4_msgs    REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 include_directories(src)
 
@@ -23,6 +24,8 @@ add_executable(px4
   src/core/control_module.cpp
   src/core/waypoint_handler.cpp
   src/core/vision_lock.cpp
+  src/core/ground_lock.cpp
+  src/core/gate_centering_lock.cpp
 )
 
 ament_target_dependencies(px4
@@ -30,6 +33,7 @@ ament_target_dependencies(px4
   px4_msgs
   sensor_msgs
   geometry_msgs
+  std_msgs
 )
 
 install(TARGETS
@@ -39,6 +43,7 @@ install(TARGETS
 
 install(DIRECTORY
   launch
+  config
   DESTINATION share/${PROJECT_NAME}
 )
 

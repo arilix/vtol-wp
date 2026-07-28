@@ -12,6 +12,7 @@ class VehicleState
 {
 public:
     PositionNED position;
+    PositionNED velocity;
 
     double yaw{0.0};
 

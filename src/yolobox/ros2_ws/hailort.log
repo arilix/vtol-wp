@@ -1,0 +1,10 @@
+[2026-07-26 05:41:19.612] [6213] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-26 05:41:19.644] [6213] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-26 05:41:19.854] [6213] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-26 05:41:19.854] [6213] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-26 05:41:20.108] [6213] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-26 05:41:20.108] [6213] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-26 05:41:27.316] [6213] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-26 05:41:27.316] [6213] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-26 05:41:27.316] [6213] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-26 05:41:27.316] [6213] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)

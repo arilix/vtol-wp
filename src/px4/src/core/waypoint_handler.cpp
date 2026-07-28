@@ -24,12 +24,13 @@ constexpr double YAW_LOCK_THRESHOLD = 0.09;  // radian (~5°)
 // untuk memusatkan drone sebelum lanjut ke waypoint berikutnya.
 constexpr double WAYPOINT_RADIUS  = 0.30;  // meter toleransi horizontal
 constexpr double ALT_THRESHOLD    = 0.15;  // meter toleransi altitude
-constexpr double SPEED_MS         = 1.8;   // m/s horizontal max
 constexpr double SPEED_VERT       = 0.4;   // m/s vertikal max
 constexpr double PURE_ALT_RADIUS  = 0.3;   // meter — dianggap pure altitude
 constexpr double YAW_FREEZE_RADIUS = 0.8;  // meter — kunci target_yaw dekat target (redam bearing liar)
 constexpr double YAW_DEADBAND_RAD = 0.012;  // ~0.7deg — abaikan noise kecil tanpa membuat setpoint kaku
-constexpr double YAW_MAX_STEP_RAD  = 0.022;  // ~1.3deg/tick @10Hz, cukup lembut tapi tetap responsif
+constexpr double YAW_MAX_RATE_RAD_S = 0.35;  // ~20deg/s
+constexpr double YAW_ACCEL_RAD_S2   = 0.70;  // ~40deg/s2, ramp naik/turun halus
+constexpr double CONTROL_DT_S       = 0.10;  // timer MissionManager 10Hz
 
 double wrapPi(double angle)
 {
@@ -49,65 +50,37 @@ double quatToYaw(const Quaternion & q)
         1.0 - 2.0 * (q.y * q.y + q.z * q.z));
 }
 
-Quaternion quatNormalize(const Quaternion & q)
-{
-    const double norm = std::sqrt(q.w * q.w + q.x * q.x + q.y * q.y + q.z * q.z);
-    if (norm < 1e-12) {
-        return {1.0, 0.0, 0.0, 0.0};
-    }
-    return {q.w / norm, q.x / norm, q.y / norm, q.z / norm};
-}
-
-Quaternion quatSlerp(const Quaternion & a, const Quaternion & b, double t)
-{
-    if (t <= 0.0) return a;
-    if (t >= 1.0) return b;
-
-    double cosOmega = a.w * b.w + a.x * b.x + a.y * b.y + a.z * b.z;
-    Quaternion b2 = b;
-    if (cosOmega < 0.0) {
-        b2 = {-b.w, -b.x, -b.y, -b.z};
-        cosOmega = -cosOmega;
-    }
-
-    if (cosOmega > 0.9995) {
-        const Quaternion lerp_q = {
-            a.w + t * (b2.w - a.w),
-            a.x + t * (b2.x - a.x),
-            a.y + t * (b2.y - a.y),
-            a.z + t * (b2.z - a.z)};
-        return quatNormalize(lerp_q);
-    }
-
-    const double omega = std::acos(std::max(-1.0, std::min(1.0, cosOmega)));
-    const double sinOmega = std::sin(omega);
-    const double s0 = std::sin((1.0 - t) * omega) / sinOmega;
-    const double s1 = std::sin(t * omega) / sinOmega;
-
-    return quatNormalize({
-        a.w * s0 + b2.w * s1,
-        a.x * s0 + b2.x * s1,
-        a.y * s0 + b2.y * s1,
-        a.z * s0 + b2.z * s1});
-}
-
-Quaternion smoothYawQuaternion(const Quaternion & current, const Quaternion & target)
+Quaternion smoothYawQuaternion(
+    const Quaternion & current, const Quaternion & target,
+    double & yaw_rate_rad_s)
 {
     const double current_yaw = quatToYaw(current);
     const double target_yaw = quatToYaw(target);
     const double delta = wrapPi(target_yaw - current_yaw);
 
     if (std::abs(delta) < YAW_DEADBAND_RAD) {
+        yaw_rate_rad_s = 0.0;
         return current;
     }
 
-    const double normalized = std::min(1.0, std::abs(delta) / (0.6));
-    const double alpha = 0.16 + 0.24 * normalized;
-    const double limited_delta = std::max(
-        -YAW_MAX_STEP_RAD,
-        std::min(YAW_MAX_STEP_RAD, delta));
+    // Profil trapezoidal: akselerasi menuju 20deg/s, lalu otomatis deselerasi
+    // berdasarkan sisa sudut. Ini menghindari hentakan torsi di awal/akhir yaw
+    // yang dapat menggeser badan walau position setpoint tetap.
+    const double stopping_limited_rate = std::sqrt(
+        2.0 * YAW_ACCEL_RAD_S2 * std::abs(delta));
+    const double desired_rate = std::copysign(
+        std::min(YAW_MAX_RATE_RAD_S, stopping_limited_rate), delta);
+    const double max_rate_change = YAW_ACCEL_RAD_S2 * CONTROL_DT_S;
+    yaw_rate_rad_s += std::clamp(
+        desired_rate - yaw_rate_rad_s,
+        -max_rate_change, max_rate_change);
 
-    const double smoothed_yaw = current_yaw + alpha * limited_delta;
+    double step = yaw_rate_rad_s * CONTROL_DT_S;
+    if (std::abs(step) > std::abs(delta)) {
+        step = delta;
+        yaw_rate_rad_s = 0.0;
+    }
+    const double smoothed_yaw = current_yaw + step;
     return quatFromYaw(smoothed_yaw);
 }
 }  // namespace
@@ -145,6 +118,16 @@ std::string WaypointHandler::labelAt(size_t idx) const
 {
     if (idx < labels_.size()) return labels_[idx];
     return "WP" + std::to_string(idx + 1);
+}
+
+void WaypointHandler::translateWaypointsFrom(
+    size_t start_idx, double delta_n, double delta_e)
+{
+    if (start_idx >= waypoints_.size()) return;
+    for (size_t i = start_idx; i < waypoints_.size(); ++i) {
+        waypoints_[i].n += delta_n;
+        waypoints_[i].e += delta_e;
+    }
 }
 
 double WaypointHandler::horizontalDistance(
@@ -214,7 +197,8 @@ YawResult WaypointHandler::computeYaw(
         has_smoothed_yaw_ = true;
     } else {
         smoothed_target_quaternion_ = smoothYawQuaternion(
-            smoothed_target_quaternion_, raw_target_quat);
+            smoothed_target_quaternion_, raw_target_quat,
+            smoothed_yaw_rate_rad_s_);
         smoothed_target_yaw_ = quatToYaw(smoothed_target_quaternion_);
     }
 
@@ -233,6 +217,7 @@ void WaypointHandler::resetYawSmoothing(double current_yaw)
     last_valid_yaw_ = current_yaw;
     smoothed_target_quaternion_ = quatFromYaw(current_yaw);
     smoothed_target_yaw_ = current_yaw;
+    smoothed_yaw_rate_rad_s_ = 0.0;
     has_smoothed_yaw_ = true;
 }
 
@@ -241,11 +226,31 @@ void WaypointHandler::computeApproachVelocity(
     double & vx, double & vy) const
 {
     const double arah  = std::atan2(err_e, err_n);
-    // Gain lama (0.05) baru mencapai SPEED_MS di jarak ~30m — tidak
-    // realistis untuk leg beberapa meter (drone jadi kelihatan "lambat/
-    // tidak nemu-nemu"). Gain 0.35 mencapai SPEED_MS(1.8) di ~5m,
-    // masih landai mendekati target (radius reached 0.30m) untuk stop mulus.
-    const double speed = std::min(SPEED_MS, std::max(0.3, dist * 0.35));
+    // Gain lama (0.05) baru mencapai cap lama (1.8 m/s) di jarak ~30m —
+    // tidak realistis untuk leg beberapa meter (drone jadi kelihatan
+    // "lambat/tidak nemu-nemu"). Gain 0.35 mencapai cap itu di ~5m, masih
+    // landai mendekati target (radius reached 0.30m) untuk stop mulus.
+    //
+    // Zona pengereman (dist <= BRAKE_ZONE_M) SENGAJA memakai formula lama
+    // persis (gain 0.35, floor 0.3) — tidak diubah sama sekali — supaya
+    // perilaku approach akhir ke waypoint (yang mencegah overshoot) tetap
+    // identik. Hanya kecepatan cruise DI LUAR zona itu yang dipercepat,
+    // dengan gain lebih curam menuju cap CRUISE_SPEED_MS yang lebih tinggi
+    // dari cap lama (1.8). Kedua formula bersambung mulus (tanpa lompatan
+    // kecepatan) tepat di batas BRAKE_ZONE_M.
+    constexpr double BRAKE_ZONE_M   = 2.0;   // meter — di bawah ini, formula lama
+    constexpr double BRAKE_GAIN     = 0.35;  // sama seperti sebelumnya
+    constexpr double CRUISE_SPEED_MS = 2.2;  // m/s — naik dari SPEED_MS lama (1.8)
+    constexpr double CRUISE_GAIN    = 0.45;  // m/s per meter di luar zona rem
+
+    double speed;
+    if (dist <= BRAKE_ZONE_M) {
+        speed = std::max(0.3, dist * BRAKE_GAIN);
+    } else {
+        const double brake_zone_speed = BRAKE_ZONE_M * BRAKE_GAIN;
+        speed = std::min(CRUISE_SPEED_MS,
+            brake_zone_speed + (dist - BRAKE_ZONE_M) * CRUISE_GAIN);
+    }
     vx = speed * std::cos(arah);
     vy = speed * std::sin(arah);
 }

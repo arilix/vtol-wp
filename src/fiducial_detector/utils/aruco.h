@@ -11,8 +11,10 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
+#include <visualization_msgs/msg/marker_array.hpp>
 #include <std_msgs/msg/string.hpp>
 #include <std_msgs/msg/float32.hpp>
+#include <std_msgs/msg/float32_multi_array.hpp>
 #include <image_transport/image_transport.hpp>
 #include <cv_bridge/cv_bridge.hpp>
 #include <opencv2/opencv.hpp>
@@ -65,6 +67,7 @@ private:
     void imageCallback(const sensor_msgs::msg::Image::ConstSharedPtr& msg);
     void fpsTimerCallback();
     void watchdogCallback();
+    void visionSourceCallback(const std_msgs::msg::String::SharedPtr msg);
 
     DetectionResult runDetection(const cv::Mat& frame);
     void detectAruco(const cv::Mat& gray, DetectionResult& result);
@@ -76,6 +79,9 @@ private:
                     const cv::Mat& annotated,
                     const GateError& gate_err,
                     const rclcpp::Time& stamp);
+    void publishRvizMarkers(const DetectionResult& result,
+                            const std::string& frame_id,
+                            const rclcpp::Time& stamp);
     void logDetectedMarkers(const DetectionResult& result,
                             const GateError& gate_err) const;
     void reconnectCamera();
@@ -87,7 +93,16 @@ private:
     void        enqueueDisplay(const cv::Mat& frame);
 
     image_transport::Subscriber                                    image_sub_;
+    // Skip-inferensi (bukan start/stop proses) berdasar sinyal dari
+    // mission_manager (px4) di /mission/vision_source_active — lihat
+    // komentar di visionSourceCallback()/imageCallback().
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr         vision_source_sub_;
+    std::string active_vision_source_{};
+    rclcpp::Time last_active_signal_time_{};
+    bool         active_signal_seen_{false};
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr  pub_pose_;
+    rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr pub_rviz_markers_;
+    rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr  pub_marker_centers_;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr          pub_debug_;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr            pub_alignment_;
     rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr           pub_fps_;

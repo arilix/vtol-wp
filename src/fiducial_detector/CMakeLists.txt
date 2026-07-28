@@ -13,6 +13,7 @@ find_package(rclcpp_components REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
@@ -54,7 +55,7 @@ foreach(tgt aruco_node calibration_node)
   )
   ament_target_dependencies(${tgt}
     rclcpp rclcpp_components
-    std_msgs sensor_msgs geometry_msgs
+    std_msgs sensor_msgs geometry_msgs visualization_msgs
     tf2 tf2_geometry_msgs
     cv_bridge image_transport
   )
@@ -115,7 +116,7 @@ target_include_directories(dict_test_node PUBLIC
   ${OpenCV_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
 )
-ament_target_dependencies(dict_test_node rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport)
+ament_target_dependencies(dict_test_node rclcpp std_msgs sensor_msgs geometry_msgs visualization_msgs cv_bridge image_transport)
 target_link_libraries(dict_test_node ${OpenCV_LIBS})
 
 install(TARGETS aruco_node calibration_node capture_node dict_test_node

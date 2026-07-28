@@ -1,0 +1,39 @@
+<launch>
+  <arg name="bus_device" default="/dev/i2c-1"/>
+  <arg name="i2c_address" default="16"/>
+  <arg name="i2c_read_mode" default="command"/>
+  <arg name="frame_id" default="tfmini_link"/>
+  <arg name="publish_rate" default="20.0"/>
+  <arg name="min_range" default="0.03"/>
+  <arg name="max_range" default="12.0"/>
+  <arg name="field_of_view" default="0.04"/>
+  <arg name="range_offset" default="0.0"/>
+  <arg name="log_rate" default="1.0"/>
+  <arg name="mavlink_enabled" default="false"/>
+  <arg name="mavlink_device" default="/dev/ttyAMA0"/>
+  <arg name="mavlink_system_id" default="1"/>
+  <arg name="mavlink_component_id" default="191"/>
+  <arg name="mavlink_sensor_id" default="0"/>
+  <arg name="mavlink_orientation" default="25"/>
+  <arg name="mavlink_covariance" default="0"/>
+
+  <node pkg="tfmini_i2c_ros" exec="tfmini_i2c_node" name="tfmini_i2c_node" output="screen">
+    <param name="bus_device" value="$(var bus_device)"/>
+    <param name="i2c_address" value="$(var i2c_address)"/>
+    <param name="i2c_read_mode" value="$(var i2c_read_mode)"/>
+    <param name="frame_id" value="$(var frame_id)"/>
+    <param name="publish_rate" value="$(var publish_rate)"/>
+    <param name="min_range" value="$(var min_range)"/>
+    <param name="max_range" value="$(var max_range)"/>
+    <param name="field_of_view" value="$(var field_of_view)"/>
+    <param name="range_offset" value="$(var range_offset)"/>
+    <param name="log_rate" value="$(var log_rate)"/>
+    <param name="mavlink_enabled" value="$(var mavlink_enabled)"/>
+    <param name="mavlink_device" value="$(var mavlink_device)"/>
+    <param name="mavlink_system_id" value="$(var mavlink_system_id)"/>
+    <param name="mavlink_component_id" value="$(var mavlink_component_id)"/>
+    <param name="mavlink_sensor_id" value="$(var mavlink_sensor_id)"/>
+    <param name="mavlink_orientation" value="$(var mavlink_orientation)"/>
+    <param name="mavlink_covariance" value="$(var mavlink_covariance)"/>
+  </node>
+</launch>

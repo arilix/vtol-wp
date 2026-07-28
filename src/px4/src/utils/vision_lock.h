@@ -32,7 +32,7 @@ public:
     struct Config
     {
         // Rotasi mounting kamera (derajat) relatif arah hidung drone.
-        // WAJIB dikalibrasi di lapangan — lihat VISION_LOCK_GUIDE.md.
+        // WAJIB dikalibrasi di lapangan; lihat PROGRAM_OVERVIEW.md.
         double camera_mount_yaw_deg{0.0};
 
         // Batas magnitude koreksi (meter). Sengaja ketat: masalah yang
