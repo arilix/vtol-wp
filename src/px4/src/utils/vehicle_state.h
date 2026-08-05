@@ -21,4 +21,5 @@ public:
     bool got_position{false};
 
     uint8_t arming_state{0};
+    uint8_t nav_state{0};
 };

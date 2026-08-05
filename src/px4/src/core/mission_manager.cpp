@@ -145,7 +145,7 @@ std::vector<Waypoint> defaultMissionWaypoints()
     // maju 5m lagi (hasilnya identik dengan waypoint N/E manual
     // sebelumnya: {3,0,-1} lalu {3,5,-1}).
     RelativePath path(/*start_altitude_agl_m=*/1.15);
-    path.forward(4.9)
+    path.forward(5.0)
         .turnLeft(90.0)
         .forward(5.9);
     return path.build();
@@ -332,8 +332,8 @@ MissionManager::MissionManager()
         });
 
     control_->setStatusCallback(
-        [this](uint8_t arming_state) {
-            onStatusUpdate(arming_state);
+        [this](uint8_t arming_state, uint8_t nav_state) {
+            onStatusUpdate(arming_state, nav_state);
         });
 
     control_->setMarkerPoseCallback(
@@ -703,6 +703,10 @@ void MissionManager::resetWaypointVisionState()
     marker_offset_filter_ready_ = false;
     last_marker_sample_s_ = -1.0;
     marker_center_target_ = {};
+    yolo_center_best_offset_m_ = std::numeric_limits<double>::infinity();
+    yolo_center_diverging_ticks_ = 0;
+    yolo_correction_sign_ = 1.0;
+    yolo_direction_reversed_ = false;
     marker_heading_aligned_ticks_ = 0;
     marker_heading_best_error_rad_ = 0.0;
     marker_heading_best_yaw_ = vehicle_.yaw;
@@ -798,6 +802,7 @@ bool MissionManager::runGripperDropIfNeeded(
     switch (gripper_drop_state_) {
         case GripperDropState::IDLE:
             publishGripperCommand("open");
+            payload_released_at_s_ = this->now().seconds();
             gripper_drop_state_ = GripperDropState::OPEN_SENT;
             gripper_drop_counter_ = 0;
             RCLCPP_INFO(this->get_logger(),
@@ -882,6 +887,7 @@ const char * MissionManager::activeVisionSourceLabel() const
 {
     switch (phase_) {
         case Phase::HOVER:
+        case Phase::PILOT_ARUCO_SEARCH:
         case Phase::TAKEOFF_MARKER:
             // HOVER: ArUco dipakai menahan posisi terhadap marker (anti
             // drift EKF, lihat runHover()). TAKEOFF_MARKER: marker awal
@@ -935,10 +941,11 @@ double MissionManager::toPx4Down(double mission_down) const
     return origin_down_ + mission_down - altitude_command_bias_m_;
 }
 
-void MissionManager::onStatusUpdate(uint8_t arming_state)
+void MissionManager::onStatusUpdate(uint8_t arming_state, uint8_t nav_state)
 {
     ++status_update_count_;
     vehicle_.arming_state = arming_state;
+    vehicle_.nav_state = nav_state;
 }
 
 void MissionManager::onMarkerPoseUpdate(const ControlModule::MarkerPoseSample & s)
@@ -1222,6 +1229,7 @@ void MissionManager::loop()
         case Phase::WAIT_ARM:    runWaitArm();      break;
         case Phase::TAKEOFF:     runTakeoff();      break;
         case Phase::HOVER:       runHover();        break;
+        case Phase::PILOT_ARUCO_SEARCH: runPilotArucoSearch(); break;
         case Phase::TAKEOFF_MARKER: runTakeoffMarker(); break;
         case Phase::MISSION:     runMission();      break;
         case Phase::GATE_PASS:   runGatePassMission(); break;
@@ -1231,11 +1239,53 @@ void MissionManager::loop()
 }
 
 // ==================================================================
-// INIT — diam 5 tick, lalu set offboard mode + arm
+// INIT — stream setpoint 1 detik, lalu set offboard mode + arm
 // ==================================================================
 
 void MissionManager::runInit()
 {
+    if (start_mode_ == StartMode::AIRBORNE_HANDOFF) {
+        // Keselamatan handoff: paksa Position mode pada tick PERTAMA,
+        // sebelum heartbeat/setpoint Offboard apa pun dipublish. Ini
+        // memutus Offboard yang mungkin masih aktif dari run sebelumnya dan
+        // memastikan stick RC tetap memegang kendaraan.
+        if (counter_ == 0) {
+            control_->setPositionMode();
+            marker_centers_available_ = false;
+            marker_centers_latest_.markers.clear();
+            last_marker_centers_s_ = -1.0;
+            marker_stable_frames_ = 0;
+            handoff_marker_ready_ = false;
+            handoff_vision_aligned_ = false;
+            handoff_offboard_prestream_ticks_ = 0;
+            RCLCPP_WARN(this->get_logger(),
+                "=== HANDOFF SAFE INIT === Position mode dikirim; program "
+                "tidak publish Offboard selama pilot belum menemukan ArUco.");
+        }
+
+        ++counter_;
+        if (counter_ >= 10) {
+            // Ulangi perintah setelah jeda satu detik, lalu mulai menerima
+            // hanya sample ArUco BARU milik fase pencarian pilot.
+            control_->setPositionMode();
+            takeoff_hold_north_ = vehicle_.position.north;
+            takeoff_hold_east_ = vehicle_.position.east;
+            takeoff_hold_yaw_ = vehicle_.yaw;
+            vehicle_.hover_position = vehicle_.position;
+            marker_center_target_ = vehicle_.position;
+            marker_centers_available_ = false;
+            marker_centers_latest_.markers.clear();
+            last_marker_centers_s_ = -1.0;
+            marker_stable_frames_ = 0;
+            phase_ = Phase::PILOT_ARUCO_SEARCH;
+            counter_ = 0;
+            RCLCPP_WARN(this->get_logger(),
+                "=== HANDOFF PILOT SEARCH === Pilot tetap mengendalikan; "
+                "menunggu dua sample ArUco baru.");
+        }
+        return;
+    }
+
     control_->publishHeartbeat(true);
 
     control_->sendPositionSetpoint(
@@ -1245,15 +1295,16 @@ void MissionManager::runInit()
         vehicle_.yaw);
 
     ++counter_;
-    RCLCPP_INFO(this->get_logger(), "INIT... (%d/5)", counter_);
+    RCLCPP_INFO(this->get_logger(), "INIT prestream... (%d/10)", counter_);
 
-    if (counter_ >= 5) {
+    if (counter_ >= 10) {
         // Kunci titik takeoff SATU KALI sebelum arm. Jangan memperbarui
         // target ini selama naik: drift/gerak kecil harus dikoreksi kembali
         // ke titik awal, bukan dijadikan setpoint baru pada tick berikutnya.
         takeoff_hold_north_ = vehicle_.position.north;
         takeoff_hold_east_  = vehicle_.position.east;
         takeoff_hold_yaw_   = missionReferenceYaw();
+
         control_->setOffboardMode();
         control_->arm();
         phase_   = Phase::WAIT_ARM;
@@ -1311,6 +1362,12 @@ void MissionManager::runWaitArm()
     if (status_update_count_ > 0 &&
         vehicle_.arming_state == px4_msgs::msg::VehicleStatus::ARMING_STATE_ARMED)
     {
+        // Ambil koordinat estimator terbaru SETELAH arm/spool-up, lalu
+        // bekukan. Pergeseran estimator sebelum titik ini tidak menjadi
+        // error position, sedangkan gerak fisik setelah mulai naik tetap
+        // dikoreksi kembali ke anchor ini.
+        takeoff_hold_north_ = vehicle_.position.north;
+        takeoff_hold_east_ = vehicle_.position.east;
         phase_   = Phase::TAKEOFF;
         counter_ = 0;
         RCLCPP_INFO(this->get_logger(),
@@ -1320,18 +1377,20 @@ void MissionManager::runWaitArm()
     }
 
     ++counter_;
-    if (counter_ >= 10) {   // 1 detik @ 10Hz — cukup untuk PX4 memproses arm
+    if (counter_ >= 2) {   // prestream sudah 1 detik; hanya beri 0.2s sesudah ARM
         if (status_update_count_ == 0) {
             RCLCPP_WARN(this->get_logger(),
                 "Topik status PX4 tidak memberi data (callback 0x) — lanjut "
                 "TAKEOFF tanpa verifikasi arm eksplisit.");
         } else if (vehicle_.arming_state != px4_msgs::msg::VehicleStatus::ARMING_STATE_ARMED) {
             RCLCPP_ERROR(this->get_logger(),
-                "Status PX4 tersedia dan menunjukkan BUKAN armed setelah 1 "
-                "detik — misi dibatalkan, drone tidak pernah lepas landas.");
+                "Status PX4 tersedia dan menunjukkan BUKAN armed setelah "
+                "jeda ARM — misi dibatalkan, drone tidak pernah lepas landas.");
             timer_->cancel();
             return;
         }
+        takeoff_hold_north_ = vehicle_.position.north;
+        takeoff_hold_east_ = vehicle_.position.east;
         phase_   = Phase::TAKEOFF;
         counter_ = 0;
         RCLCPP_INFO(this->get_logger(),
@@ -1348,14 +1407,38 @@ void MissionManager::runTakeoff()
 {
     control_->publishHeartbeat(true);
 
-    control_->sendPositionSetpoint(
-        toPx4North(takeoff_hold_north_),
-        toPx4East(takeoff_hold_east_),
-        toPx4DownForAltitudeTarget(takeoffTargetDown()),
-        takeoff_hold_yaw_);
-
+    // Anchor N/E sudah dikunci sebelum ARM di runInit(). Pertahankan titik
+    // itu tanpa syarat sejak spool-up, sepanjang naik, sampai hover selesai.
+    // Dengan demikian setiap drift fisik saat liftoff tetap menjadi error
+    // posisi yang dikoreksi PX4 kembali ke titik awal; drift tidak pernah
+    // diadopsi sebagai anchor takeoff baru.
     const double altitude_error =
         WaypointHandler::altitudeError(currentAltitudeDown(), takeoffTargetDown());
+    constexpr double TAKEOFF_CLIMB_SPEED_M_S = 0.35;
+    constexpr double POSITION_CAPTURE_BAND_M = 0.15;
+    const bool takeoff_velocity_climb =
+        start_mode_ == StartMode::TAKEOFF &&
+        altitude_error < -POSITION_CAPTURE_BAND_M;
+
+    if (takeoff_velocity_climb) {
+        // NED: vz negatif berarti naik. X/Y tetap position-hold pada anchor
+        // setelah ARM, tetapi Z memakai velocity agar tidak terbentuk error
+        // altitude besar saat kaki drone masih menyentuh tanah.
+        control_->sendTakeoffSetpoint(
+            toPx4North(takeoff_hold_north_),
+            toPx4East(takeoff_hold_east_),
+            -TAKEOFF_CLIMB_SPEED_M_S,
+            takeoff_hold_yaw_);
+    } else {
+        // Di 15 cm terakhir (atau seluruh airborne_handoff), tangkap target
+        // dengan position controller agar berhenti tepat dan stabil.
+        control_->sendPositionSetpoint(
+            toPx4North(takeoff_hold_north_),
+            toPx4East(takeoff_hold_east_),
+            toPx4DownForAltitudeTarget(takeoffTargetDown()),
+            takeoff_hold_yaw_);
+    }
+
     const bool altitude_ready =
         start_mode_ == StartMode::AIRBORNE_HANDOFF
         ? std::abs(altitude_error) <= 0.15
@@ -1368,21 +1451,33 @@ void MissionManager::runTakeoff()
             initial_altitude_stable_ticks_ = 0;
         }
     } else {
-        initial_altitude_stable_ticks_ = altitude_ready ? 10 : 0;
+        if (altitude_ready) {
+            initial_altitude_stable_ticks_ = std::min(
+                initial_altitude_stable_ticks_ + 1, 10);
+        } else {
+            initial_altitude_stable_ticks_ = 0;
+        }
     }
 
+    constexpr int REQUIRED_ALTITUDE_TICKS = 5;
     RCLCPP_INFO(this->get_logger(),
-        "Altitude align[%s/%s]: %.2fm -> %.2fm err=%.2fm stable=%d/10 | "
-        "yaw hold=%.1fdeg | holdN=%.3f holdE=%.3f",
+        "Altitude align[%s/%s/%s]: %.2fm -> %.2fm err=%.2fm stable=%d/%d | "
+        "yaw=%.1fdeg | hold=(%.3f,%.3f) actual=(%.3f,%.3f) "
+        "xy_err=(%.3f,%.3f) vxy=(%.3f,%.3f)",
         start_mode_param_.c_str(),
         altitudeSourceLabel(),
+        takeoff_velocity_climb ? "VEL-Z" : "POS-CAPTURE",
         currentAltitudeAgl(), -takeoffTargetDown(),
         altitude_error,
-        initial_altitude_stable_ticks_,
+        initial_altitude_stable_ticks_, REQUIRED_ALTITUDE_TICKS,
         radToDeg(takeoff_hold_yaw_),
-        takeoff_hold_north_, takeoff_hold_east_);
+        takeoff_hold_north_, takeoff_hold_east_,
+        vehicle_.position.north, vehicle_.position.east,
+        takeoff_hold_north_ - vehicle_.position.north,
+        takeoff_hold_east_ - vehicle_.position.east,
+        vehicle_.velocity.north, vehicle_.velocity.east);
 
-    if (start_mode_ == StartMode::TAKEOFF ? altitude_ready : initial_altitude_stable_ticks_ >= 10) {
+    if (initial_altitude_stable_ticks_ >= REQUIRED_ALTITUDE_TICKS) {
         vehicle_.hover_position.north = takeoff_hold_north_;
         vehicle_.hover_position.east  = takeoff_hold_east_;
         vehicle_.hover_position.down  = currentAltitudeDown();
@@ -1393,6 +1488,18 @@ void MissionManager::runTakeoff()
         RCLCPP_INFO(this->get_logger(),
             "Initial altitude aligned (%.2fm AGL).",
             currentAltitudeAgl());
+
+        if (start_mode_ == StartMode::AIRBORNE_HANDOFF &&
+            handoff_vision_aligned_)
+        {
+            // 5 frame pilot -> lock posisi/yaw -> altitude align 5 tick ->
+            // maju. Tidak ada centering marker lagi setelah takeover.
+            rebaseMissionOriginToCurrentPosition();
+            phase_ = Phase::MISSION;
+            RCLCPP_INFO(this->get_logger(),
+                "=== HANDOFF ALTITUDE ALIGNED: START MISSION ===");
+            return;
+        }
         phase_ = Phase::HOVER;
     }
 }
@@ -1418,6 +1525,21 @@ void MissionManager::runHover()
         toPx4East(hold_east),
         toPx4DownForAltitudeTarget(takeoffTargetDown()),
         takeoff_hold_yaw_);
+
+    // Baca ArUco selama hover, tetapi JANGAN menggeser setpoint. Kalau marker
+    // sudah terlihat stabil, tiga detik hover sekaligus menjadi fase validasi
+    // sehingga setelah hover bisa langsung centering tanpa search ke tempat
+    // lain. Satu sample hanya dihitung satu kali.
+    const double marker_age_s = this->now().seconds() - last_marker_sample_s_;
+    const bool hover_marker_valid = marker_latest_sample_available_ &&
+        marker_age_s <= 0.35 &&
+        std::hypot(marker_latest_offset_north_, marker_latest_offset_east_) <= 0.80;
+    if (hover_marker_valid) {
+        marker_stable_frames_ = std::min(marker_stable_frames_ + 1, 5);
+    } else if (marker_latest_sample_available_) {
+        marker_stable_frames_ = 0;
+    }
+    marker_latest_sample_available_ = false;
 
     ++hover_counter_;
     RCLCPP_INFO(this->get_logger(), "Hover... %d/30", hover_counter_);
@@ -1449,6 +1571,22 @@ void MissionManager::runHover()
             return;
         }
 
+        if (start_mode_ == StartMode::AIRBORNE_HANDOFF) {
+            // Setelah altitude dan hover stabil, kembalikan kontrol kepada
+            // pilot. Program hanya memantau ArUco sampai pilot secara
+            // eksplisit memilih Offboard lagi lewat switch RC.
+            vehicle_.hover_position = vehicle_.position;
+            marker_center_target_ = vehicle_.position;
+            handoff_marker_ready_ = marker_stable_frames_ >= 5;
+            control_->setPositionMode();
+            phase_ = Phase::PILOT_ARUCO_SEARCH;
+            RCLCPP_WARN(this->get_logger(),
+                "=== HANDOFF PILOT SEARCH === Cari ArUco memakai RC pada "
+                "Position mode. Saat marker valid 5/5 program mengambil "
+                "OFFBOARD otomatis untuk centering + heading alignment.");
+            return;
+        }
+
         // Lanjutkan SEARCH dari target horizontal terakhir yang dipakai saat
         // HOVER. Tanpa ini, SEARCH kembali ke anchor takeoff lama dan dapat
         // menarik drone mundur/menyamping sesaat setelah hover selesai.
@@ -1457,15 +1595,134 @@ void MissionManager::runHover()
         marker_center_target_.north = hold_north;
         marker_center_target_.east = hold_east;
         phase_ = Phase::TAKEOFF_MARKER;
-        waypoint_phase_ = WaypointPhase::SEARCH_MARKER;
+        const bool aruco_ready_from_hover = marker_stable_frames_ >= 5;
+        waypoint_phase_ = aruco_ready_from_hover
+            ? WaypointPhase::CENTER_MARKER
+            : WaypointPhase::SEARCH_MARKER;
         marker_search_started_at_ = this->now();
         marker_search_altitude_m_ = -takeoffTargetDown();
         marker_search_direction_ = 1;
         marker_search_horizontal_m_ = 0.0;
         marker_search_horizontal_direction_ = 1;
-        RCLCPP_INFO(this->get_logger(),
-            "=== TAKEOFF COMPLETE: SEARCH ARUCO WP1 ===");
+        if (aruco_ready_from_hover) {
+            marker_center_target_ = vehicle_.position;
+            marker_stable_frames_ = 0;
+            wp_hold_counter_ = 0;
+            RCLCPP_INFO(this->get_logger(),
+                "=== TAKEOFF COMPLETE: ARUCO sudah valid saat HOVER - langsung CENTER ===");
+        } else {
+            RCLCPP_INFO(this->get_logger(),
+                "=== TAKEOFF COMPLETE: SEARCH ARUCO WP1 ===");
+        }
     }
+}
+
+// ==================================================================
+// PILOT_ARUCO_SEARCH — khusus airborne_handoff
+// ==================================================================
+
+void MissionManager::runPilotArucoSearch()
+{
+    const double now_s = this->now().seconds();
+    const double centers_age_s = now_s - last_marker_centers_s_;
+    auto find_pilot_marker = [this](int id) -> const ControlModule::MarkerCenter * {
+        for (const auto & marker : marker_centers_latest_.markers) {
+            if (marker.id == id) return &marker;
+        }
+        return nullptr;
+    };
+    const auto * pilot_back = find_pilot_marker(marker_heading_back_id_);
+    // Mode handoff sekarang memang hanya memakai satu marker besar. Jika ID
+    // fisiknya bukan default 0 tetapi hanya ada satu marker di frame, marker
+    // tunggal itu tetap tidak ambigu dan aman dipakai sebagai target.
+    if (!pilot_back && marker_centers_latest_.markers.size() == 1) {
+        pilot_back = &marker_centers_latest_.markers.front();
+    }
+    const bool valid_sample = marker_centers_available_ &&
+        centers_age_s <= 0.35 && pilot_back;
+    if (!handoff_marker_ready_) {
+        marker_stable_frames_ = valid_sample ? marker_stable_frames_ + 1 : 0;
+        if (marker_stable_frames_ >= 5) {
+            handoff_marker_ready_ = true;
+            handoff_offboard_prestream_ticks_ = 0;
+            RCLCPP_WARN(this->get_logger(),
+                "=== ARUCO BESAR READY id=%d (5/5) === Program menyiapkan "
+                "OFFBOARD otomatis; pilot lepaskan stick pada posisi netral.",
+                pilot_back ? pilot_back->id : -1);
+        }
+    }
+    marker_latest_sample_available_ = false;
+
+    RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 500,
+        "[PILOT-ARUCO] kendali PILOT | marker=%s valid=%d/5",
+        handoff_marker_ready_ ? "READY" : "searching",
+        marker_stable_frames_);
+
+    if (!handoff_marker_ready_) {
+        return;
+    }
+
+    // PX4 mensyaratkan stream Offboard >2Hz sebelum menerima mode switch.
+    // Lakukan selama satu detik SETELAH marker ready, sambil PX4 tetap
+    // Position mode dan pilot tetap punya kontrol. Setpoint selalu mengikuti
+    // posisi/yaw aktual, sehingga takeover tidak meloncat ke anchor lama.
+    control_->publishHeartbeat(true);
+    control_->sendPositionSetpoint(
+        toPx4North(vehicle_.position.north),
+        toPx4East(vehicle_.position.east),
+        origin_down_ + vehicle_.position.down,
+        vehicle_.yaw);
+    ++handoff_offboard_prestream_ticks_;
+    if (handoff_offboard_prestream_ticks_ < 10) {
+        RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 300,
+            "HANDOFF OFFBOARD PRESTREAM: %d/10, pilot masih Position mode.",
+            handoff_offboard_prestream_ticks_);
+        return;
+    }
+
+    // Lima frame awal mengaktifkan prestream, tetapi takeover satu detik
+    // kemudian hanya boleh dilakukan bila marker MASIH terlihat. Ini
+    // mencegah program mengambil alih berdasarkan sampel lama lalu langsung
+    // kehilangan referensi centering.
+    if (!valid_sample) {
+        RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 500,
+            "[PILOT-ARUCO] sample awal READY, tetapi marker sekarang tidak "
+            "fresh; pilot tetap memegang kontrol sampai marker muncul lagi.");
+        return;
+    }
+
+    // VehicleStatus/nav_state tidak tersedia pada bridge device ini (terbukti
+    // di log penerbangan). Marker 5/5 menjadi trigger deterministik; kirim
+    // OFFBOARD satu kali lalu mulai dari posisi aktual pilot agar tidak ada
+    // tarikan kembali ke titik lama.
+    control_->setOffboardMode();
+    vehicle_.hover_position = vehicle_.position;
+    handoff_takeover_anchor_ = vehicle_.position;
+    marker_center_target_ = vehicle_.position;
+    marker_search_altitude_m_ = currentAltitudeAgl();
+    // Posisi dan heading hasil pilot langsung dianggap final. Program hanya
+    // hold anchor, menyelaraskan altitude, stabilisasi singkat, lalu maju.
+    takeoff_hold_north_ = vehicle_.position.north;
+    takeoff_hold_east_ = vehicle_.position.east;
+    takeoff_hold_yaw_ = vehicle_.yaw;
+    origin_yaw_ = takeoff_hold_yaw_;
+    override_mission_heading_ = true;
+    mission_heading_deg_ = radToDeg(takeoff_hold_yaw_);
+    mission_heading_correction_deg_ = 0.0;
+    mission_waypoints_ready_ = false;
+    ensureMissionWaypointsReady();
+    handoff_vision_aligned_ = true;
+    initial_altitude_stable_ticks_ = 0;
+    marker_stable_frames_ = 0;
+    wp_hold_counter_ = 0;
+    marker_feedback_locked_ = false;
+    phase_ = Phase::TAKEOFF;
+    RCLCPP_WARN(this->get_logger(),
+        "=== PILOT -> OFFBOARD AUTO TAKEOVER === [AUTO-ARUCO] program "
+        "LOCK posisi pilot tanpa centering tambahan; anchor "
+        "N=%.3f E=%.3f D=%.3f yaw=%.1fdeg; mulai altitude align.",
+        handoff_takeover_anchor_.north, handoff_takeover_anchor_.east,
+        handoff_takeover_anchor_.down, radToDeg(takeoff_hold_yaw_));
 }
 
 // ==================================================================
@@ -1485,39 +1742,35 @@ void MissionManager::runTakeoffMarker()
         return;
     }
 
-    const double base_altitude_m = -takeoffTargetDown();
     const bool is_handoff = start_mode_ == StartMode::AIRBORNE_HANDOFF;
+    const double base_altitude_m = is_handoff
+        ? marker_search_altitude_m_
+        : -takeoffTargetDown();
     // Pada handoff, yaw takeover dan anchor horizontal harus tetap menjadi
     // referensi sampai pasangan marker siap melakukan alignment heading.
     const double heading = is_handoff ? takeoff_hold_yaw_ : missionReferenceYaw();
 
     if (waypoint_phase_ == WaypointPhase::SEARCH_MARKER) {
         // Marker memang ditempatkan di sekitar titik takeoff. Tahan anchor
-        // selama 5 detik, lalu lakukan pencarian melingkar SANGAT kecil dan
-        // lambat. Radius/altitude dibatasi ketat agar tetap bisa mengompensasi
-        // selisih akibat angin tanpa terlihat sebagai gerak maju sendiri.
+        // selama 5 detik, lalu sapu hanya pada sumbu depan-belakang. Tidak ada
+        // gerak samping dan tidak ada perubahan altitude.
         const double search_s = (this->now() - marker_search_started_at_).seconds();
         const double active_s = std::max(0.0, search_s - 5.0);
-        // Handoff mendapat search yang lebih sempit dan tanpa perubahan
-        // altitude. Cabang takeoff sengaja dipertahankan persis seperti tuning
-        // penerbangan sebelumnya (radius 6 cm, naik maksimal 8 cm).
-        const double max_radius_m = is_handoff ? 0.03 : 0.06;
-        const double radius_rate_m_s = is_handoff ? 0.003 : 0.006;
-        const double radius = std::min(max_radius_m, active_s * radius_rate_m_s);
-        const double angle = active_s * 0.30;
-        marker_search_altitude_m_ = is_handoff
-            ? base_altitude_m
-            : base_altitude_m + std::min(0.08, active_s * 0.008);
+        constexpr double SEARCH_AMPLITUDE_M = 0.05;
+        constexpr double SEARCH_ANGULAR_RATE_RAD_S = 0.25;
+        const double forward_displacement = SEARCH_AMPLITUDE_M *
+            std::sin(active_s * SEARCH_ANGULAR_RATE_RAD_S);
+        marker_search_altitude_m_ = base_altitude_m;
         const double search_anchor_n = is_handoff
             ? takeoff_hold_north_
             : vehicle_.hover_position.north;
         const double search_anchor_e = is_handoff
             ? takeoff_hold_east_
             : vehicle_.hover_position.east;
-        const double search_n =
-            search_anchor_n + radius * std::cos(angle);
-        const double search_e =
-            search_anchor_e + radius * std::sin(angle);
+        const double search_n = search_anchor_n +
+            forward_displacement * std::cos(heading);
+        const double search_e = search_anchor_e +
+            forward_displacement * std::sin(heading);
         control_->sendPositionSetpoint(
             toPx4North(search_n), toPx4East(search_e),
             toPx4DownForAltitudeTarget(-marker_search_altitude_m_), heading);
@@ -1530,10 +1783,10 @@ void MissionManager::runTakeoffMarker()
         marker_latest_sample_available_ = false;
         if (marker_stable_frames_ < 5) {
             RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
-                "[WP1-%s] mencari ArUco: %.1fs alt %.2f->%.2fm radius %.2fm valid=%d/5",
+                "[WP1-%s] mencari ArUco: %.1fs alt tetap %.2fm sweep_fb=%+.3fm valid=%d/5",
                 is_handoff ? "HANDOFF" : "TAKEOFF",
-                search_s, currentAltitudeAgl(), marker_search_altitude_m_,
-                radius, marker_stable_frames_);
+                search_s, marker_search_altitude_m_,
+                forward_displacement, marker_stable_frames_);
             return;
         }
         waypoint_phase_ = WaypointPhase::CENTER_MARKER;
@@ -1550,7 +1803,12 @@ void MissionManager::runTakeoffMarker()
     if (waypoint_phase_ == WaypointPhase::CENTER_MARKER) {
         double target_n = vehicle_.hover_position.north;
         double target_e = vehicle_.hover_position.east;
-        double target_d = takeoffTargetDown();
+        // Handoff wajib mempertahankan altitude tempat pilot menemukan
+        // marker. Penyesuaian ke altitude misi baru dilakukan setelah
+        // centering + heading selesai.
+        double target_d = is_handoff
+            ? -marker_search_altitude_m_
+            : takeoffTargetDown();
 
         if (!vision_lock_enable_) {
             resetWaypointVisionState();
@@ -1576,7 +1834,9 @@ void MissionManager::runTakeoffMarker()
                 marker_latest_offset_north_, marker_latest_offset_east_);
             // Di dalam toleransi jangan ubah target: deadband mencegah noise
             // pose diintegrasikan menjadi drift satu arah.
-            if (measured_offset > marker_center_tolerance_m_) {
+            if (!marker_feedback_locked_ &&
+                measured_offset > marker_center_tolerance_m_)
+            {
                 marker_center_target_.north = vehicle_.position.north + correction_n;
                 marker_center_target_.east  = vehicle_.position.east + correction_e;
             }
@@ -1621,8 +1881,16 @@ void MissionManager::runTakeoffMarker()
             }
 
             marker_latest_sample_available_ = false;
-            if (marker_stable_frames_ >= 6) {
+            if (marker_stable_frames_ >= 6 && !marker_feedback_locked_) {
                 marker_feedback_locked_ = true;
+                // Hentikan integrasi koreksi ArUco tepat saat lock. Sisa
+                // target satu langkah di depan dapat membawa momentum
+                // lateral ke awal WP1 sehingga drone terlihat bergeser ke
+                // kanan dahulu sebelum maju.
+                marker_center_target_ = vehicle_.position;
+                target_n = marker_center_target_.north;
+                target_e = marker_center_target_.east;
+                wp_hold_counter_ = 0;
                 RCLCPP_INFO(this->get_logger(), "[ARUCO] LOCK SUCCESS");
             }
         } else {
@@ -1632,8 +1900,8 @@ void MissionManager::runTakeoffMarker()
             // Sama seperti fix di runMission(): marker hilang dari frame
             // terlalu lama (mis. kedorong angin) tidak boleh menahan target
             // terakhir selamanya — kembali ke SEARCH_MARKER supaya drone
-            // aktif mencari lagi (radius sama seperti pencarian awal:
-            // is_handoff ? 0.03m : 0.06m, lihat blok SEARCH_MARKER di atas).
+            // aktif mencari lagi (radius tetap maksimum 0.02m dan altitude
+            // tetap, sama seperti blok SEARCH_MARKER di atas).
             constexpr double MARKER_LOST_RESEARCH_S = 3.0;
             if (marker_age_s > MARKER_LOST_RESEARCH_S) {
                 RCLCPP_WARN(this->get_logger(),
@@ -1659,6 +1927,35 @@ void MissionManager::runTakeoffMarker()
             toPx4DownForAltitudeTarget(target_d), heading);
 
         if (marker_feedback_locked_) {
+            // Jangan langsung rebase/start mission ketika badan masih
+            // bergerak akibat centering. Tahan titik lock sampai laju XY
+            // rendah DAN posisi kembali dekat target. Tanpa syarat posisi,
+            // hembusan angin bisa membuat speed sesaat rendah di lokasi yang
+            // sudah bergeser lalu dianggap stabil.
+            constexpr double ARUCO_LOCK_SETTLE_SPEED_M_S = 0.08;
+            constexpr double ARUCO_LOCK_SETTLE_POSITION_M = 0.08;
+            constexpr int ARUCO_LOCK_SETTLE_TICKS = 5;
+            const double horizontal_speed = std::hypot(
+                vehicle_.velocity.north, vehicle_.velocity.east);
+            const double lock_position_error = std::hypot(
+                marker_center_target_.north - vehicle_.position.north,
+                marker_center_target_.east - vehicle_.position.east);
+            if (horizontal_speed <= ARUCO_LOCK_SETTLE_SPEED_M_S &&
+                lock_position_error <= ARUCO_LOCK_SETTLE_POSITION_M)
+            {
+                ++wp_hold_counter_;
+            } else {
+                wp_hold_counter_ = 0;
+            }
+            RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 300,
+                "[ARUCO] LOCK SETTLE: pos_err=%.3fm speed_xy=%.3fm/s "
+                "stable=%d/%d",
+                lock_position_error, horizontal_speed,
+                wp_hold_counter_, ARUCO_LOCK_SETTLE_TICKS);
+            if (wp_hold_counter_ < ARUCO_LOCK_SETTLE_TICKS) {
+                return;
+            }
+
             if (start_mode_ == StartMode::AIRBORNE_HANDOFF &&
                 marker_heading_align_enable_)
             {
@@ -1694,85 +1991,146 @@ void MissionManager::runTakeoffMarker()
         const double align_s = now_s - marker_heading_align_started_s_;
         const double marker_centers_age_s = now_s - last_marker_centers_s_;
         const auto * back_marker = find_marker(marker_heading_back_id_);
-        const auto * front_marker = find_marker(marker_heading_front_id_);
+        if (!back_marker && marker_centers_latest_.markers.size() == 1) {
+            back_marker = &marker_centers_latest_.markers.front();
+        }
         const bool fresh_centers =
             marker_centers_available_ && marker_centers_age_s <= 0.35;
-        const bool have_pair = fresh_centers && back_marker && front_marker;
+        const bool have_large_marker = fresh_centers && back_marker;
 
-        double yaw_command = vehicle_.yaw;
-        bool heading_locked = false;
-        if (have_pair) {
-            const double dx = front_marker->x_px - back_marker->x_px;
-            const double dy = front_marker->y_px - back_marker->y_px;
-            const double pair_dist_px = std::hypot(dx, dy);
-            if (pair_dist_px >= 20.0) {
-                const double heading_error = std::atan2(dx, -dy);
-                if (std::abs(heading_error) < std::abs(marker_heading_best_error_rad_)) {
-                    marker_heading_best_error_rad_ = heading_error;
-                    marker_heading_best_yaw_ = vehicle_.yaw;
+        const double yaw_command = takeoff_hold_yaw_;
+        double heading_hold_n = marker_center_target_.north;
+        double heading_hold_e = marker_center_target_.east;
+        bool position_locked = false;
+        double center_offset_m = std::numeric_limits<double>::infinity();
+        bool body_centered = false;
+        marker_latest_sample_available_ = false;
+        if (have_large_marker) {
+            const double frame_cx = marker_centers_latest_.frame_width_px * 0.5;
+            const double frame_cy = marker_centers_latest_.frame_height_px * 0.5;
+            const double altitude_m = std::max(0.30, currentAltitudeAgl());
+            const double optical_right_m =
+                (back_marker->x_px - frame_cx) / yolo_camera_fx_px_ * altitude_m;
+            const double optical_up_m =
+                -(back_marker->y_px - frame_cy) / yolo_camera_fy_px_ * altitude_m;
+
+            const double mount = degToRad(camera_mount_yaw_deg_);
+            // Koreksi kedua sumbu dari pusat piksel marker besar. Sumbu maju
+            // dibuat lebih lembut daripada lateral agar marker tidak hilang
+            // akibat tarikan mundur, namun pusat vertikal gambar tetap bisa
+            // disempurnakan dan bukan sekadar kanan/kiri.
+            const double body_forward =
+                optical_up_m * std::cos(mount) -
+                optical_right_m * std::sin(mount);
+            const double body_right =
+                optical_up_m * std::sin(mount) +
+                optical_right_m * std::cos(mount);
+            center_offset_m = std::hypot(body_forward, body_right);
+            constexpr double BODY_CENTER_TOLERANCE_M = 0.08;
+            body_centered = center_offset_m <= BODY_CENTER_TOLERANCE_M;
+
+            if (!body_centered) {
+                constexpr double LATERAL_KP = 0.22;
+                constexpr double FORWARD_KP = 0.10;
+                constexpr double MAX_LATERAL_STEP_M = 0.025;
+                constexpr double MAX_FORWARD_STEP_M = 0.010;
+                const double step_forward = std::clamp(
+                    FORWARD_KP * body_forward,
+                    -MAX_FORWARD_STEP_M, MAX_FORWARD_STEP_M);
+                const double step_right = std::clamp(
+                    LATERAL_KP * body_right,
+                    -MAX_LATERAL_STEP_M, MAX_LATERAL_STEP_M);
+                heading_hold_n = vehicle_.position.north +
+                    step_forward * std::cos(takeoff_hold_yaw_) -
+                    step_right * std::sin(takeoff_hold_yaw_);
+                heading_hold_e = vehicle_.position.east +
+                    step_forward * std::sin(takeoff_hold_yaw_) +
+                    step_right * std::cos(takeoff_hold_yaw_);
+
+                // Semua koreksi dibatasi di sekitar takeover. Deteksi/noise
+                // tidak boleh menyeret drone terus hingga keluar FOV.
+                constexpr double MAX_TAKEOVER_RADIUS_M = 0.10;
+                const double dn = heading_hold_n - handoff_takeover_anchor_.north;
+                const double de = heading_hold_e - handoff_takeover_anchor_.east;
+                const double radius = std::hypot(dn, de);
+                if (radius > MAX_TAKEOVER_RADIUS_M) {
+                    const double scale = MAX_TAKEOVER_RADIUS_M / radius;
+                    heading_hold_n = handoff_takeover_anchor_.north + dn * scale;
+                    heading_hold_e = handoff_takeover_anchor_.east + de * scale;
                 }
-
-                const double tolerance_rad = degToRad(marker_heading_tolerance_deg_);
-                if (std::abs(heading_error) <= tolerance_rad) {
-                    ++marker_heading_aligned_ticks_;
-                } else {
-                    marker_heading_aligned_ticks_ = 0;
-                }
-                // Heading handoff menentukan seluruh arah leg pertama.
-                // Delapan tick adalah baseline yang sudah dipakai pada
-                // penerbangan stabil: cukup menolak noise tanpa membuat
-                // alignment terlalu ketat dan mudah timeout.
-                heading_locked = marker_heading_aligned_ticks_ >= 8;
-
-                constexpr double MAX_YAW_STEP_RAD = 0.035;  // ~20deg/s @ 10Hz
-                const double yaw_step = std::clamp(
-                    marker_heading_yaw_sign_ * heading_error * 0.7,
-                    -MAX_YAW_STEP_RAD, MAX_YAW_STEP_RAD);
-                yaw_command = vehicle_.yaw + yaw_step;
-
-                RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 300,
-                    "[ARUCO-HEADING] dx=%.1f dy=%.1f dist=%.1fpx err=%.1fdeg "
-                    "stable=%d/8 yaw_cmd=%.1fdeg",
-                    dx, dy, pair_dist_px, radToDeg(heading_error),
-                    marker_heading_aligned_ticks_, radToDeg(yaw_command));
-            } else {
-                marker_heading_aligned_ticks_ = 0;
-                RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 500,
-                    "[ARUCO-HEADING] pair marker terlalu dekat di gambar (%.1fpx), tahan.",
-                    pair_dist_px);
+                marker_center_target_.north = heading_hold_n;
+                marker_center_target_.east = heading_hold_e;
             }
+
+            marker_heading_aligned_ticks_ = body_centered
+                ? marker_heading_aligned_ticks_ + 1 : 0;
+            position_locked = marker_heading_aligned_ticks_ >= 3;
+
+            RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 300,
+                "[AUTO-ARUCO] program centering | error=%.3fm "
+                "(forward=%.3f right=%.3f) stable=%d/3 yaw_hold=%.1fdeg",
+                center_offset_m, body_forward, body_right, marker_heading_aligned_ticks_,
+                radToDeg(takeoff_hold_yaw_));
         } else {
             marker_heading_aligned_ticks_ = 0;
+            // Jangan terus mengejar target koreksi terakhir ketika marker
+            // hilang. Bekukan langsung di posisi aktual agar drone tidak
+            // mundur/menyamping keluar FOV.
+            marker_center_target_ = vehicle_.position;
+            heading_hold_n = vehicle_.position.north;
+            heading_hold_e = vehicle_.position.east;
             RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 500,
-                "[ARUCO-HEADING] menunggu marker pair id %d->%d (fresh=%d age=%.2fs).",
-                marker_heading_back_id_, marker_heading_front_id_,
+                "[AUTO-ARUCO] PROGRAM HOLD: marker besar hilang; menunggu "
+                "marker id %d atau satu marker tunggal (fresh=%d age=%.2fs).",
+                marker_heading_back_id_,
                 fresh_centers ? 1 : 0, marker_centers_age_s);
         }
 
         control_->sendPositionSetpoint(
-            toPx4North(marker_center_target_.north),
-            toPx4East(marker_center_target_.east),
-            toPx4DownForAltitudeTarget(takeoffTargetDown()),
+            toPx4North(heading_hold_n),
+            toPx4East(heading_hold_e),
+            is_handoff
+                ? origin_down_ + handoff_takeover_anchor_.down
+                : toPx4DownForAltitudeTarget(takeoffTargetDown()),
             yaw_command);
 
-        const bool timed_out = align_s >= marker_heading_timeout_s_;
-        if (heading_locked || timed_out) {
-            const double reference_yaw = heading_locked
-                ? vehicle_.yaw
-                : marker_heading_best_yaw_;
+        // Timeout hanya untuk peringatan. Jangan pernah mulai maju memakai
+        // yaw terbaik jika badan belum centered ke marker besar.
+        if (!position_locked && align_s >= marker_heading_timeout_s_) {
+            RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
+                "[AUTO-ARUCO] belum center setelah %.1fs; tetap HOLD anchor.", align_s);
+        }
+        if (position_locked) {
+            const double reference_yaw = takeoff_hold_yaw_;
             origin_yaw_ = reference_yaw;
             override_mission_heading_ = true;
             mission_heading_deg_ = radToDeg(reference_yaw);
             mission_heading_correction_deg_ = 0.0;
             mission_waypoints_ready_ = false;
             ensureMissionWaypointsReady();
+
+            if (is_handoff) {
+                // Heading sudah sah; sekarang dan hanya sekarang selaraskan
+                // altitude. Anchor horizontal/yaw memakai posisi hasil
+                // centering agar altitude align tidak menarik drone pergi.
+                handoff_vision_aligned_ = true;
+                resetWaypointVisionState();
+                rebaseMissionOriginToCurrentPosition();
+                takeoff_hold_north_ = vehicle_.position.north;
+                takeoff_hold_east_ = vehicle_.position.east;
+                takeoff_hold_yaw_ = reference_yaw;
+                initial_altitude_stable_ticks_ = 0;
+                phase_ = Phase::TAKEOFF;
+                RCLCPP_INFO(this->get_logger(),
+                    "=== HANDOFF VISION ALIGNED: mulai altitude align ===");
+                return;
+            }
+
             resetWaypointVisionState();
             rebaseMissionOriginToCurrentPosition();
             phase_ = Phase::MISSION;
             RCLCPP_INFO(this->get_logger(),
-                heading_locked
-                ? "=== START MISSION (ArUco position + heading locked) ==="
-                : "=== START MISSION (ArUco heading timeout, pakai yaw terbaik) ===");
+                "=== START MISSION (ArUco besar centered + yaw pilot) ===");
         }
     }
 }
@@ -1908,7 +2266,7 @@ void MissionManager::runMission()
         // Marker diharapkan berada dekat pusat WP. Khusus WP2 gunakan pola
         // seperti akuisisi awal handoff: tahan altitude dan sweep lebih sempit.
         // Ini mencegah pencarian menambah drift/overshoot setelah belokan.
-        // Khusus WP1 (YOLO/box) sweep dilebarkan sampai 0.5m: toleransi
+        // Khusus WP1 (YOLO/box) sweep dibatasi 0.15m: cukup untuk reacquire
         // posisi box lebih longgar dari marker ArUco, dan drone perlu
         // benar-benar bergerak mencari kalau box meleset dari pusat WP1
         // nominal (mis. akibat sedikit drift heading di leg sebelumnya),
@@ -1923,13 +2281,13 @@ void MissionManager::runMission()
         const double active_s = std::max(0.0, search_s - hold_s);
         const double max_radius_m = handoff_style_wp2
             ? 0.03
-            : (yolo_centering_wp ? 0.50 : 0.06);
+            : (yolo_centering_wp ? 0.15 : 0.06);
         const double radius_rate_m_s = handoff_style_wp2
             ? 0.003
-            : (yolo_centering_wp ? 0.05 : 0.006);
+            : (yolo_centering_wp ? 0.020 : 0.006);
         const double radius = std::min(max_radius_m, active_s * radius_rate_m_s);
         const double angle = active_s * 0.30;
-        marker_search_altitude_m_ = handoff_style_wp2
+        marker_search_altitude_m_ = (handoff_style_wp2 || yolo_centering_wp)
             ? search_min_altitude_m
             : search_min_altitude_m + std::min(0.08, active_s * 0.008);
         const double search_n = wp.n + radius * std::cos(angle);
@@ -1946,12 +2304,13 @@ void MissionManager::runMission()
             std::hypot(marker_latest_offset_north_, marker_latest_offset_east_) <= 0.90;
         marker_stable_frames_ = valid_sample ? marker_stable_frames_ + 1 : 0;
         marker_latest_sample_available_ = false;
-        if (marker_stable_frames_ < 5) {
+        const int acquisition_frames = yolo_centering_wp ? 2 : 5;
+        if (marker_stable_frames_ < acquisition_frames) {
             RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
-                "[%s] mencari %s... %.1fs alt=%.2f->%.2fm radius=%.2fm valid=%d/5",
+                "[%s] mencari %s... %.1fs alt=%.2f->%.2fm radius=%.2fm valid=%d/%d",
                 label.c_str(), marker_source_label, search_s, currentAltitudeAgl(),
                 marker_search_altitude_m_,
-                radius, marker_stable_frames_);
+                radius, marker_stable_frames_, acquisition_frames);
             if (search_s >= marker_search_timeout_s_) {
                 RCLCPP_ERROR_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
                     "[%s] %s belum ditemukan setelah %.1fs - tetap HOLD.",
@@ -1967,9 +2326,19 @@ void MissionManager::runMission()
         vision_engage_ticks_ = 0;
         wp_hold_counter_ = 0;
         marker_stable_frames_ = 0;
-        marker_center_target_ = vehicle_.position;
+        // YOLO sudah menghasilkan koordinat tanah absolut dari offset bbox.
+        // Gunakan target itu langsung; jangan buang hasil hitungan lalu
+        // memulai koreksi kecil relatif dari posisi drone.
+        marker_center_target_ = yolo_centering_wp
+            ? latched_marker_target_
+            : vehicle_.position;
+        yolo_center_best_offset_m_ = std::numeric_limits<double>::infinity();
+        yolo_center_diverging_ticks_ = 0;
+        yolo_correction_sign_ = 1.0;
+        yolo_direction_reversed_ = false;
         RCLCPP_INFO(this->get_logger(),
-            "[%s] %s VALID (5 sample) - mulai centering.", label.c_str(), marker_source_label);
+            "[%s] %s VALID (%d sample) - mulai centering.",
+            label.c_str(), marker_source_label, acquisition_frames);
     }
 
     if (waypoint_phase_ == WaypointPhase::CENTER_MARKER) {
@@ -1980,6 +2349,48 @@ void MissionManager::runMission()
         double hold_north = wp.n;
         double hold_east  = wp.e;
         double hold_down  = wp.d;
+
+        // Begitu gripper mulai membuka, centering dianggap final. Bekukan
+        // posisi ini selama proses gripper dan total 5 detik sejak OPEN;
+        // bbox/noise tidak boleh mengaktifkan centering ulang. Sesudah hold,
+        // waypoint langsung berpindah ke blok yaw berikutnya.
+        if (current_wp_ == gripper_drop_after_wp_ &&
+            gripper_drop_state_ != GripperDropState::IDLE)
+        {
+            hold_north = marker_center_target_.north;
+            hold_east = marker_center_target_.east;
+
+            if (!gripper_drop_completed_) {
+                runGripperDropIfNeeded(
+                    hold_north, hold_east, hold_down,
+                    yaw_result.target_yaw, label);
+                return;
+            }
+
+            constexpr double POST_RELEASE_HOLD_S = 5.0;
+            const double released_elapsed_s = payload_released_at_s_ >= 0.0
+                ? this->now().seconds() - payload_released_at_s_
+                : POST_RELEASE_HOLD_S;
+            if (released_elapsed_s < POST_RELEASE_HOLD_S) {
+                control_->publishHeartbeat(true);
+                control_->sendPositionSetpoint(
+                    toPx4North(hold_north), toPx4East(hold_east),
+                    toPx4DownForAltitudeTarget(hold_down),
+                    yaw_result.target_yaw);
+                RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 500,
+                    "[%s] POST-DROP HOLD: %.1f/%.1fs sebelum yaw.",
+                    label.c_str(), released_elapsed_s, POST_RELEASE_HOLD_S);
+                return;
+            }
+
+            commitCurrentWaypointAnchor();
+            ++current_wp_;
+            resetWaypointVisionState();
+            RCLCPP_INFO(this->get_logger(),
+                "[%s] POST-DROP HOLD selesai: langsung lanjut YAW.",
+                label.c_str());
+            return;
+        }
 
         if (!marker_source_enabled) {
             constexpr double FINAL_CENTER_TOLERANCE_M = 0.08;
@@ -2049,18 +2460,115 @@ void MissionManager::runMission()
         }
 
         const double marker_age_s = this->now().seconds() - last_marker_sample_s_;
-        if (marker_latest_sample_available_ && marker_age_s <= 0.35) {
-            constexpr double CENTER_KP = 0.18;
-            constexpr double MAX_CENTER_STEP_M = 0.03;
-            const double correction_n = std::max(-MAX_CENTER_STEP_M,
-                std::min(MAX_CENTER_STEP_M, CENTER_KP * marker_latest_offset_north_));
-            const double correction_e = std::max(-MAX_CENTER_STEP_M,
-                std::min(MAX_CENTER_STEP_M, CENTER_KP * marker_latest_offset_east_));
+        if (marker_feedback_locked_) {
+            // Target NED tetap beku, tetapi box WAJIB terus diverifikasi.
+            // Lock lama tidak boleh membuka gripper bila angin menggeser
+            // kendaraan dan box sudah bukan di pusat gambar.
+            hold_north = marker_center_target_.north;
+            hold_east = marker_center_target_.east;
+            if (yolo_centering_wp) {
+                const bool fresh_box = marker_age_s <= 0.35;
+                const double live_box_offset = fresh_box
+                    ? std::hypot(marker_latest_offset_north_, marker_latest_offset_east_)
+                    : std::numeric_limits<double>::infinity();
+                if (!fresh_box || live_box_offset > 0.05) {
+                    marker_feedback_locked_ = false;
+                    marker_stable_frames_ = 0;
+                    wp_hold_counter_ = 0;
+                    marker_center_target_ = vehicle_.position;
+                    RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 500,
+                        "[YOLO] DROP INTERLOCK: box tidak centered/fresh "
+                        "(age=%.2fs offset=%.3fm), centering dilanjutkan.",
+                        marker_age_s, live_box_offset);
+                }
+            }
+            marker_latest_sample_available_ = false;
+        } else if (marker_latest_sample_available_ && marker_age_s <= 0.35) {
             const double measured_offset = std::hypot(
                 marker_latest_offset_north_, marker_latest_offset_east_);
-            if (measured_offset > marker_center_tolerance_m_) {
-                marker_center_target_.north = vehicle_.position.north + correction_n;
-                marker_center_target_.east  = vehicle_.position.east + correction_e;
+
+            // Untuk YOLO, GroundLock sudah menghitung titik tanah absolut
+            // (posisi drone + offset bbox). Arahkan PX4 tegas ke titik itu,
+            // bukan mengakumulasi langkah kecil yang berubah bersama noise.
+            double center_kp = 0.18;
+            double max_center_step_m = 0.03;
+            if (false && yolo_centering_wp) {
+                if (measured_offset > 0.15) {
+                    center_kp = 0.22;
+                    max_center_step_m = 0.030;
+                } else if (measured_offset > 0.05) {
+                    center_kp = 0.18;
+                    max_center_step_m = 0.020;
+                } else {
+                    center_kp = 0.12;
+                    max_center_step_m = 0.010;
+                }
+            }
+            const double correction_n = std::clamp(
+                yolo_correction_sign_ * center_kp * marker_latest_offset_north_,
+                -max_center_step_m, max_center_step_m);
+            const double correction_e = std::clamp(
+                yolo_correction_sign_ * center_kp * marker_latest_offset_east_,
+                -max_center_step_m, max_center_step_m);
+            if (yolo_centering_wp) {
+                constexpr double DIVERGENCE_MARGIN_M = 0.12;
+                constexpr int DIVERGENCE_TICKS = 6;
+                if (measured_offset < yolo_center_best_offset_m_) {
+                    yolo_center_best_offset_m_ = measured_offset;
+                    yolo_center_diverging_ticks_ = 0;
+                } else if (measured_offset >
+                    yolo_center_best_offset_m_ + DIVERGENCE_MARGIN_M)
+                {
+                    ++yolo_center_diverging_ticks_;
+                } else {
+                    yolo_center_diverging_ticks_ = std::max(
+                        0, yolo_center_diverging_ticks_ - 1);
+                }
+
+                if (yolo_center_diverging_ticks_ >= DIVERGENCE_TICKS) {
+                    // Arah kamera sudah terbukti benar pada penerbangan
+                    // sebelumnya. Lag bbox/overshoot tidak boleh membalik
+                    // tanda koreksi dan membuat osilasi tengah-menjauh.
+                    RCLCPP_ERROR(this->get_logger(),
+                        "[YOLO] offset konsisten membesar (%.3fm, best %.3fm) "
+                        "- HOLD posisi, tunggu pengukuran stabil tanpa spiral.",
+                        measured_offset, yolo_center_best_offset_m_);
+                    marker_center_target_ = vehicle_.position;
+                    marker_stable_frames_ = 0;
+                    marker_latest_sample_available_ = false;
+                    yolo_center_best_offset_m_ =
+                        std::numeric_limits<double>::infinity();
+                    yolo_center_diverging_ticks_ = 0;
+                    control_->publishHeartbeat(true);
+                    control_->sendPositionSetpoint(
+                        toPx4North(vehicle_.position.north),
+                        toPx4East(vehicle_.position.east),
+                        toPx4DownForAltitudeTarget(hold_down),
+                        yaw_result.target_yaw);
+                    return;
+                }
+            }
+            // YOLO perlu terus mengoreksi sampai dekat pusat optik. Deadband
+            // parameter ArUco 10 cm terlalu besar untuk menjatuhkan payload.
+            const double center_deadband_m =
+                yolo_centering_wp ? 0.02 : marker_center_tolerance_m_;
+            if (measured_offset > center_deadband_m) {
+                if (yolo_centering_wp) {
+                    // Candidate tetap menunjuk pusat box di tanah. Filter
+                    // ringan meredam jitter bbox tetapi respons jauh lebih
+                    // cepat daripada langkah 1--3 cm lama.
+                    constexpr double TARGET_ALPHA = 0.45;
+                    const auto candidate = ground_lock_->lockedTarget();
+                    marker_center_target_.north += TARGET_ALPHA *
+                        (candidate.north - marker_center_target_.north);
+                    marker_center_target_.east += TARGET_ALPHA *
+                        (candidate.east - marker_center_target_.east);
+                } else {
+                    marker_center_target_.north =
+                        vehicle_.position.north + correction_n;
+                    marker_center_target_.east =
+                        vehicle_.position.east + correction_e;
+                }
             }
             constexpr double MAX_CENTER_RADIUS_M = 0.45;
             const double center_dn = marker_center_target_.north - wp.n;
@@ -2076,41 +2584,52 @@ void MissionManager::runMission()
 
             const double horizontal_offset = std::hypot(
                 marker_latest_offset_north_, marker_latest_offset_east_);
-            const double lock_tolerance_m = std::max(
-                marker_center_tolerance_m_, 0.15);
+            const double lock_tolerance_m = yolo_centering_wp
+                ? 0.07
+                : std::max(marker_center_tolerance_m_, 0.15);
+            const int required_lock_frames = yolo_centering_wp ? 2 : 6;
             const bool within_threshold =
                 horizontal_offset <= lock_tolerance_m;
             if (within_threshold) {
                 ++marker_stable_frames_;
                 RCLCPP_INFO(this->get_logger(),
-                    "[%s] center terkonfirmasi=%d/6 | offset=%.3fm <= batas %.3fm (N=%.3f E=%.3f)",
-                    marker_source_label, marker_stable_frames_, horizontal_offset,
+                    "[%s] center terkonfirmasi=%d/%d | offset=%.3fm <= batas %.3fm (N=%.3f E=%.3f)",
+                    marker_source_label, marker_stable_frames_, required_lock_frames,
+                    horizontal_offset,
                     lock_tolerance_m,
                     marker_latest_offset_north_, marker_latest_offset_east_);
             } else {
                 marker_stable_frames_ = std::max(0, marker_stable_frames_ - 1);
                 RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 500,
-                    "[%s] offset N=%.3f E=%.3f | langkah N=%.3f E=%.3f",
+                    "[%s] offset N=%.3f E=%.3f | target tegas N=%.3f E=%.3f",
                     marker_source_label, marker_latest_offset_north_, marker_latest_offset_east_,
-                    correction_n, correction_e);
+                    marker_center_target_.north, marker_center_target_.east);
             }
 
             marker_latest_sample_available_ = false;
-            if (marker_stable_frames_ >= 6) {
+            if (marker_stable_frames_ >= required_lock_frames &&
+                !marker_feedback_locked_)
+            {
                 marker_feedback_locked_ = true;
-                RCLCPP_INFO(this->get_logger(), "[%s] LOCK SUCCESS", marker_source_label);
+                marker_center_target_ = vehicle_.position;
+                hold_north = marker_center_target_.north;
+                hold_east = marker_center_target_.east;
+                wp_hold_counter_ = 0;
+                RCLCPP_INFO(this->get_logger(),
+                    "[%s] CENTER LOCK: posisi dibekukan N=%.3f E=%.3f; DROP sekarang.",
+                    marker_source_label,
+                    marker_center_target_.north, marker_center_target_.east);
             }
         } else {
             hold_north = marker_center_target_.north;
             hold_east = marker_center_target_.east;
 
-            // Marker/box hilang dari frame terlalu lama (mis. drone
-            // kedorong angin sampai target keluar FOV) — tanpa ini, drone
-            // cuma menahan target terakhir SELAMANYA, tidak pernah coba
-            // mencari lagi. Kembali ke SEARCH_MARKER supaya sweep pencarian
-            // aktif lagi (radius sama seperti pencarian awal WP ini).
+            // Untuk box YOLO yang sudah pernah diakuisisi, jangan aktifkan
+            // spiral saat detector drop sesaat. Spiral justru dapat membawa
+            // box yang tadi terlihat keluar FOV. Tahan posisi dan lanjutkan
+            // closed-loop otomatis ketika frame segar kembali.
             constexpr double MARKER_LOST_RESEARCH_S = 3.0;
-            if (marker_age_s > MARKER_LOST_RESEARCH_S) {
+            if (!yolo_centering_wp && marker_age_s > MARKER_LOST_RESEARCH_S) {
                 RCLCPP_WARN(this->get_logger(),
                     "[%s] %s hilang > %.1fs - kembali ke SEARCH, mencari ulang.",
                     label.c_str(), marker_source_label, MARKER_LOST_RESEARCH_S);
@@ -2123,6 +2642,15 @@ void MissionManager::runMission()
                     toPx4North(hold_north), toPx4East(hold_east),
                     toPx4DownForAltitudeTarget(hold_down), yaw_result.target_yaw);
                 return;
+            }
+
+            if (yolo_centering_wp && marker_age_s > MARKER_LOST_RESEARCH_S) {
+                marker_center_target_ = vehicle_.position;
+                hold_north = vehicle_.position.north;
+                hold_east = vehicle_.position.east;
+                RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
+                    "[YOLO] box pernah terlihat tetapi sekarang hilang %.1fs; "
+                    "HOLD posisi tanpa spiral, menunggu detector.", marker_age_s);
             }
 
             RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
@@ -2138,6 +2666,9 @@ void MissionManager::runMission()
             yaw_result.target_yaw);
 
         if (marker_feedback_locked_) {
+            // Untuk YOLO, tiga frame di pusat langsung memicu OPEN. Posisi
+            // kemudian dibekukan selama proses gripper + post-drop hold 5s,
+            // jadi tidak perlu velocity/NED settle tambahan sebelum drop.
             RCLCPP_INFO(this->get_logger(),
                 "[%s] %s CENTERED - waypoint selesai.", label.c_str(), marker_source_label);
             RCLCPP_INFO(this->get_logger(),
@@ -2439,17 +2970,73 @@ void MissionManager::runMission()
     const double cross_track_error =
         err_n * lateral_n + err_e * lateral_e;
 
-    constexpr double CROSS_TRACK_KP = 0.60;
-    constexpr double MAX_CROSS_TRACK_SPEED_M_S = 0.25;
+    // Jangan langsung memberi komponen samping untuk error kecil. Estimator
+    // horizontal biasa bergerak beberapa sentimeter walaupun badan drone
+    // sudah menghadap tepat ke bearing leg; koreksi lama (KP 0.60, cap
+    // 0.25m/s) membuat perintah maju mempunyai komponen lateral yang terlihat
+    // seperti terbang miring, terutama ketika forward_speed mulai turun.
+    //
+    // Di dalam koridor 10 cm drone diperintah murni maju. Di luar koridor,
+    // koreksi hanya menghapus kelebihan error dan selalu dibatasi 10% dari
+    // kecepatan maju, sehingga arah velocity tidak dapat menyimpang lebih
+    // dari sekitar 5.7 derajat. Ini berlaku identik untuk leg pertama dan leg
+    // setelah yaw; leg setelah yaw sudah direbase dari posisi aktual shift.
+    // Log penerbangan handoff terbaru menunjukkan WP1 konsisten hanyut ke
+    // kiri: cross-track -0.09m tumbuh sampai -0.37m karena koreksi lama hanya
+    // 5% kecepatan maju dan hampir nol ketika mengerem. Gunakan koridor 5cm,
+    // koreksi posisi moderat, serta damping velocity kecil. Floor 6cm/s
+    // menjaga koreksi tetap bekerja saat forward_speed sudah rendah.
+    constexpr double CROSS_TRACK_DEADBAND_M = 0.02;
+    constexpr double CROSS_TRACK_KP = 0.55;
+    constexpr double FIRST_LEG_LATERAL_KD = 0.70;
+    constexpr double MAX_CROSS_TRACK_SPEED_M_S = 0.18;
+    constexpr double MAX_CROSS_TRACK_RATIO = 0.15;
+    constexpr double MIN_CROSS_TRACK_SPEED_M_S = 0.06;
+    // Leg setelah yaw/shift perlu menolak kecepatan menyamping sejak awal.
+    // Rebase sudah membuat cross-track awal ~0, tetapi log penerbangan
+    // menunjukkan drift kiri tumbuh sampai >0.4m karena controller lama baru
+    // bereaksi terhadap error posisi dan dibatasi 0.12m/s. Tambahkan damping
+    // velocity hanya pada leg pasca-turn; leg pertama tetap persis seperti
+    // tuning di atas.
+    const bool post_turn_leg = current_wp_ > 0;
+    constexpr double POST_TURN_DEADBAND_M = 0.03;
+    constexpr double POST_TURN_CROSS_KP = 0.55;
+    constexpr double POST_TURN_LATERAL_KD = 0.80;
+    constexpr double POST_TURN_MAX_CROSS_SPEED_M_S = 0.20;
+    constexpr double POST_TURN_MAX_CROSS_RATIO = 0.15;
     // Kecepatan maju memakai satu-satunya formula resmi di
     // WaypointHandler: cruise piecewise di luar 2 m dan formula pengereman
     // baseline yang tidak berubah di dalam 2 m. Bearing tetap bearing leg;
     // koreksi samping kecil hanya menghapus drift, bukan mengubah arah misi.
     const double forward_speed = waypoints_->computeApproachSpeed(
         std::max(0.0, along_track_remaining));
+    const double active_deadband =
+        post_turn_leg ? POST_TURN_DEADBAND_M : CROSS_TRACK_DEADBAND_M;
+    const double active_cross_kp =
+        post_turn_leg ? POST_TURN_CROSS_KP : CROSS_TRACK_KP;
+    const double active_max_cross_speed = post_turn_leg
+        ? POST_TURN_MAX_CROSS_SPEED_M_S
+        : MAX_CROSS_TRACK_SPEED_M_S;
+    const double active_max_cross_ratio = post_turn_leg
+        ? POST_TURN_MAX_CROSS_RATIO
+        : MAX_CROSS_TRACK_RATIO;
+    const double cross_track_excess = std::copysign(
+        std::max(0.0, std::abs(cross_track_error) - active_deadband),
+        cross_track_error);
+    const double measured_lateral_speed =
+        vehicle_.velocity.north * lateral_n +
+        vehicle_.velocity.east * lateral_e;
+    const double lateral_damping = post_turn_leg
+        ? -POST_TURN_LATERAL_KD * measured_lateral_speed
+        : -FIRST_LEG_LATERAL_KD * measured_lateral_speed;
+    const double lateral_speed_limit = std::min(
+        active_max_cross_speed,
+        std::max(
+            post_turn_leg ? 0.0 : MIN_CROSS_TRACK_SPEED_M_S,
+            forward_speed * active_max_cross_ratio));
     const double lateral_speed = std::clamp(
-        cross_track_error * CROSS_TRACK_KP,
-        -MAX_CROSS_TRACK_SPEED_M_S, MAX_CROSS_TRACK_SPEED_M_S);
+        cross_track_excess * active_cross_kp + lateral_damping,
+        -lateral_speed_limit, lateral_speed_limit);
 
     double vx = forward_speed * along_n + lateral_speed * lateral_n;
     double vy = forward_speed * along_e + lateral_speed * lateral_e;
@@ -2457,9 +3044,11 @@ void MissionManager::runMission()
     vx *= align;
     vy *= align;
     RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 500,
-        "[%s] TRACK: along_rem=%.2fm cross_err=%.2fm v_forward=%.2f v_cross=%.2f",
-        label.c_str(), along_track_remaining, cross_track_error,
-        forward_speed * align, lateral_speed * align);
+        "[%s] TRACK%s: along_rem=%.2fm cross_err=%.2fm "
+        "v_forward=%.2f v_cross=%.2f measured_cross_v=%.2f",
+        label.c_str(), post_turn_leg ? "-POST-TURN" : "",
+        along_track_remaining, cross_track_error,
+        forward_speed * align, lateral_speed * align, measured_lateral_speed);
     control_->publishHeartbeat(false);
     control_->sendVelocitySetpoint(vx, vy, vz, raw_bearing);
 }

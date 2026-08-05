@@ -12,6 +12,7 @@
 #include "utils/gate_centering_lock.h"
 
 #include <memory>
+#include <limits>
 #include <vector>
 
 namespace px4
@@ -40,6 +41,7 @@ enum class Phase
     WAIT_ARM,
     TAKEOFF,
     HOVER,
+    PILOT_ARUCO_SEARCH,
     TAKEOFF_MARKER,
     MISSION,
     GATE_PASS,
@@ -102,6 +104,7 @@ private:
     void runWaitArm();
     void runTakeoff();
     void runHover();
+    void runPilotArucoSearch();
     void runTakeoffMarker();
     void runMission();
     void runGatePassMission();
@@ -154,7 +157,7 @@ private:
     // ── Callback dari ControlModule ──────────────────────────────────
     void onPositionUpdate(const ControlModule::PositionSample & s);
     void onRangeUpdate(const ControlModule::RangeSample & s);
-    void onStatusUpdate(uint8_t arming_state);
+    void onStatusUpdate(uint8_t arming_state, uint8_t nav_state);
     void onMarkerPoseUpdate(const ControlModule::MarkerPoseSample & s);
     void onMarkerCentersUpdate(const ControlModule::MarkerCentersSample & s);
     void onTargetCenterUpdate(const ControlModule::TargetCenterSample & s);
@@ -164,6 +167,9 @@ private:
     // untuk membedakan "callback tidak pernah jalan" vs "jalan tapi
     // nilainya memang 0/tidak berubah".
     uint32_t status_update_count_ {0};
+    bool handoff_marker_ready_ {false};
+    bool handoff_vision_aligned_ {false};
+    int handoff_offboard_prestream_ticks_ {0};
     uint32_t position_update_count_ {0};
     bool got_raw_position_ {false};
 
@@ -308,6 +314,10 @@ private:
     bool   marker_offset_filter_ready_{false};
     double last_marker_sample_s_{-1.0};
     PositionNED marker_center_target_{};
+    double yolo_center_best_offset_m_{std::numeric_limits<double>::infinity()};
+    int    yolo_center_diverging_ticks_{0};
+    double yolo_correction_sign_{1.0};
+    bool   yolo_direction_reversed_{false};
     ControlModule::MarkerCentersSample marker_centers_latest_{};
     bool   marker_centers_available_{false};
     double last_marker_centers_s_{-1.0};
@@ -315,6 +325,9 @@ private:
     double marker_heading_best_yaw_{0.0};
     double marker_heading_align_started_s_{0.0};
     int    marker_heading_aligned_ticks_{0};
+    // Anchor lokal 3D tepat saat airborne handoff. Selama centering awal,
+    // terutama Z tidak boleh mengikuti noise lidar/kemiringan kendaraan.
+    PositionNED handoff_takeover_anchor_{};
 
     rclcpp::TimerBase::SharedPtr timer_;
 
@@ -344,6 +357,7 @@ private:
     int gripper_close_wait_ticks_ {15};
     int gripper_drop_counter_ {0};
     bool gripper_drop_completed_ {false};
+    double payload_released_at_s_ {-1.0};
     GripperDropState gripper_drop_state_ {GripperDropState::IDLE};
 
     // Gate "boleh mulai maju" per waypoint — drone berputar di tempat

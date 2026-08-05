@@ -247,8 +247,8 @@ double WaypointHandler::computeApproachSpeed(double dist) const
     // kecepatan) tepat di batas BRAKE_ZONE_M.
     constexpr double BRAKE_ZONE_M   = 2.0;   // meter — di bawah ini, formula lama
     constexpr double BRAKE_GAIN     = 0.35;  // sama seperti sebelumnya
-    constexpr double CRUISE_SPEED_MS = 2.2;  // m/s — naik dari SPEED_MS lama (1.8)
-    constexpr double CRUISE_GAIN    = 0.45;  // m/s per meter di luar zona rem
+    constexpr double CRUISE_SPEED_MS = 2.5;  // m/s — naik dari SPEED_MS lama (1.8)
+    constexpr double CRUISE_GAIN    = 0.50;  // m/s per meter di luar zona rem
 
     double speed;
     if (dist <= BRAKE_ZONE_M) {

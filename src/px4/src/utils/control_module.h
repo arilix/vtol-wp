@@ -138,7 +138,7 @@ public:
     // dan status drone tanpa ControlModule perlu tahu logic misi.
     using PositionCallback = std::function<void(const PositionSample &)>;
     using RangeCallback = std::function<void(const RangeSample &)>;
-    using StatusCallback = std::function<void(uint8_t arming_state)>;
+    using StatusCallback = std::function<void(uint8_t arming_state, uint8_t nav_state)>;
     using MarkerPoseCallback = std::function<void(const MarkerPoseSample &)>;
     using MarkerCentersCallback = std::function<void(const MarkerCentersSample &)>;
     using TargetCenterCallback = std::function<void(const TargetCenterSample &)>;
@@ -155,6 +155,7 @@ public:
     // ── Command ke PX4 ─────────────────────────────────────────────
     void arm();
     void setOffboardMode();
+    void setPositionMode();
     void sendLandCommand();
 
     // ── Heartbeat (wajib dikirim tiap tick selama offboard aktif) ───
@@ -162,6 +163,7 @@ public:
 
     // ── Setpoint ───────────────────────────────────────────────────
     void sendPositionSetpoint(double x, double y, double z, double yaw);
+    void sendTakeoffSetpoint(double x, double y, double vz, double yaw);
     void sendVelocitySetpoint(double vx, double vy, double vz, double yaw);
 
 private:
@@ -191,6 +193,7 @@ private:
     rclcpp::Subscription<px4_msgs::msg::VehicleLocalPosition>::SharedPtr pos_sub_;
     rclcpp::Subscription<sensor_msgs::msg::Range>::SharedPtr range_sub_;
     rclcpp::Subscription<px4_msgs::msg::VehicleStatus>::SharedPtr        status_sub_;
+    rclcpp::Subscription<px4_msgs::msg::VehicleStatus>::SharedPtr        status_v1_sub_;
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr    marker_pose_sub_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr    marker_centers_sub_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr    target_center_sub_;

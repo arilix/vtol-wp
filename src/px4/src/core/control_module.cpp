@@ -43,12 +43,21 @@ ControlModule::ControlModule(rclcpp::Node * node, bool enable_livox)
             onRange(msg);
         });
 
+    auto status_callback = [this](
+        const px4_msgs::msg::VehicleStatus::SharedPtr msg) {
+            onStatus(msg);
+        };
+    // Firmware/px4_msgs yang berbeda dapat mengekspos nama versioned atau
+    // unversioned. Subscribe keduanya; topic yang tidak ada tidak menambah
+    // beban, sedangkan callback mode RC tidak lagi bergantung satu nama.
     status_sub_ = node_->create_subscription<px4_msgs::msg::VehicleStatus>(
+        "/fmu/out/vehicle_status",
+        px4_qos,
+        status_callback);
+    status_v1_sub_ = node_->create_subscription<px4_msgs::msg::VehicleStatus>(
         "/fmu/out/vehicle_status_v1",
         px4_qos,
-        [this](const px4_msgs::msg::VehicleStatus::SharedPtr msg) {
-            onStatus(msg);
-        });
+        status_callback);
 
     // /fiducial/pose dipublish dengan create_publisher<PoseStamped>(topic, 10)
     // -> Reliable + Volatile (BUKAN px4_qos yang BestEffort+TransientLocal
@@ -177,7 +186,7 @@ void ControlModule::onStatus(
     const px4_msgs::msg::VehicleStatus::SharedPtr msg)
 {
     if (status_cb_) {
-        status_cb_(msg->arming_state);
+        status_cb_(msg->arming_state, msg->nav_state);
     }
 }
 
@@ -284,6 +293,23 @@ void ControlModule::setOffboardMode()
     RCLCPP_INFO(node_->get_logger(), "OFFBOARD mode sent");
 }
 
+void ControlModule::setPositionMode()
+{
+    px4_msgs::msg::VehicleCommand msg{};
+    msg.timestamp = nowUs();
+    msg.command = px4_msgs::msg::VehicleCommand::VEHICLE_CMD_DO_SET_MODE;
+    msg.param1 = 1.0f;
+    msg.param2 = 3.0f;  // PX4_CUSTOM_MAIN_MODE_POSCTL
+    msg.target_system = 1;
+    msg.target_component = 1;
+    msg.source_system = 1;
+    msg.source_component = 1;
+    msg.from_external = true;
+    cmd_pub_->publish(msg);
+    RCLCPP_INFO(node_->get_logger(),
+        "POSITION mode sent - kontrol diberikan ke pilot");
+}
+
 void ControlModule::sendLandCommand()
 {
     px4_msgs::msg::VehicleCommand msg{};
@@ -329,6 +355,35 @@ void ControlModule::sendPositionSetpoint(
     // bersamaan dengan target yaw dan dapat menahan rotasi pada beberapa
     // versi/controller. NaN menonaktifkan kontrol yawspeed sesuai kontrak
     // TrajectorySetpoint.
+    msg.yawspeed = nan;
+    traj_pub_->publish(msg);
+}
+
+void ControlModule::sendTakeoffSetpoint(
+    double x, double y, double vz, double yaw)
+{
+    const float nan = std::numeric_limits<float>::quiet_NaN();
+
+    // Kontrol campuran per-sumbu: X/Y mengunci satu koordinat horizontal
+    // yang diambil setelah arm, sedangkan Z memakai climb velocity. Dengan
+    // ini drift/momentum mundur menjadi error posisi yang dikoreksi PX4;
+    // anchor tidak ikut bergerak bersama drone selama naik.
+
+    px4_msgs::msg::TrajectorySetpoint msg{};
+    msg.timestamp = nowUs();
+    msg.position = {
+        static_cast<float>(x),
+        static_cast<float>(y),
+        nan
+    };
+    msg.velocity = {
+        nan,
+        nan,
+        static_cast<float>(vz)
+    };
+    msg.acceleration = { nan, nan, nan };
+    msg.jerk = { nan, nan, nan };
+    msg.yaw = static_cast<float>(yaw);
     msg.yawspeed = nan;
     traj_pub_->publish(msg);
 }
