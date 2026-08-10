@@ -28,6 +28,11 @@ add_executable(px4
   src/core/gate_centering_lock.cpp
 )
 
+add_executable(livox_gate_center_monitor
+  src/main/livox_gate_center_monitor.cpp
+  src/core/gate_centering_lock.cpp
+)
+
 ament_target_dependencies(px4
   rclcpp
   px4_msgs
@@ -36,8 +41,14 @@ ament_target_dependencies(px4
   std_msgs
 )
 
+ament_target_dependencies(livox_gate_center_monitor
+  rclcpp
+  sensor_msgs
+)
+
 install(TARGETS
   px4
+  livox_gate_center_monitor
   DESTINATION lib/${PROJECT_NAME}
 )
 

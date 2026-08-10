@@ -39,6 +39,13 @@ std::string trackingKey(const DetectedMarker& marker)
     return std::to_string(marker.id);
 }
 
+double normalizeDegrees(double deg)
+{
+    deg = std::fmod(deg, 360.0);
+    if (deg < 0.0) deg += 360.0;
+    return deg;
+}
+
 } // namespace
 
 FiducialDetector::FiducialDetector(const rclcpp::NodeOptions& options)
@@ -78,6 +85,7 @@ FiducialDetector::FiducialDetector(const rclcpp::NodeOptions& options)
     RCLCPP_INFO(get_logger(), "  marker_size  : %.3f m", marker_size_);
     RCLCPP_INFO(get_logger(), "  align_tol    : %d px", alignment_tolerance_);
     RCLCPP_INFO(get_logger(), "  stable_frames: %d", alignment_stable_frames_);
+    RCLCPP_INFO(get_logger(), "  compass     : %s topic=%s", show_compass_ ? "ON" : "OFF", imu_topic_.c_str());
     if (capture_internal_) {
         RCLCPP_INFO(get_logger(), "  capture_internal: ON (device=%s)",
             capture_device_path_.empty()
@@ -104,6 +112,7 @@ void FiducialDetector::declareParameters() {
     declare_parameter("show_rejected",        true);
     declare_parameter("alignment_tolerance",  50);
     declare_parameter("smoothing_alpha",      0.4);
+    declare_parameter("pose_yaw_offset_deg",  0.0);
     declare_parameter("min_detection_confidence", 0.70);
     declare_parameter("max_missed_frames",    5);
     declare_parameter("alignment_stable_frames", 10);
@@ -115,6 +124,12 @@ void FiducialDetector::declareParameters() {
     declare_parameter("show_confidence",        true);
     declare_parameter("publish_debug_image",    true);
     declare_parameter("output_frame_id",        std::string(""));
+    declare_parameter("imu_topic",              std::string("/camera/camera/imu"));
+    declare_parameter("show_compass",           true);
+    declare_parameter("compass_heading_offset_deg", 0.0);
+    declare_parameter("show_yolo_overlay",      true);
+    declare_parameter("yolo_detections_topic",  std::string("/general_box/detections"));
+    declare_parameter("yolo_overlay_timeout_sec", 0.5);
     declare_parameter("enable_clahe",           true);
     declare_parameter("clahe_clip_limit",       2.0);
     declare_parameter("enable_sharpen",         false);
@@ -138,6 +153,7 @@ void FiducialDetector::loadRosParams() {
     show_rejected_           = get_parameter("show_rejected").as_bool();
     alignment_tolerance_     = get_parameter("alignment_tolerance").as_int();
     smoothing_alpha_         = get_parameter("smoothing_alpha").as_double();
+    pose_yaw_offset_deg_     = get_parameter("pose_yaw_offset_deg").as_double();
     min_detection_confidence_ = get_parameter("min_detection_confidence").as_double();
     max_missed_frames_       = get_parameter("max_missed_frames").as_int();
     alignment_stable_frames_ = get_parameter("alignment_stable_frames").as_int();
@@ -146,6 +162,12 @@ void FiducialDetector::loadRosParams() {
     show_confidence_         = get_parameter("show_confidence").as_bool();
     publish_debug_image_     = get_parameter("publish_debug_image").as_bool();
     output_frame_id_         = get_parameter("output_frame_id").as_string();
+    imu_topic_               = get_parameter("imu_topic").as_string();
+    show_compass_            = get_parameter("show_compass").as_bool();
+    compass_heading_offset_deg_ = get_parameter("compass_heading_offset_deg").as_double();
+    show_yolo_overlay_       = get_parameter("show_yolo_overlay").as_bool();
+    yolo_detections_topic_   = get_parameter("yolo_detections_topic").as_string();
+    yolo_overlay_timeout_sec_ = get_parameter("yolo_overlay_timeout_sec").as_double();
     enable_clahe_            = get_parameter("enable_clahe").as_bool();
     clahe_clip_              = get_parameter("clahe_clip_limit").as_double();
     enable_sharpen_          = get_parameter("enable_sharpen").as_bool();
@@ -240,13 +262,14 @@ void FiducialDetector::initPublishers() {
     pub_debug_     = create_publisher<sensor_msgs::msg::Image>("/fiducial/debug_image", 10);
     pub_alignment_ = create_publisher<std_msgs::msg::String>("/fiducial/alignment", 10);
     pub_fps_       = create_publisher<std_msgs::msg::Float32>("/fiducial/fps", 10);
+    pub_compass_heading_ = create_publisher<std_msgs::msg::Float32>("/fiducial/compass_heading_deg", 10);
     pub_rejected_  = create_publisher<std_msgs::msg::String>("/fiducial/rejected_candidates", 10);
     RCLCPP_INFO(get_logger(),
-        "Publishers: /fiducial/{pose,markers,marker_centers,debug_image,alignment,fps,rejected_candidates}");
+        "Publishers: /fiducial/{pose,markers,marker_centers,debug_image,alignment,fps,compass_heading_deg,rejected_candidates}");
 }
 
 void FiducialDetector::initSubscriber() {
-    auto qos = rclcpp::QoS(rclcpp::KeepLast(5)).reliable();
+    auto qos = rclcpp::SensorDataQoS().keep_last(1).best_effort();
     image_sub_ = image_transport::create_subscription(
         this, camera_topic_,
         std::bind(&FiducialDetector::imageCallback, this, std::placeholders::_1),
@@ -260,6 +283,21 @@ void FiducialDetector::initSubscriber() {
     vision_source_sub_ = create_subscription<std_msgs::msg::String>(
         "/mission/vision_source_active", 10,
         std::bind(&FiducialDetector::visionSourceCallback, this, std::placeholders::_1));
+
+    if (show_compass_) {
+        auto imu_qos = rclcpp::SensorDataQoS();
+        imu_sub_ = create_subscription<sensor_msgs::msg::Imu>(
+            imu_topic_, imu_qos,
+            std::bind(&FiducialDetector::imuCallback, this, std::placeholders::_1));
+        RCLCPP_INFO(get_logger(), "Subscribed IMU compass to '%s'", imu_topic_.c_str());
+    }
+
+    if (show_yolo_overlay_) {
+        yolo_detections_sub_ = create_subscription<std_msgs::msg::Float32MultiArray>(
+            yolo_detections_topic_, rclcpp::QoS(10),
+            std::bind(&FiducialDetector::yoloDetectionsCallback, this, std::placeholders::_1));
+        RCLCPP_INFO(get_logger(), "Subscribed YOLO overlay to '%s'", yolo_detections_topic_.c_str());
+    }
 }
 
 void FiducialDetector::visionSourceCallback(const std_msgs::msg::String::SharedPtr msg)
@@ -267,6 +305,72 @@ void FiducialDetector::visionSourceCallback(const std_msgs::msg::String::SharedP
     active_vision_source_    = msg->data;
     last_active_signal_time_ = now();
     active_signal_seen_      = true;
+}
+
+void FiducialDetector::imuCallback(const sensor_msgs::msg::Imu::SharedPtr msg)
+{
+    if (!show_compass_) return;
+
+    const rclcpp::Time stamp(msg->header.stamp);
+    double heading = 0.0;
+    bool publish = false;
+    {
+        std::lock_guard<std::mutex> lock(compass_mutex_);
+        if (!compass_initialized_) {
+            compass_last_imu_stamp_ = stamp;
+            compass_initialized_ = true;
+            compass_has_imu_ = true;
+        } else {
+            const double dt = (stamp - compass_last_imu_stamp_).seconds();
+            compass_last_imu_stamp_ = stamp;
+            if (dt > 0.0 && dt < 0.25) {
+                // RealSense IMU publishes camera_imu_optical_frame. With the D455 facing
+                // down and the top of the image mounted toward drone front:
+                //   X_ned/front = -Y_optical, Y_ned/right = X_optical, Z_ned/down = Z_optical.
+                // Yaw in NED is positive about +Z down, so integrate optical gyro Z.
+                const double yaw_rate_ned = msg->angular_velocity.z;
+                compass_heading_deg_ = normalizeDegrees(
+                    compass_heading_deg_ + yaw_rate_ned * dt * 180.0 / CV_PI);
+                compass_has_imu_ = true;
+            }
+        }
+        heading = normalizeDegrees(compass_heading_deg_ + compass_heading_offset_deg_);
+        publish = compass_has_imu_;
+    }
+
+    if (publish && pub_compass_heading_) {
+        auto out = std_msgs::msg::Float32();
+        out.data = static_cast<float>(heading);
+        pub_compass_heading_->publish(out);
+    }
+}
+
+void FiducialDetector::yoloDetectionsCallback(
+    const std_msgs::msg::Float32MultiArray::SharedPtr msg)
+{
+    std::vector<YoloDetectionOverlay> detections;
+    const size_t stride = (msg->data.size() % 7 == 0) ? 7 : 6;
+    detections.reserve(msg->data.size() / stride);
+    for (size_t i = 0; i + stride - 1 < msg->data.size(); i += stride) {
+        const int class_id = static_cast<int>(std::lround(msg->data[i + 0]));
+        const float confidence = msg->data[i + 1];
+        const int x = static_cast<int>(std::lround(msg->data[i + 2]));
+        const int y = static_cast<int>(std::lround(msg->data[i + 3]));
+        const int w = static_cast<int>(std::lround(msg->data[i + 4]));
+        const int h = static_cast<int>(std::lround(msg->data[i + 5]));
+        if (w <= 0 || h <= 0) continue;
+        YoloDetectionOverlay overlay{class_id, confidence, cv::Rect(x, y, w, h)};
+        if (stride == 7) {
+            overlay.axis_valid = true;
+            overlay.axis_screen_deg = static_cast<double>(msg->data[i + 6]);
+        }
+        detections.push_back(overlay);
+    }
+
+    std::lock_guard<std::mutex> lock(yolo_detections_mutex_);
+    yolo_detections_ = std::move(detections);
+    yolo_detections_stamp_ = now();
+    yolo_detections_seen_ = true;
 }
 
 void FiducialDetector::imageCallback(
@@ -370,6 +474,12 @@ void FiducialDetector::imageCallback(
             }),
         result.markers.end());
 
+    // Mount kamera dapat terputar terhadap arah depan kendaraan. Koreksi ini
+    // hanya memutar orientasi frame marker (rvec/quaternion): posisi tvec,
+    // center piksel, dan confidence tetap persis hasil deteksi asli.
+    // Dijalankan sesudah confidence agar reprojection check tidak terpengaruh.
+    applyPoseYawOffset(result);
+
     GateError gate_err;
     if (!result.markers.empty()) {
         // Hitung centroid dari SEMUA marker yang terdeteksi
@@ -447,7 +557,27 @@ void FiducialDetector::imageCallback(
     }
 
     if (show_rejected_) visualizer_->drawRejected(annotated, result.rejected);
-    visualizer_->drawUI(annotated, any_locked);
+    bool compass_valid = false;
+    double compass_heading = 0.0;
+    if (show_compass_) {
+        std::lock_guard<std::mutex> lock(compass_mutex_);
+        compass_valid = compass_has_imu_ &&
+            compass_initialized_ &&
+            (now() - compass_last_imu_stamp_).seconds() <= 1.0;
+        compass_heading = normalizeDegrees(compass_heading_deg_ + compass_heading_offset_deg_);
+    }
+    if (show_yolo_overlay_) {
+        std::vector<YoloDetectionOverlay> yolo_detections;
+        {
+            std::lock_guard<std::mutex> lock(yolo_detections_mutex_);
+            if (yolo_detections_seen_ &&
+                (now() - yolo_detections_stamp_).seconds() <= yolo_overlay_timeout_sec_) {
+                yolo_detections = yolo_detections_;
+            }
+        }
+        visualizer_->drawYoloDetections(annotated, yolo_detections, compass_valid, compass_heading);
+    }
+    visualizer_->drawUI(annotated, any_locked, compass_valid, compass_heading);
 
     if (show_window_) enqueueDisplay(annotated);
     publishAll(result, annotated, gate_err, msg->header.stamp);
@@ -540,6 +670,36 @@ void FiducialDetector::computeConfidence(DetectionResult& result) {
         m.confidence = confidence_calc_->compute(
             m.corners, m.id, m.pose.rvec, m.pose.tvec,
             intrinsics_.K, intrinsics_.D, 0, 7, 0, marker_size_);
+    }
+}
+
+void FiducialDetector::applyPoseYawOffset(DetectionResult& result) const {
+    if (std::abs(pose_yaw_offset_deg_) < 1e-9) return;
+
+    const double yaw = pose_yaw_offset_deg_ * CV_PI / 180.0;
+    const double c = std::cos(yaw);
+    const double s = std::sin(yaw);
+    const cv::Mat yaw_offset = (cv::Mat_<double>(3, 3) <<
+         c, -s, 0.0,
+         s,  c, 0.0,
+       0.0, 0.0, 1.0);
+
+    for (auto& marker : result.markers) {
+        if (!marker.pose.valid) continue;
+
+        cv::Mat rotation;
+        cv::Rodrigues(marker.pose.rvec, rotation);
+        const cv::Mat corrected = rotation * yaw_offset;
+        cv::Rodrigues(corrected, marker.pose.rvec);
+
+        Eigen::Matrix3d eigen_rotation;
+        for (int row = 0; row < 3; ++row) {
+            for (int col = 0; col < 3; ++col) {
+                eigen_rotation(row, col) = corrected.at<double>(row, col);
+            }
+        }
+        marker.pose.quaternion =
+            Eigen::Quaterniond(eigen_rotation).normalized();
     }
 }
 

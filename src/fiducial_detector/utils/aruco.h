@@ -10,6 +10,7 @@
 #include "utils/gate_alignment.h"
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
+#include <sensor_msgs/msg/imu.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <visualization_msgs/msg/marker_array.hpp>
 #include <std_msgs/msg/string.hpp>
@@ -68,12 +69,15 @@ private:
     void fpsTimerCallback();
     void watchdogCallback();
     void visionSourceCallback(const std_msgs::msg::String::SharedPtr msg);
+    void imuCallback(const sensor_msgs::msg::Imu::SharedPtr msg);
+    void yoloDetectionsCallback(const std_msgs::msg::Float32MultiArray::SharedPtr msg);
 
     DetectionResult runDetection(const cv::Mat& frame);
     void detectAruco(const cv::Mat& gray, DetectionResult& result);
     void estimatePoses(DetectionResult& result);
     void computeConfidence(DetectionResult& result);
     void stabilizeDetections(DetectionResult& result);
+    void applyPoseYawOffset(DetectionResult& result) const;
 
     void publishAll(const DetectionResult& result,
                     const cv::Mat& annotated,
@@ -97,6 +101,8 @@ private:
     // mission_manager (px4) di /mission/vision_source_active — lihat
     // komentar di visionSourceCallback()/imageCallback().
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr         vision_source_sub_;
+    rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr         imu_sub_;
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr yolo_detections_sub_;
     std::string active_vision_source_{};
     rclcpp::Time last_active_signal_time_{};
     bool         active_signal_seen_{false};
@@ -106,6 +112,7 @@ private:
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr          pub_debug_;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr            pub_alignment_;
     rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr           pub_fps_;
+    rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr           pub_compass_heading_;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr            pub_rejected_;
     rclcpp::TimerBase::SharedPtr                                   fps_timer_;
     rclcpp::TimerBase::SharedPtr                                   watchdog_timer_;
@@ -114,8 +121,11 @@ private:
     double      marker_size_{0.05};
     std::string camera_topic_{"/camera/image_raw"};
     std::string output_frame_id_{};
+    std::string imu_topic_{"/camera/camera/imu"};
+    std::string yolo_detections_topic_{"/general_box/detections"};
     int         alignment_tolerance_{50};
     double      smoothing_alpha_{0.4};
+    double      pose_yaw_offset_deg_{0.0};
     double      min_detection_confidence_{0.70};
     int         max_missed_frames_{5};
     int         alignment_stable_frames_{10};
@@ -126,6 +136,19 @@ private:
     bool   show_orientation_arrow_{true};
     bool   show_confidence_{true};
     bool   publish_debug_image_{true};
+    bool   show_compass_{true};
+    bool   show_yolo_overlay_{true};
+    double yolo_overlay_timeout_sec_{0.5};
+    double compass_heading_offset_deg_{0.0};
+    double compass_heading_deg_{0.0};
+    rclcpp::Time compass_last_imu_stamp_{};
+    bool   compass_has_imu_{false};
+    bool   compass_initialized_{false};
+    mutable std::mutex compass_mutex_;
+    std::vector<YoloDetectionOverlay> yolo_detections_;
+    rclcpp::Time yolo_detections_stamp_{};
+    bool yolo_detections_seen_{false};
+    mutable std::mutex yolo_detections_mutex_;
     bool   enable_clahe_{true};
     double clahe_clip_{2.0};
     bool   enable_sharpen_{false};

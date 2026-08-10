@@ -19,12 +19,23 @@
   <arg name="height"      default="480"/>
   <arg name="fps_limit"   default="15"   description="Camera FPS (integer)"/>
   <arg name="color_format" default="YUYV" description="RealSense color format"/>
+  <arg name="drone_ned_frame" default="base_link_ned" description="Drone body frame in NED/FRD convention"/>
+  <arg name="camera_base_frame" default="camera_link" description="RealSense base frame published by realsense2_camera"/>
+  <arg name="camera_x_ned" default="0.0" description="Camera offset from drone origin, +X forward, metres"/>
+  <arg name="camera_y_ned" default="0.0" description="Camera offset from drone origin, +Y right, metres"/>
+  <arg name="camera_z_ned" default="0.0" description="Camera offset from drone origin, +Z down, metres"/>
 
   <!-- ── ArUco (aruco_node) ─────────────────────────────────────────── -->
   <arg name="marker_size" default="0.05" description="Physical marker size in metres"/>
   <arg name="min_detection_confidence" default="0.50" description="Minimum accepted detector confidence"/>
   <arg name="show_window" default="false"/>
-  <arg name="publish_debug_image" default="true" description="Publish /fiducial/debug_image"/>
+  <arg name="publish_debug_image" default="false" description="Publish /fiducial/debug_image"/>
+  <arg name="show_compass" default="true" description="Draw IMU-integrated compass on /fiducial/debug_image"/>
+  <arg name="imu_topic" default="/camera/camera/imu" description="RealSense unified IMU topic"/>
+  <arg name="compass_heading_offset_deg" default="0.0" description="Heading offset added to integrated gyro compass"/>
+  <arg name="show_yolo_overlay" default="true" description="Draw YOLO bbox overlay in the FiducialDetector window/debug image"/>
+  <arg name="yolo_detections_topic" default="/general_box/detections_with_yaw"/>
+  <arg name="pose_yaw_offset_deg" default="180.0" description="Rotate ArUco pose axes for the inverted camera mount"/>
   <arg name="npu"         default="true"  description="true/false - probe Raspberry Pi AI HAT / Hailo NPU"/>
 
   <!-- ── YOLO box detector (yolo_camera_node) ────────────────────────── -->
@@ -33,6 +44,17 @@
   <arg name="yolo_confidence"  default="0.70"/>
   <arg name="yolo_target_class_id" default="3"/>
   <arg name="yolo_preprocess_mode" default="letterbox"/>
+  <arg name="yolo_publish_image" default="false" description="Publish annotated YOLO image for debugging"/>
+  <arg name="yolo_publish_tf" default="true" description="Publish TF for the single valid YOLO bbox target"/>
+  <arg name="yolo_tf_child_frame" default="yolo_bbox_target" description="TF child frame for the YOLO bbox center ray"/>
+  <arg name="yolo_tf_depth_m" default="1.0" description="Nominal optical depth for bbox TF; use as ray/debug unless real depth is provided"/>
+  <arg name="yolo_camera_info_topic" default="/camera/camera/color/camera_info"/>
+
+  <!-- Mount transform: camera faces down, top of camera points forward.
+       NED/FRD -> camera_link quaternion xyzw = (0.7071068, 0, 0.7071068, 0). -->
+  <node pkg="tf2_ros" exec="static_transform_publisher" name="camera_ned_mount_tf"
+        args="--x $(var camera_x_ned) --y $(var camera_y_ned) --z $(var camera_z_ned) --qx 0.7071068 --qy 0.0 --qz 0.7071068 --qw 0.0 --frame-id $(var drone_ned_frame) --child-frame-id $(var camera_base_frame)"
+        output="screen"/>
 
   <!-- Intel RealSense ROS2 driver - publishes /camera/camera/color/image_raw -->
   <node pkg="realsense2_camera" exec="realsense2_camera_node"
@@ -43,8 +65,9 @@
     <param name="enable_infra"             value="false"/>
     <param name="enable_infra1"            value="false"/>
     <param name="enable_infra2"            value="false"/>
-    <param name="enable_gyro"              value="false"/>
-    <param name="enable_accel"             value="false"/>
+    <param name="enable_gyro"              value="true"/>
+    <param name="enable_accel"             value="true"/>
+    <param name="unite_imu_method"         value="2"/>
     <param name="rgb_camera.color_profile" value="$(var width),$(var height),$(var fps_limit)"/>
     <param name="rgb_camera.color_format"  value="$(var color_format)"/>
   </node>
@@ -57,6 +80,12 @@
     <param name="min_detection_confidence" value="$(var min_detection_confidence)"/>
     <param name="show_window"  value="$(var show_window)"/>
     <param name="publish_debug_image" value="$(var publish_debug_image)"/>
+    <param name="show_compass" value="$(var show_compass)"/>
+    <param name="imu_topic" value="$(var imu_topic)"/>
+    <param name="compass_heading_offset_deg" value="$(var compass_heading_offset_deg)"/>
+    <param name="show_yolo_overlay" value="$(var show_yolo_overlay)"/>
+    <param name="yolo_detections_topic" value="$(var yolo_detections_topic)"/>
+    <param name="pose_yaw_offset_deg" value="$(var pose_yaw_offset_deg)"/>
     <param name="output_frame_id" value="camera_link"/>
     <param name="npu"          value="$(var npu)"/>
   </node>
@@ -68,11 +97,16 @@
     <param name="model_path"         value="$(var yolo_model_path)"/>
     <param name="confidence"         value="$(var yolo_confidence)"/>
     <param name="save_video"         value="false"/>
+    <param name="publish_image"      value="$(var yolo_publish_image)"/>
     <param name="publish_topic"      value="/general_box/image_annotated"/>
     <param name="count_topic"        value="/general_box/detection_count"/>
     <param name="boxes_topic"        value="/general_box/detections"/>
     <param name="center_topic"       value="/general_box/target_center"/>
     <param name="frame_id"           value="general_box_camera"/>
+    <param name="camera_info_topic"  value="$(var yolo_camera_info_topic)"/>
+    <param name="publish_tf"         value="$(var yolo_publish_tf)"/>
+    <param name="tf_child_frame"     value="$(var yolo_tf_child_frame)"/>
+    <param name="tf_depth_m"         value="$(var yolo_tf_depth_m)"/>
     <param name="target_class_id"    value="$(var yolo_target_class_id)"/>
     <param name="preprocess_mode"    value="$(var yolo_preprocess_mode)"/>
     <param name="input_color_order"  value="rgb"/>

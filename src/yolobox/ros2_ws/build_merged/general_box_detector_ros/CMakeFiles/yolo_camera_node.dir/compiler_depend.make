@@ -16,6 +16,22 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
   /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/time.hpp \
   /opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge.hpp \
   /opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge_export.h \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/point__struct.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/point__traits.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/pose__struct.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/pose__traits.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform__struct.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform__traits.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__builder.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__struct.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__traits.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__type_support.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/transform_stamped.hpp \
   /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/collector/collector.hpp \
   /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/collector/generate_statistics_message.hpp \
   /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/collector/metric_details_interface.hpp \
@@ -383,7 +399,12 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
   /opt/ros/jazzy/include/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp/message_introspection.hpp \
   /opt/ros/jazzy/include/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp/visibility_control.h \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/image_encodings.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/camera_info.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/compressed_image.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__builder.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__struct.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__traits.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__type_support.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/compressed_image__builder.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/compressed_image__struct.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/compressed_image__traits.hpp \
@@ -392,7 +413,14 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__traits.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__type_support.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/region_of_interest__struct.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/region_of_interest__traits.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/image.hpp \
+  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
   /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/jazzy/include/service_msgs/service_msgs/msg/detail/service_event_info__struct.h \
   /opt/ros/jazzy/include/service_msgs/service_msgs/msg/detail/service_event_info__struct.hpp \
@@ -405,6 +433,8 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
   /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/statistic_data_point__traits.hpp \
   /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/metrics_message.hpp \
   /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/color_rgba__struct.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/color_rgba__traits.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
@@ -427,6 +457,16 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/string.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/u_int32.hpp \
+  /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__builder.hpp \
+  /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__struct.hpp \
+  /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__traits.hpp \
+  /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__type_support.hpp \
+  /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/tf_message.hpp \
+  /opt/ros/jazzy/include/tf2_ros/tf2_ros/qos.hpp \
+  /opt/ros/jazzy/include/tf2_ros/tf2_ros/transform_broadcaster.h \
+  /opt/ros/jazzy/include/tf2_ros/tf2_ros/transform_broadcaster.hpp \
+  /opt/ros/jazzy/include/tf2_ros/tf2_ros/visibility_control.hpp \
   /opt/ros/jazzy/include/tracetools/tracetools/config.h \
   /opt/ros/jazzy/include/tracetools/tracetools/tracetools.h \
   /opt/ros/jazzy/include/tracetools/tracetools/utils.hpp \
@@ -442,6 +482,18 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
   /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/detail/get_type_description__struct.h \
   /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/detail/get_type_description__type_support.h \
   /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/get_type_description.h \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__struct.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__traits.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__builder.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__struct.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__traits.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__type_support.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__struct.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__traits.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/uv_coordinate__struct.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/uv_coordinate__traits.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/marker_array.hpp \
+  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /usr/include/aarch64-linux-gnu/asm/bitsperlong.h \
   /usr/include/aarch64-linux-gnu/asm/errno.h \
   /usr/include/aarch64-linux-gnu/asm/posix_types.h \
@@ -971,8 +1023,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/opencv4/opencv2/imgproc.hpp:
 
-/usr/include/opencv4/opencv2/core/version.hpp:
-
 /usr/include/opencv4/opencv2/core/types_c.h:
 
 /usr/include/opencv4/opencv2/core/traits.hpp:
@@ -995,17 +1045,11 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/opencv4/opencv2/core.hpp:
 
-/usr/include/opencv4/opencv2/core/fast_math.hpp:
-
-/usr/include/locale.h:
-
 /usr/include/linux/types.h:
 
 /usr/include/linux/stddef.h:
 
 /usr/include/linux/posix_types.h:
-
-/usr/include/linux/close_range.h:
 
 /usr/include/libintl.h:
 
@@ -1020,8 +1064,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/c++/13/unordered_set:
 
 /usr/include/c++/13/unordered_map:
-
-/usr/include/c++/13/tr1/riemann_zeta.tcc:
 
 /usr/include/c++/13/tr1/special_function_util.h:
 
@@ -1095,8 +1137,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/c++/13/exception:
 
-/usr/include/c++/13/debug/assertions.h:
-
 /usr/include/c++/13/cxxabi.h:
 
 /usr/include/c++/13/cwchar:
@@ -1122,8 +1162,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/ctype.h:
 
 /usr/include/c++/13/cfloat:
-
-/usr/include/c++/13/cassert:
 
 /usr/include/opencv4/opencv2/imgproc/imgproc.hpp:
 
@@ -1157,15 +1195,9 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/c++/13/bits/stl_relops.h:
 
-/usr/include/c++/13/bits/stl_raw_storage_iter.h:
-
 /usr/include/c++/13/bits/stl_queue.h:
 
 /usr/include/c++/13/bits/stl_multimap.h:
-
-/usr/include/c++/13/debug/debug.h:
-
-/usr/include/c++/13/bits/stl_list.h:
 
 /usr/include/c++/13/bits/stl_iterator_base_types.h:
 
@@ -1291,8 +1323,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/c++/13/algorithm:
 
-/usr/include/assert.h:
-
 /usr/include/asm-generic/int-ll64.h:
 
 /usr/include/c++/13/iostream:
@@ -1301,23 +1331,13 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/asm-generic/errno-base.h:
 
-/usr/include/asm-generic/bitsperlong.h:
-
 /usr/include/aarch64-linux-gnu/sys/user.h:
-
-/usr/include/aarch64-linux-gnu/sys/ucontext.h:
 
 /usr/include/c++/13/bits/stl_tempbuf.h:
 
 /usr/include/c++/13/bits/regex_executor.tcc:
 
 /usr/include/aarch64-linux-gnu/sys/types.h:
-
-/usr/local/include/hailo/hailort.hpp:
-
-/usr/include/c++/13/pstl/glue_numeric_defs.h:
-
-/usr/include/aarch64-linux-gnu/sys/time.h:
 
 /usr/include/aarch64-linux-gnu/sys/single_threaded.h:
 
@@ -1353,8 +1373,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/aarch64-linux-gnu/c++/13/bits/atomic_word.h:
 
-/usr/include/aarch64-linux-gnu/bits/xopen_lim.h:
-
 /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/poll.h:
@@ -1368,10 +1386,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/aarch64-linux-gnu/bits/unistd-decl.h:
 
 /usr/include/aarch64-linux-gnu/bits/uio_lim.h:
-
-/usr/include/c++/13/bits/unique_lock.h:
-
-/usr/include/aarch64-linux-gnu/bits/typesizes.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 
@@ -1405,27 +1419,101 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_wait_set_mask.hpp:
+/usr/local/include/hailo/runtime_statistics.hpp:
 
-/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/individual_type_description__struct.h:
+/usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_factory.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
-/usr/include/c++/13/bits/regex_compiler.h:
+/usr/include/stdio.h:
 
-/usr/include/aarch64-linux-gnu/bits/errno.h:
+/usr/include/aarch64-linux-gnu/bits/types/clockid_t.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/service.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
 
-/usr/include/opencv4/opencv2/core/core.hpp:
+/usr/include/c++/13/cwctype:
 
-/opt/ros/jazzy/include/rmw/rmw/get_topic_names_and_types.h:
+/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/serialization.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 
-/opt/ros/jazzy/include/rosidl_runtime_cpp/rosidl_runtime_cpp/traits.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/publisher_options.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/aarch64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/c++/13/tr1/modified_bessel_func.tcc:
+
+/usr/include/aarch64-linux-gnu/bits/timex.h:
+
+/usr/include/aarch64-linux-gnu/bits/timesize.h:
+
+/usr/include/aarch64-linux-gnu/bits/time64.h:
+
+/usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdlib.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdio2.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdio.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/aarch64-linux-gnu/bits/ss_flags.h:
+
+/usr/include/c++/13/bits/stl_numeric.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigthread.h:
+
+/usr/include/opencv4/opencv2/imgproc/types_c.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdio2-decl.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/c++/13/stdexcept:
+
+/usr/include/c++/13/clocale:
+
+/usr/include/aarch64-linux-gnu/bits/sigstack.h:
+
+/usr/include/aarch64-linux-gnu/bits/signum-arch.h:
+
+/usr/include/c++/13/bits/hashtable.h:
+
+/usr/include/aarch64-linux-gnu/bits/signal_ext.h:
+
+/usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h:
+
+/usr/include/c++/13/bits/move.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/aarch64-linux-gnu/bits/setjmp.h:
+
+/usr/include/aarch64-linux-gnu/bits/select.h:
+
+/usr/include/aarch64-linux-gnu/bits/select-decl.h:
+
+/usr/include/strings.h:
+
+/usr/include/aarch64-linux-gnu/bits/sched.h:
+
+/usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/signal.h:
 
@@ -1433,13 +1521,9 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/publisher_base.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/detail/rmw_implementation_specific_subscription_payload.hpp:
+/opt/ros/jazzy/include/rclcpp/rclcpp/publisher_options.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_type_descriptions_interface.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_content_filter_options.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/strings_fortified.h:
 
 /usr/include/aarch64-linux-gnu/c++/13/bits/cpu_defines.h:
 
@@ -1456,10 +1540,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_time_source_interface.hpp:
 
 /opt/ros/jazzy/include/rcutils/rcutils/sha256.h:
-
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_services_interface.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h:
 
@@ -1478,16 +1558,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_clock_interface.hpp:
 
 /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_base_interface_traits.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/wait_set.hpp:
-
-/usr/local/include/hailo/quantization.hpp:
-
-/usr/lib/gcc/aarch64-linux-gnu/13/include/arm_bf16.h:
-
-/usr/include/aarch64-linux-gnu/bits/getopt_core.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_base_interface.hpp:
 
@@ -1535,15 +1605,15 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/macros.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/intra_process_setting.hpp:
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/types/error_t.h:
+/opt/ros/jazzy/include/rclcpp/rclcpp/intra_process_setting.hpp:
 
 /usr/include/c++/13/bits/erase_if.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/generic_publisher.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/generic_client.hpp:
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/color_rgba__traits.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/executors/executor_entities_collection.hpp:
 
@@ -1559,16 +1629,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/set_parameters.hpp:
 
-/usr/include/opencv4/opencv2/core/optim.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/rate.hpp:
-
-/usr/include/c++/13/cctype:
-
-/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/constants.hpp:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__traits.hpp:
-
 /opt/ros/jazzy/include/rclcpp/rclcpp/guard_condition.hpp:
 
 /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.h:
@@ -1581,23 +1641,19 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:
 
-/usr/local/include/hailo/vstream.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/executors/executor_notify_waitable.hpp:
-
 /opt/ros/jazzy/include/rclcpp/rclcpp/detail/rmw_implementation_specific_publisher_payload.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/publisher.hpp:
 
+/usr/include/assert.h:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/transform_stamped.hpp:
+
 /usr/include/c++/13/bits/concept_check.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/executors/events_cbg_executor/events_cbg_executor.hpp:
-
-/usr/include/string.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/serialized_message.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/executor_options.hpp:
 
@@ -1613,8 +1669,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/aarch64-linux-gnu/asm/types.h:
 
-/usr/include/aarch64-linux-gnu/bits/stdint-uintn.h:
-
 /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/detail/type_description__struct.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/event.hpp:
@@ -1629,25 +1683,15 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/moving_average_statistics/moving_average.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/set_parameters_result__struct.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_logging_interface.hpp:
-
 /usr/include/opencv4/opencv2/core/cvstd.inl.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_value__builder.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/rclcpp.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/client.h:
 
 /usr/include/pthread.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/experimental/executors/events_executor/simple_events_queue.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/detail/qos_parameters.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/ss_flags.h:
 
 /usr/include/c++/13/list:
 
@@ -1660,10 +1704,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/c++/13/bits/stl_pair.h:
 
 /usr/include/aarch64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/aarch64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/FILE.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/create_publisher.hpp:
 
@@ -1683,8 +1723,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/create_generic_publisher.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
-
 /opt/ros/jazzy/include/rclcpp/rclcpp/create_client.hpp:
 
 /usr/local/include/hailo/inference_pipeline.hpp:
@@ -1695,13 +1733,15 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/aarch64-linux-gnu/bits/poll.h:
 
-/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h:
+/usr/include/aarch64-linux-gnu/bits/siginfo-arch.h:
 
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp:
+/opt/ros/jazzy/include/rclcpp/rclcpp/context.hpp:
+
+/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h:
 
 /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/received_message_period.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/time64.h:
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp:
 
 /usr/include/c++/13/bits/atomic_futex.h:
 
@@ -1711,43 +1751,35 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/set_parameters_result.hpp:
 
-/usr/include/c++/13/bits/stl_iterator_base_funcs.h:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_value.hpp:
 
-/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/visibility_control.hpp:
+/usr/include/c++/13/csignal:
 
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 
-/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__struct.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/set_parameters_atomically.hpp:
 
-/usr/include/endian.h:
+/usr/include/c++/13/ext/string_conversions.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_options.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/list_parameters.hpp:
 
-/opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge.hpp:
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__builder.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+/opt/ros/jazzy/include/rcl/rcl/init_options.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/subscription.hpp:
+/usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__struct.hpp:
+/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/get_parameter_types.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/integer_range__traits.hpp:
 
-/opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/api/dynamic_data.h:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__type_support.hpp:
 
-/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/sequence_bound.h:
+/usr/include/c++/13/bits/stl_multiset.h:
 
-/opt/ros/jazzy/include/rcl/rcl/guard_condition.h:
-
-/opt/ros/jazzy/include/rcl/rcl/wait.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_descriptor.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/buffers/intra_process_buffer.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/exceptions/exceptions.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/service.h:
+/opt/ros/jazzy/include/rmw/rmw/init_options.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/experimental/subscription_intra_process_buffer.hpp:
 
@@ -1767,15 +1799,87 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_map.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/dynamic_typesupport/dynamic_message.hpp:
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__traits.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_value.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__traits.hpp:
 
-/usr/include/c++/13/csignal:
+/opt/ros/jazzy/include/rcpputils/rcpputils/shared_library.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
+/opt/ros/jazzy/include/rcl/rcl/guard_condition.h:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/set_parameters_atomically.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/ros_message_intra_process_buffer.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/detail/cpp_callback_trampoline.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__struct.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/graph.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/executors.hpp:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__struct.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__builder.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/event.h:
+
+/opt/ros/jazzy/include/rcl/rcl/domain_id.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/executors/static_single_threaded_executor.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/arguments.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__struct.hpp:
+
+/usr/include/c++/13/deque:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__traits.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/node.h:
+
+/usr/include/aarch64-linux-gnu/bits/siginfo-consts.h:
+
+/opt/ros/jazzy/include/tracetools/tracetools/visibility_control.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/allocator.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/message_info.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/detail/subscription_callback_type_helper.hpp:
+
+/usr/include/opencv4/opencv2/core/cvstd.hpp:
+
+/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/topic_statistics_collector.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/executors/events_executor/events_executor_event_types.hpp:
+
+/usr/local/include/hailo/transform.hpp:
+
+/usr/include/opencv4/opencv2/core/vsx_utils.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/init_options.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/get_node_clock_interface.hpp:
+
+/opt/ros/jazzy/include/rcutils/rcutils/visibility_control.h:
+
+/usr/include/c++/13/cctype:
+
+/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/constants.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__traits.hpp:
+
+/usr/include/opencv4/opencv2/core/optim.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/rate.hpp:
+
+/usr/include/c++/13/bits/hashtable_policy.h:
+
+/opt/ros/jazzy/include/rcl/rcl/logging_rosout.h:
 
 /usr/include/opencv4/opencv2/core/persistence.hpp:
 
@@ -1785,33 +1889,23 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rmw/rmw/events_statuses/offered_deadline_missed.h:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__struct.hpp:
+/usr/include/c++/13/bits/stl_iterator_base_funcs.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/detail/cpp_callback_trampoline.hpp:
+/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/visibility_control.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h:
+/opt/ros/jazzy/include/rcl/rcl/context.h:
 
-/opt/ros/jazzy/include/rcl/rcl/visibility_control.h:
+/usr/include/c++/13/tr1/gamma.tcc:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/loaned_message.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/get_parameters__type_support.hpp:
 
-/usr/include/c++/13/bits/chrono.h:
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_services_interface.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__type_support.hpp:
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
 
-/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/compressed_image.hpp:
+/opt/ros/jazzy/include/rclcpp/rclcpp/serialization.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
-/opt/ros/jazzy/include/rcl/rcl/init_options.h:
-
-/usr/include/aarch64-linux-gnu/bits/string_fortified.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__struct.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/ros_message_intra_process_buffer.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/graph.h:
+/opt/ros/jazzy/include/rosidl_runtime_cpp/rosidl_runtime_cpp/traits.hpp:
 
 /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__traits.hpp:
 
@@ -1821,11 +1915,107 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/set_parameters_result__builder.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/executors.hpp:
+/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/received_message_age.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__builder.hpp:
+/usr/include/c++/13/utility:
 
-/opt/ros/jazzy/include/rcl/rcl/event.h:
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__type_support.hpp:
+
+/usr/include/c++/13/cstddef:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__builder.hpp:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__builder.hpp:
+
+/opt/ros/jazzy/include/rmw/rmw/incompatible_qos_events_statuses.h:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp:
+
+/usr/include/aarch64-linux-gnu/c++/13/bits/c++locale.h:
+
+/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/rosidl_generator_c__visibility_control.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__traits.hpp:
+
+/usr/include/c++/13/numeric:
+
+/usr/include/aarch64-linux-gnu/bits/fenv.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_clock_interface_traits.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/event_callback.h:
+
+/opt/ros/jazzy/include/rmw/rmw/impl/cpp/demangle.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/executors/executor_entities_collector.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/log_level.h:
+
+/opt/ros/jazzy/include/rcutils/rcutils/shared_library.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/get_message_type_support_handle.hpp:
+
+/usr/include/opencv4/opencv2/core/version.hpp:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/point__struct.hpp:
+
+/opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge.hpp:
+
+/opt/ros/jazzy/include/rcpputils/rcpputils/thread_safety_annotations.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/subscription_intra_process_base.hpp:
+
+/opt/ros/jazzy/include/rmw/rmw/impl/config.h:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/string__struct.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__traits.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/duration.hpp:
+
+/usr/include/c++/13/bits/new_allocator.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/compressed_image__builder.hpp:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__type_support.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_base_interface_traits.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/wait_set.hpp:
+
+/usr/local/include/hailo/quantization.hpp:
+
+/usr/lib/gcc/aarch64-linux-gnu/13/include/arm_bf16.h:
+
+/usr/include/aarch64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/aarch64-linux-gnu/bits/xopen_lim.h:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__builder.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/strings_fortified.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_content_filter_options.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/parameter_event_handler.hpp:
+
+/usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
+
+/usr/include/c++/13/bits/shared_ptr.h:
+
+/opt/ros/jazzy/include/rcpputils/rcpputils/pointer_traits.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__builder.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__struct.hpp:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform__traits.hpp:
+
+/usr/include/c++/13/bits/chrono.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__type_support.hpp:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/compressed_image.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/intra_process_buffer_type.hpp:
 
@@ -1839,85 +2029,21 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__builder.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/executors/static_single_threaded_executor.hpp:
+/usr/local/include/hailo/hailort_common.hpp:
 
-/opt/ros/jazzy/include/rcl/rcl/arguments.h:
+/usr/include/asm-generic/posix_types.h:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__struct.hpp:
+/opt/ros/jazzy/include/rmw/rmw/events_statuses/incompatible_type.h:
 
-/usr/include/stdint.h:
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/string.hpp:
 
-/opt/ros/jazzy/include/rcl/rcl/subscription.h:
+/usr/include/wchar.h:
 
-/opt/ros/jazzy/include/rcl/rcl/timer.h:
+/usr/include/aarch64-linux-gnu/bits/poll2.h:
 
-/opt/ros/jazzy/include/rmw/rmw/publisher_options.h:
-
-/usr/include/c++/13/cstddef:
-
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__builder.hpp:
-
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__builder.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/types.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/executor.hpp:
-
-/opt/ros/jazzy/include/rmw/rmw/incompatible_qos_events_statuses.h:
-
-/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp:
-
-/usr/include/aarch64-linux-gnu/c++/13/bits/c++locale.h:
-
-/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/rosidl_generator_c__visibility_control.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/get_parameters__builder.hpp:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__builder.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/parameter_event_handler.hpp:
-
-/usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
-
-/usr/include/c++/13/bits/shared_ptr.h:
-
-/opt/ros/jazzy/include/rcpputils/rcpputils/pointer_traits.hpp:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__struct.hpp:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__builder.hpp:
-
-/usr/include/c++/13/cwctype:
-
-/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__traits.hpp:
-
-/usr/include/c++/13/numeric:
-
-/usr/include/aarch64-linux-gnu/bits/fenv.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_clock_interface_traits.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/log_level.h:
-
-/opt/ros/jazzy/include/rcutils/rcutils/shared_library.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/get_message_type_support_handle.hpp:
-
-/opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/statistic_data_point__struct.hpp:
-
-/usr/include/c++/13/bits/new_allocator.h:
-
-/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/compressed_image__builder.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/allocator.h:
+/opt/ros/jazzy/include/rcl/rcl/wait.h:
 
 /home/vtol/wayfix_ws/src/yolobox/ros2_ws/src/general_box_detector_ros/src/yolo_camera_node.cpp:
-
-/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp:
-
-/usr/include/aarch64-linux-gnu/asm/errno.h:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__builder.hpp:
 
@@ -1925,101 +2051,87 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/service_type_support_struct.h:
 
-/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
+/usr/include/c++/13/pstl/execution_defs.h:
 
-/usr/include/c++/13/utility:
+/usr/include/aarch64-linux-gnu/bits/signum-generic.h:
 
-/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__type_support.hpp:
-
-/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/received_message_age.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/domain_id.h:
-
-/usr/local/include/hailo/transform.hpp:
-
-/usr/include/opencv4/opencv2/core/vsx_utils.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/init_options.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/get_node_clock_interface.hpp:
-
-/opt/ros/jazzy/include/rcutils/rcutils/visibility_control.h:
-
-/opt/ros/jazzy/include/rcl/rcl/context.h:
-
-/opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/identifier.h:
-
-/opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge_export.h:
-
-/usr/include/aarch64-linux-gnu/bits/signum-arch.h:
-
-/usr/include/c++/13/tr1/gamma.tcc:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/get_parameters__type_support.hpp:
-
-/usr/include/c++/13/bits/hashtable_policy.h:
-
-/opt/ros/jazzy/include/rcl/rcl/logging_rosout.h:
-
-/opt/ros/jazzy/include/rcpputils/rcpputils/thread_safety_annotations.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/subscription_intra_process_base.hpp:
-
-/opt/ros/jazzy/include/rmw/rmw/impl/config.h:
-
-/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/string__struct.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/duration.hpp:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__traits.hpp:
-
-/opt/ros/jazzy/include/rmw/rmw/domain_id.h:
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__type_support.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/set_parameters_result__type_support.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/message_info.hpp:
+/opt/ros/jazzy/include/rclcpp/rclcpp/generic_client.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__struct.hpp:
+/usr/include/c++/13/initializer_list:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/detail/subscription_callback_type_helper.hpp:
+/usr/include/c++/13/bits/stl_stack.h:
 
-/usr/include/opencv4/opencv2/core/cvstd.hpp:
+/opt/ros/jazzy/include/rcutils/rcutils/testing/fault_injection.h:
 
-/opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/topic_statistics_collector/topic_statistics_collector.hpp:
+/opt/ros/jazzy/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/service_type_support.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_base.hpp:
+/usr/include/c++/13/system_error:
 
-/usr/include/aarch64-linux-gnu/asm/bitsperlong.h:
+/usr/include/c++/13/bits/ostream_insert.h:
 
-/usr/include/c++/13/bits/predefined_ops.h:
+/usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/qos.hpp:
+/usr/include/c++/13/shared_mutex:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:
+/usr/include/aarch64-linux-gnu/bits/procfs-extra.h:
 
-/opt/ros/jazzy/include/rcl/rcl/node.h:
+/usr/include/c++/13/bits/locale_conv.h:
 
-/usr/include/aarch64-linux-gnu/bits/siginfo-consts.h:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/get_parameters.hpp:
 
-/opt/ros/jazzy/include/tracetools/tracetools/visibility_control.hpp:
+/opt/ros/jazzy/include/rcutils/rcutils/types/array_list.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/contexts/default_context.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__struct.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/detail/node_interfaces_helpers.hpp:
+/usr/include/aarch64-linux-gnu/bits/types/error_t.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/dynamic_typesupport/dynamic_message_type.hpp:
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__builder.hpp:
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_logging_interface.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_value__type_support.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/set_parameters_result__struct.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__struct.hpp:
+/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/sequence_bound.h:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__traits.hpp:
+/opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/api/dynamic_data.h:
 
-/usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
+/opt/ros/jazzy/include/rcl/rcl/service.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/buffers/intra_process_buffer.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/exceptions/exceptions.hpp:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__traits.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/get_parameters__builder.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__builder.hpp:
+
+/usr/include/stdint.h:
+
+/opt/ros/jazzy/include/rcl/rcl/subscription.h:
+
+/opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge_export.h:
+
+/opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/identifier.h:
+
+/opt/ros/jazzy/include/rmw/rmw/publisher_options.h:
+
+/opt/ros/jazzy/include/rcl/rcl/timer.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/executor.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/types.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/loaned_message.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/visibility_control.h:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__traits.hpp:
 
@@ -2033,9 +2145,49 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/visibility_control.h:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters_atomically__traits.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_value__type_support.hpp:
 
-/opt/ros/jazzy/include/rcpputils/rcpputils/shared_library.hpp:
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__struct.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_descriptor.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__traits.hpp:
+
+/usr/include/c++/13/iosfwd:
+
+/usr/include/aarch64-linux-gnu/bits/sigevent-consts.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigaction.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__struct.hpp:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/allocator/allocator_deleter.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/list_parameters_result.hpp:
+
+/usr/local/include/hailo/genai/llm/llm.hpp:
+
+/usr/include/c++/13/locale:
+
+/usr/include/c++/13/bits/stl_map.h:
+
+/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/detail/get_type_description__struct.h:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform__struct.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__type_support.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/detail/node_interfaces_helpers.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/dynamic_typesupport/dynamic_message_type.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__builder.hpp:
 
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/type_description__struct.h:
 
@@ -2053,6 +2205,8 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__type_support.hpp:
 
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__traits.hpp:
+
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__type_support.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_descriptor__type_support.hpp:
@@ -2067,21 +2221,21 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__struct.hpp:
 
+/usr/include/aarch64-linux-gnu/bits/types.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/wait_result.hpp:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/node.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/executors/events_executor/events_executor_event_types.hpp:
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/pose__traits.hpp:
 
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__type_support.hpp:
+/usr/include/aarch64-linux-gnu/bits/flt-eval-method.h:
 
-/usr/include/c++/13/bits/stl_multiset.h:
-
-/opt/ros/jazzy/include/rmw/rmw/init_options.h:
+/opt/ros/jazzy/include/rclcpp/rclcpp/type_adapter.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__builder.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_value__traits.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/timer.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_event.hpp:
 
@@ -2090,22 +2244,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_type.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/describe_parameters.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/timesize.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/list_parameters_result.hpp:
-
-/usr/local/include/hailo/genai/llm/llm.hpp:
-
-/usr/include/c++/13/locale:
-
-/usr/include/c++/13/bits/stl_map.h:
-
-/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/detail/get_type_description__struct.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__type_support.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/allocator/allocator_deleter.hpp:
 
 /usr/include/c++/13/bits/unordered_map.h:
 
@@ -2126,6 +2264,8 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_timers_interface.hpp:
 
 /opt/ros/jazzy/include/rmw/rmw/visibility_control.h:
+
+/opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__traits.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/unistd.h:
 
@@ -2155,7 +2295,13 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__type_support.hpp:
 
+/usr/include/c++/13/debug/assertions.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp:
+
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__builder.hpp:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__traits.hpp:
 
@@ -2167,43 +2313,63 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/image.hpp:
 
+/usr/include/c++/13/bits/predefined_ops.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/qos.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/client.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/rclcpp.hpp:
+
+/usr/include/string.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/serialized_message.hpp:
+
+/usr/include/aarch64-linux-gnu/asm/errno.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/service.hpp:
+
+/usr/include/opencv4/opencv2/core/core.hpp:
+
+/opt/ros/jazzy/include/rmw/rmw/get_topic_names_and_types.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/subscription.hpp:
+
+/usr/include/aarch64-linux-gnu/asm/bitsperlong.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_base.hpp:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/pose__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_factory.hpp:
+
+/usr/include/c++/13/bits/regex_compiler.h:
+
+/usr/include/aarch64-linux-gnu/bits/errno.h:
+
+/usr/include/endian.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_options.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/subscription_wait_set_mask.hpp:
+
+/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/individual_type_description__struct.h:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/memory_strategies.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/experimental/create_intra_process_buffer.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/time.hpp:
 
-/usr/include/c++/13/bits/locale_conv.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/get_parameters.hpp:
-
-/opt/ros/jazzy/include/rcutils/rcutils/types/array_list.h:
-
-/opt/ros/jazzy/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/service_type_support.hpp:
-
-/usr/include/c++/13/system_error:
-
-/usr/include/c++/13/bits/ostream_insert.h:
-
-/usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
-
-/usr/include/c++/13/shared_mutex:
-
-/usr/include/aarch64-linux-gnu/bits/procfs-extra.h:
-
-/usr/include/c++/13/ext/string_conversions.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/list_parameters.hpp:
-
-/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__builder.hpp:
-
-/usr/include/c++/13/deque:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__traits.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/flt-eval-method.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/type_adapter.hpp:
+/opt/ros/jazzy/include/rclcpp/rclcpp/timer.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/client.hpp:
 
@@ -2241,6 +2407,10 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/wait_set_template.hpp:
 
+/usr/include/c++/13/cassert:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__struct.hpp:
+
 /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/moving_average_statistics/types.hpp:
 
 /opt/ros/jazzy/include/std_msgs/std_msgs/msg/float32_multi_array.hpp:
@@ -2250,10 +2420,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/c++/13/bits/alloc_traits.h:
 
 /opt/ros/jazzy/include/rcpputils/rcpputils/join.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/event_handler.hpp:
-
-/opt/ros/jazzy/include/rcpputils/rcpputils/time.hpp:
 
 /usr/include/c++/13/ext/numeric_traits.h:
 
@@ -2275,11 +2441,7 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rcutils/rcutils/snprintf.h:
 
-/usr/include/c++/13/initializer_list:
-
-/usr/include/c++/13/bits/stl_stack.h:
-
-/opt/ros/jazzy/include/rcutils/rcutils/testing/fault_injection.h:
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp:
 
 /opt/ros/jazzy/include/rcutils/rcutils/time.h:
 
@@ -2294,6 +2456,10 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /opt/ros/jazzy/include/rcutils/rcutils/types/string_array.h:
 
 /opt/ros/jazzy/include/rcutils/rcutils/types/string_map.h:
+
+/usr/include/c++/13/bits/stl_raw_storage_iter.h:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/uv_coordinate__struct.hpp:
 
 /opt/ros/jazzy/include/rcutils/rcutils/types/uint8_array.h:
 
@@ -2327,24 +2493,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rmw/rmw/events_statuses/events_statuses.h:
 
-/usr/local/include/hailo/hailort_common.hpp:
-
-/usr/include/asm-generic/posix_types.h:
-
-/opt/ros/jazzy/include/rmw/rmw/events_statuses/incompatible_type.h:
-
-/opt/ros/jazzy/include/std_msgs/std_msgs/msg/string.hpp:
-
-/usr/include/wchar.h:
-
-/usr/include/aarch64-linux-gnu/bits/poll2.h:
-
-/usr/include/c++/13/pstl/glue_memory_defs.h:
-
-/usr/include/c++/13/bits/memory_resource.h:
-
-/opt/ros/jazzy/include/rmw/rmw/events_statuses/matched.h:
-
 /usr/local/include/hailo/genai/vlm/vlm.hpp:
 
 /opt/ros/jazzy/include/rmw/rmw/serialized_message.h:
@@ -2359,6 +2507,8 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/c++/13/bits/regex_automaton.tcc:
 
+/opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/tf_message.hpp:
+
 /opt/ros/jazzy/include/rmw/rmw/events_statuses/requested_deadline_missed.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/any_executable.hpp:
@@ -2367,15 +2517,11 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rmw/rmw/features.h:
 
-/opt/ros/jazzy/include/rcl/rcl/event_callback.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/executors/executor_entities_collector.hpp:
-
-/opt/ros/jazzy/include/rmw/rmw/impl/cpp/demangle.hpp:
-
 /opt/ros/jazzy/include/rmw/rmw/init.h:
 
 /opt/ros/jazzy/include/rmw/rmw/localhost.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp:
 
 /opt/ros/jazzy/include/rmw/rmw/macros.h:
 
@@ -2385,15 +2531,17 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rmw/rmw/message_sequence.h:
 
+/usr/include/c++/13/debug/debug.h:
+
+/usr/include/c++/13/bits/stl_list.h:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/uv_coordinate__traits.hpp:
+
 /usr/include/aarch64-linux-gnu/bits/mman-map-flags-generic.h:
 
 /usr/include/aarch64-linux-gnu/asm/sigcontext.h:
 
 /opt/ros/jazzy/include/rmw/rmw/network_flow_endpoint.h:
-
-/usr/include/c++/13/bits/move.h:
-
-/usr/include/aarch64-linux-gnu/bits/sigcontext.h:
 
 /usr/include/c++/13/bits/basic_ios.h:
 
@@ -2417,10 +2565,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rmw/rmw/time.h:
 
-/usr/include/c++/13/tr1/bessel_function.tcc:
-
-/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/detail/field_type__struct.h:
-
 /usr/include/math.h:
 
 /usr/include/c++/13/cstdio:
@@ -2441,10 +2585,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rmw/rmw/types.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:
-
-/opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/api/dynamic_type.h:
-
 /usr/include/c++/13/bits/postypes.h:
 
 /opt/ros/jazzy/include/rmw/rmw/subscription_options.h:
@@ -2455,19 +2595,21 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/c++/13/bits/cxxabi_init_exception.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_waitables_interface.hpp:
-
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_waitables_interface.hpp:
 
 /opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/dynamic_message_type_support_struct.h:
 
-/usr/include/opencv4/opencv2/imgproc/types_c.h:
+/usr/include/opencv4/opencv2/core/fast_math.hpp:
 
-/usr/include/aarch64-linux-gnu/bits/stdio2-decl.h:
+/usr/include/locale.h:
 
-/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__builder.hpp:
 
 /opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/types.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/imu.hpp:
 
 /usr/include/opencv4/opencv2/core/hal/interface.h:
 
@@ -2475,11 +2617,13 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/message_initialization.h:
 
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/point__traits.hpp:
+
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/primitives_sequence.h:
 
-/usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
-
 /usr/include/c++/13/bits/basic_string.tcc:
+
+/opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp:
 
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/string.h:
 
@@ -2490,10 +2634,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/field__struct.h:
 
 /opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/field_type__struct.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__traits.hpp:
-
-/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/type_source__struct.h:
 
 /usr/include/opencv4/opencv2/core/operations.hpp:
 
@@ -2507,19 +2647,61 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp/visibility_control.h:
 
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/camera_info.hpp:
+
+/usr/include/aarch64-linux-gnu/sys/ucontext.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__builder.hpp:
+
+/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/detail/key_value__struct.h:
+
+/usr/include/c++/13/tr1/bessel_function.tcc:
+
+/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/detail/field_type__struct.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__struct.hpp:
+
+/usr/local/include/hailo/hailort.hpp:
+
+/usr/include/c++/13/pstl/glue_numeric_defs.h:
+
+/usr/include/aarch64-linux-gnu/sys/time.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__type_support.hpp:
+
+/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/get_type_description.h:
+
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
 
 /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__traits.hpp:
 
-/usr/include/c++/13/pstl/execution_defs.h:
+/usr/include/c++/13/pstl/glue_memory_defs.h:
 
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__type_support.hpp:
+/usr/include/c++/13/bits/memory_resource.h:
 
-/usr/include/aarch64-linux-gnu/bits/signum-generic.h:
+/opt/ros/jazzy/include/rmw/rmw/events_statuses/matched.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp:
+
+/usr/include/linux/close_range.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/region_of_interest__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/detail/rmw_implementation_specific_subscription_payload.hpp:
+
+/opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/region_of_interest__traits.hpp:
 
 /usr/include/c++/13/typeinfo:
 
 /opt/ros/jazzy/include/service_msgs/service_msgs/msg/detail/service_event_info__struct.h:
+
+/opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/statistic_data_point__struct.hpp:
+
+/opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__builder.hpp:
 
 /opt/ros/jazzy/include/service_msgs/service_msgs/msg/detail/service_event_info__struct.hpp:
 
@@ -2527,7 +2709,15 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp:
 
-/opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__traits.hpp:
+/usr/include/opencv4/opencv2/core/cvdef.h:
+
+/usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/function_traits.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/endianness.h:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__traits.hpp:
 
 /usr/include/c++/13/backward/auto_ptr.h:
 
@@ -2569,17 +2759,15 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/aarch64-linux-gnu/bits/fp-logb.h:
 
-/usr/include/aarch64-linux-gnu/bits/stdint-intn.h:
-
 /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/string__builder.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_topics_interface_traits.hpp:
 
 /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__builder.hpp:
 
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/time.hpp:
-
 /usr/include/aarch64-linux-gnu/bits/stdint-least.h:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/time.hpp:
 
 /opt/ros/jazzy/include/rcl/rcl/service_introspection.h:
 
@@ -2590,6 +2778,36 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
 
 /usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__struct.hpp:
+
+/opt/ros/jazzy/include/rmw/rmw/domain_id.h:
+
+/opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__type_support.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/posix_opt.h:
+
+/usr/local/include/hailo/vstream.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/executors/executor_notify_waitable.hpp:
+
+/opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
+
+/usr/include/c++/13/tr1/riemann_zeta.tcc:
+
+/opt/ros/jazzy/include/tf2_ros/tf2_ros/qos.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:
+
+/opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/api/dynamic_type.h:
+
+/opt/ros/jazzy/include/tf2_ros/tf2_ros/transform_broadcaster.hpp:
+
+/opt/ros/jazzy/include/tf2_ros/tf2_ros/transform_broadcaster.h:
+
+/opt/ros/jazzy/include/tf2_ros/tf2_ros/visibility_control.hpp:
 
 /opt/ros/jazzy/include/tracetools/tracetools/config.h:
 
@@ -2607,8 +2825,6 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/detail/individual_type_description__struct.h:
 
-/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/detail/key_value__struct.h:
-
 /opt/ros/jazzy/include/rclcpp/rclcpp/publisher_factory.hpp:
 
 /opt/ros/jazzy/include/rcutils/rcutils/error_handling.h:
@@ -2617,11 +2833,37 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/detail/get_type_description__functions.h:
 
-/opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/srv/get_type_description.h:
+/opt/ros/jazzy/include/rclcpp/rclcpp/dynamic_typesupport/dynamic_message.hpp:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__struct.hpp:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__traits.hpp:
+
+/opt/ros/jazzy/include/rosidl_runtime_c/rosidl_runtime_c/type_description/type_source__struct.h:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__type_support.hpp:
+
+/opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__traits.hpp:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__struct.hpp:
+
+/usr/include/c++/13/bits/unique_lock.h:
+
+/usr/include/aarch64-linux-gnu/bits/typesizes.h:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/marker_array.hpp:
+
+/usr/include/c++/13/bits/memoryfwd.h:
+
+/usr/include/aarch64-linux-gnu/bits/procfs-id.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/event_handler.hpp:
+
+/opt/ros/jazzy/include/rcpputils/rcpputils/time.hpp:
+
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
 
 /usr/include/aarch64-linux-gnu/asm/posix_types.h:
-
-/usr/include/aarch64-linux-gnu/bits/setjmp.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/experimental/intra_process_manager.hpp:
 
@@ -2640,6 +2882,8 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/aarch64-linux-gnu/bits/endian.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/qos_overriding_options.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/color_rgba__struct.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/environments.h:
 
@@ -2685,15 +2929,9 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 
 /usr/include/aarch64-linux-gnu/bits/mman_ext.h:
 
+/opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__traits.hpp:
+
 /usr/include/aarch64-linux-gnu/bits/posix2_lim.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/posix_opt.h:
-
-/usr/include/c++/13/bits/memoryfwd.h:
-
-/usr/include/aarch64-linux-gnu/bits/procfs-id.h:
 
 /usr/include/features-time64.h:
 
@@ -2704,85 +2942,3 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: /home/vtol/wayfix_ws
 /usr/include/aarch64-linux-gnu/bits/procfs-prregset.h:
 
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/strings.h:
-
-/usr/include/aarch64-linux-gnu/bits/sched.h:
-
-/usr/include/aarch64-linux-gnu/bits/select-decl.h:
-
-/usr/include/aarch64-linux-gnu/bits/select.h:
-
-/usr/include/c++/13/iosfwd:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__struct.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/sigaction.h:
-
-/usr/include/aarch64-linux-gnu/bits/sigevent-consts.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/context.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/siginfo-arch.h:
-
-/usr/include/c++/13/bits/hashtable.h:
-
-/usr/include/aarch64-linux-gnu/bits/signal_ext.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/c++/13/stdexcept:
-
-/usr/include/c++/13/clocale:
-
-/usr/include/aarch64-linux-gnu/bits/sigstack.h:
-
-/usr/include/c++/13/bits/stl_numeric.h:
-
-/usr/include/aarch64-linux-gnu/bits/sigthread.h:
-
-/usr/include/aarch64-linux-gnu/bits/stdio.h:
-
-/usr/include/aarch64-linux-gnu/bits/stdio2.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/get_parameter_types.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h:
-
-/usr/include/aarch64-linux-gnu/bits/stdlib.h:
-
-/usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
-
-/usr/include/opencv4/opencv2/core/cvdef.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/function_traits.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/endianness.h:
-
-/usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/c++/13/tr1/modified_bessel_func.tcc:
-
-/usr/include/aarch64-linux-gnu/bits/timex.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/wait_result.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/types.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
-
-/usr/local/include/hailo/runtime_statistics.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/stdio.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:

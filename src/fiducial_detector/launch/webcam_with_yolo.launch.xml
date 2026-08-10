@@ -30,6 +30,8 @@
   <!-- ── ArUco (aruco_node) ─────────────────────────────────────────── -->
   <arg name="marker_size" default="0.05"  description="Physical marker size in metres"/>
   <arg name="show_window" default="false"/>
+  <arg name="show_yolo_overlay" default="true" description="Draw YOLO bbox overlay in the FiducialDetector window/debug image"/>
+  <arg name="yolo_detections_topic" default="/general_box/detections_with_yaw"/>
   <arg name="npu"         default="true"  description="true/false - probe Raspberry Pi AI HAT / Hailo NPU"/>
 
   <!-- ── YOLO box detector (yolo_camera_node) ────────────────────────
@@ -41,6 +43,11 @@
   <arg name="yolo_confidence"  default="0.70"/>
   <arg name="yolo_target_class_id" default="3"/>
   <arg name="yolo_preprocess_mode" default="letterbox"/>
+  <arg name="yolo_publish_image" default="false" description="Publish annotated YOLO image for debugging"/>
+  <arg name="yolo_publish_tf" default="true" description="Publish TF for the single valid YOLO bbox target"/>
+  <arg name="yolo_tf_child_frame" default="yolo_bbox_target" description="TF child frame for the YOLO bbox center ray"/>
+  <arg name="yolo_tf_depth_m" default="1.0" description="Nominal optical depth for bbox TF; use as ray/debug unless real depth is provided"/>
+  <arg name="yolo_camera_info_topic" default="/camera/camera/color/camera_info"/>
 
   <!-- C++ Camera Capture Node (OpenCV VideoCapture via V4L2) -->
   <node pkg="fiducial_detector" exec="capture_node" name="capture_node" output="screen">
@@ -60,6 +67,8 @@
     <param name="camera_topic" value="/camera/image_raw"/>
     <param name="marker_size"  value="$(var marker_size)"/>
     <param name="show_window"  value="$(var show_window)"/>
+    <param name="show_yolo_overlay" value="$(var show_yolo_overlay)"/>
+    <param name="yolo_detections_topic" value="$(var yolo_detections_topic)"/>
     <param name="npu"          value="$(var npu)"/>
   </node>
 
@@ -70,11 +79,16 @@
     <param name="model_path"         value="$(var yolo_model_path)"/>
     <param name="confidence"         value="$(var yolo_confidence)"/>
     <param name="save_video"         value="false"/>
+    <param name="publish_image"      value="$(var yolo_publish_image)"/>
     <param name="publish_topic"      value="/general_box/image_annotated"/>
     <param name="count_topic"        value="/general_box/detection_count"/>
     <param name="boxes_topic"        value="/general_box/detections"/>
     <param name="center_topic"       value="/general_box/target_center"/>
     <param name="frame_id"           value="general_box_camera"/>
+    <param name="camera_info_topic"  value="$(var yolo_camera_info_topic)"/>
+    <param name="publish_tf"         value="$(var yolo_publish_tf)"/>
+    <param name="tf_child_frame"     value="$(var yolo_tf_child_frame)"/>
+    <param name="tf_depth_m"         value="$(var yolo_tf_depth_m)"/>
     <param name="target_class_id"    value="$(var yolo_target_class_id)"/>
     <param name="preprocess_mode"    value="$(var yolo_preprocess_mode)"/>
     <param name="input_color_order"  value="rgb"/>

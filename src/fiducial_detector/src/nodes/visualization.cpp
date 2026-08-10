@@ -1,4 +1,5 @@
 #include "utils/visualization.h"
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
 
@@ -74,15 +75,157 @@ std::string Visualizer::alignmentString(cv::Point2f pt, const cv::Size& sz) cons
 }
 
 void Visualizer::drawUI(cv::Mat& frame, bool any_locked) const {
+    drawUI(frame, any_locked, false, 0.0);
+}
+
+void Visualizer::drawUI(cv::Mat& frame, bool any_locked,
+                        bool compass_valid, double heading_deg) const {
     (void)any_locked;
+    drawCompass(frame, compass_valid, heading_deg);
+
     int W = frame.cols, H = frame.rows;
     int cx = W / 2, cy = H / 2, tol = alignment_tol_;
     int arm = 20;
-    cv::line(frame, {cx - arm, cy}, {cx + arm, cy}, CLR_BLACK, 1, cv::LINE_AA);
-    cv::line(frame, {cx, cy - arm}, {cx, cy + arm}, CLR_BLACK, 1, cv::LINE_AA);
+    cv::line(frame, {cx - arm, cy}, {cx + arm, cy}, CLR_WHITE, 1, cv::LINE_AA);
+    cv::line(frame, {cx, cy - arm}, {cx, cy + arm}, CLR_WHITE, 1, cv::LINE_AA);
     cv::Rect box(cx - tol, cy - tol, 2 * tol, 2 * tol);
     box &= cv::Rect(0, 0, W, H);
-    cv::rectangle(frame, box, CLR_BLACK, 1, cv::LINE_AA);
+    cv::rectangle(frame, box, CLR_WHITE, 1, cv::LINE_AA);
+}
+
+void Visualizer::drawCompass(cv::Mat& frame, bool valid, double heading_deg) const {
+    if (frame.empty()) return;
+
+    const int W = frame.cols;
+    const int H = frame.rows;
+    const int cross_cx = W / 2;
+    const int cross_cy = H / 2;
+    const int radius = std::max(30, std::min(W, H) / 12);
+    const int gap = 10;
+    cv::Point center(cross_cx, cross_cy - alignment_tol_ - radius - gap);
+    center.y = std::max(radius + 8, center.y);
+
+    cv::circle(frame, center, radius, cv::Scalar(245, 245, 245), 1, cv::LINE_AA);
+    cv::circle(frame, center, 2, CLR_WHITE, -1, cv::LINE_AA);
+
+    auto norm360 = [](double deg) {
+        deg = std::fmod(deg, 360.0);
+        if (deg < 0.0) deg += 360.0;
+        return deg;
+    };
+    auto staticPointAt = [&](double compass_deg, int r) {
+        const double screen_deg = compass_deg - 90.0;
+        const double a = screen_deg * CV_PI / 180.0;
+        return cv::Point(
+            center.x + static_cast<int>(std::round(r * std::cos(a))),
+            center.y + static_cast<int>(std::round(r * std::sin(a))));
+    };
+    auto headingPointAt = [&](double heading, int r) {
+        const double screen_deg = heading - 90.0;
+        const double a = screen_deg * CV_PI / 180.0;
+        return cv::Point(
+            center.x + static_cast<int>(std::round(r * std::cos(a))),
+            center.y + static_cast<int>(std::round(r * std::sin(a))));
+    };
+
+    for (int deg = 0; deg < 360; deg += 15) {
+        const bool cardinal = (deg % 90) == 0;
+        const int len = cardinal ? 8 : 4;
+        const int th = cardinal ? 2 : 1;
+        cv::line(frame, staticPointAt(deg, radius), staticPointAt(deg, radius - len),
+                 cv::Scalar(190, 190, 190), th, cv::LINE_AA);
+    }
+
+    struct DegreeLabel { int deg; const char* label; };
+    const DegreeLabel degree_labels[] = {
+        {0, "0"}, {90, "90"}, {180, "180"}, {270, "270"}
+    };
+    for (const auto& d : degree_labels) {
+        int baseline = 0;
+        const double fs = 0.28;
+        const int th = 1;
+        const auto sz = cv::getTextSize(d.label, cv::FONT_HERSHEY_SIMPLEX, fs, th, &baseline);
+        const auto p = staticPointAt(d.deg, radius - 14);
+        cv::putText(frame, d.label, {p.x - sz.width / 2, p.y + sz.height / 2},
+                    cv::FONT_HERSHEY_SIMPLEX, fs, cv::Scalar(245, 245, 245), th, cv::LINE_AA);
+    }
+
+    const double heading = norm360(heading_deg);
+    const cv::Point arrow_tip = headingPointAt(heading, radius - 8);
+    drawArrow(frame, center, arrow_tip, cv::Scalar(0, 0, 255), 3, 0.18);
+
+    char buf[48];
+    std::snprintf(buf, sizeof(buf), valid ? "%03.0f deg" : "--- deg", heading);
+    int baseline = 0;
+    const double fs = 0.34;
+    const int th = 1;
+    const auto sz = cv::getTextSize(buf, cv::FONT_HERSHEY_SIMPLEX, fs, th, &baseline);
+    int text_y = center.y - radius - 5;
+    if (text_y < sz.height + 2) text_y = center.y + radius - 5;
+    cv::putText(frame, buf, {center.x - sz.width / 2, text_y},
+                cv::FONT_HERSHEY_SIMPLEX, fs,
+                valid ? cv::Scalar(255, 255, 255) : cv::Scalar(90, 90, 255), th, cv::LINE_AA);
+}
+
+void Visualizer::drawYoloDetections(
+    cv::Mat& frame,
+    const std::vector<YoloDetectionOverlay>& detections) const
+{
+    drawYoloDetections(frame, detections, false, 0.0);
+}
+
+void Visualizer::drawYoloDetections(
+    cv::Mat& frame,
+    const std::vector<YoloDetectionOverlay>& detections,
+    bool compass_valid,
+    double heading_deg) const
+{
+    const cv::Scalar box_color(0, 255, 255);
+    const cv::Scalar text_color(0, 0, 0);
+    for (const auto& detection : detections) {
+        cv::Rect box = detection.box & cv::Rect(0, 0, frame.cols, frame.rows);
+        if (box.area() <= 0) continue;
+
+        cv::rectangle(frame, box, box_color, 2, cv::LINE_AA);
+
+        const cv::Point center(box.x + box.width / 2, box.y + box.height / 2);
+        const int axis_len = std::clamp(std::min(box.width, box.height) / 4, 24, 70);
+        const double yaw_screen_deg = detection.axis_valid
+            ? detection.axis_screen_deg
+            : (compass_valid ? heading_deg - 90.0 : -90.0);
+        const double yaw = yaw_screen_deg * CV_PI / 180.0;
+        const cv::Point x_tip(
+            center.x + static_cast<int>(std::round(axis_len * std::cos(yaw))),
+            center.y + static_cast<int>(std::round(axis_len * std::sin(yaw))));
+        const cv::Point y_tip(
+            center.x + static_cast<int>(std::round(axis_len * std::cos(yaw + CV_PI / 2.0))),
+            center.y + static_cast<int>(std::round(axis_len * std::sin(yaw + CV_PI / 2.0))));
+        const cv::Point z_tip(center.x, center.y - axis_len);
+        drawArrow(frame, center, x_tip, cv::Scalar(0, 0, 255), 3, 0.18);
+        drawArrow(frame, center, y_tip, cv::Scalar(0, 255, 0), 3, 0.18);
+        drawArrow(frame, center, z_tip, cv::Scalar(255, 0, 0), 3, 0.18);
+        cv::putText(frame, "X", x_tip + cv::Point(4, -4), cv::FONT_HERSHEY_SIMPLEX,
+                    0.45, cv::Scalar(0, 0, 255), 2, cv::LINE_AA);
+        cv::putText(frame, "Y", y_tip + cv::Point(4, -4), cv::FONT_HERSHEY_SIMPLEX,
+                    0.45, cv::Scalar(0, 255, 0), 2, cv::LINE_AA);
+        cv::putText(frame, "Z", z_tip + cv::Point(4, -4), cv::FONT_HERSHEY_SIMPLEX,
+                    0.45, cv::Scalar(255, 0, 0), 2, cv::LINE_AA);
+
+        char label[64];
+        std::snprintf(label, sizeof(label), "GeneralBox %.2f", detection.confidence);
+        int baseline = 0;
+        const double fs = 0.45;
+        const int th = 1;
+        const auto sz = cv::getTextSize(label, cv::FONT_HERSHEY_SIMPLEX, fs, th, &baseline);
+        const int text_x = std::clamp(box.x, 0, std::max(0, frame.cols - sz.width - 6));
+        const int text_y = std::max(sz.height + 5, box.y - 6);
+        cv::Rect bg(text_x - 2, text_y - sz.height - 3,
+                    sz.width + 6, sz.height + baseline + 6);
+        bg &= cv::Rect(0, 0, frame.cols, frame.rows);
+        cv::rectangle(frame, bg, box_color, -1, cv::LINE_AA);
+        cv::putText(frame, label, {text_x + 1, text_y},
+                    cv::FONT_HERSHEY_SIMPLEX, fs, text_color, th, cv::LINE_AA);
+    }
 }
 
 void Visualizer::drawDetectedMarkers(

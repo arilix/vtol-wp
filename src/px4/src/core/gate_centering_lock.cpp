@@ -26,8 +26,16 @@ GateCenteringLock::Result GateCenteringLock::update(
     const float bin_size = (y_max - y_min) / static_cast<float>(num_bins);
     const int min_peak_separation = std::max(
         1, static_cast<int>((config_.gate_width_m * 0.5f) / bin_size));
-    const float gate_width_min = std::max(0.5f, config_.gate_width_m - 1.0f);
-    const float gate_width_max = config_.gate_width_m + 1.0f;
+    // Log lapangan menunjukkan gate asli konsisten 1.6--1.8 m untuk target
+    // 1.5 m, sedangkan pasangan clutter palsu muncul di 0.8--1.1 m atau
+    // >3 m. Toleransi lama ±1 m terlalu longgar dan membuat clutter dianggap
+    // dua tiang gate. Batasi sekitar 25% lebar nominal (min 25 cm, max 45 cm).
+    const float gate_width_tolerance = std::clamp(
+        config_.gate_width_m * 0.25f, 0.25f, 0.45f);
+    const float gate_width_min = std::max(
+        0.5f, config_.gate_width_m - gate_width_tolerance);
+    const float gate_width_max =
+        config_.gate_width_m + gate_width_tolerance;
 
     std::vector<int> bins(num_bins, 0);
     std::vector<float> forward_sum_bins(num_bins, 0.0f);
@@ -117,6 +125,13 @@ GateCenteringLock::Result GateCenteringLock::update(
     result.forward_distance_m = 0.5f * (left_forward + right_forward);
     result.detected_width_m = detected_width;
     result.width_valid = detected_width >= gate_width_min && detected_width <= gate_width_max;
+    // Vektor dari tiang kiri ke kanan adalah (dx, dy). Normal gate yang
+    // mengarah ke depan sensor adalah (dy, -dx): untuk gate lurus di depan,
+    // dy > 0 dan dx = 0 sehingga error yaw = 0. Ini hanya MELAPORKAN
+    // geometri yang sama; deteksi/centering lateral di atas tidak diubah.
+    result.heading_error_rad = std::atan2(
+        -(right_forward - left_forward), detected_width);
+    result.heading_valid = result.width_valid;
     result.centered = result.width_valid &&
         std::abs(result.lateral_error_m) < config_.centering_tolerance_m;
 

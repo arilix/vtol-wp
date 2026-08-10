@@ -32,6 +32,10 @@ def generate_launch_description():
         DeclareLaunchArgument("save_video", default_value="false"),
         DeclareLaunchArgument("use_rviz", default_value="true"),
         DeclareLaunchArgument("preprocess_mode", default_value="letterbox"),
+        DeclareLaunchArgument("camera_info_topic", default_value="/camera/camera/color/camera_info"),
+        DeclareLaunchArgument("publish_tf", default_value="true"),
+        DeclareLaunchArgument("tf_child_frame", default_value="yolo_bbox_target"),
+        DeclareLaunchArgument("tf_depth_m", default_value="1.0"),
     ]
 
     detector = Node(
@@ -52,6 +56,10 @@ def generate_launch_description():
                 "boxes_topic": "/general_box/detections",
                 "center_topic": "/general_box/target_center",
                 "frame_id": "general_box_camera",
+                "camera_info_topic": LaunchConfiguration("camera_info_topic"),
+                "publish_tf": LaunchConfiguration("publish_tf"),
+                "tf_child_frame": LaunchConfiguration("tf_child_frame"),
+                "tf_depth_m": LaunchConfiguration("tf_depth_m"),
                 "target_class_id": 3,
                 "preprocess_mode": LaunchConfiguration("preprocess_mode"),
                 "input_color_order": "rgb",

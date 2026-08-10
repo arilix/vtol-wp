@@ -67,6 +67,7 @@ enum class WaypointPhase
     APPROACH,
     SEARCH_MARKER,
     CENTER_MARKER,
+    ALIGN_INITIAL_MARKER_TF,
     ALIGN_MARKER_HEADING,
 };
 
@@ -76,6 +77,13 @@ enum class GripperDropState
     OPEN_SENT,
     CLOSE_SENT,
     COMPLETE,
+};
+
+enum class YoloCenterStage
+{
+    SAMPLE,
+    EXECUTE,
+    SETTLE,
 };
 
 enum class StartMode
@@ -241,6 +249,7 @@ private:
     bool   ground_lock_enable_     {true};
     double yolo_camera_fx_px_      {640.0};
     double yolo_camera_fy_px_      {640.0};
+    double yolo_ui_center_tolerance_px_ {50.0};
 
     // ── Gate centering (Livox MID360s, /livox/points) ────────────────
     // Kill-switch lapangan, default FALSE. Subscriber point cloud hanya
@@ -256,6 +265,8 @@ private:
     float  gate_centering_tolerance_m_      {0.2f};
     float  gate_centering_target_forward_distance_m_{1.75f};
     int    gate_centering_min_cluster_points_{5};
+    double gate_centering_heading_tolerance_rad_{0.0872664626}; // 5 deg
+    double gate_centering_max_heading_correction_rad_{0.20943951}; // 12 deg
     GateCenteringLock::Result gate_centering_latest_{};
     double last_gate_sample_s_{-1.0};
 
@@ -301,6 +312,18 @@ private:
     double mission_gate_heading_ {0.0};
     double mission_gate_stage_started_s_ {0.0};
     int mission_gate_centered_ticks_ {0};
+    int mission_gate_required_centered_ticks_ {5};
+    double mission_gate_search_distance_m_ {0.40};
+    double mission_gate_search_speed_m_s_ {0.25};
+    bool mission_gate_search_anchor_valid_ {false};
+    PositionNED mission_gate_search_anchor_ {};
+    bool mission_gate_heading_target_valid_ {false};
+    bool mission_gate_center_lock_captured_ {false};
+    double mission_gate_entry_heading_ {0.0};
+    // Jarak ADVANCE = sisa leg SEBENARNYA saat CENTER selesai (bukan
+    // gate_pass_distance_m_ tetap) — "maju sejauh sisanya" setelah lock,
+    // lihat runMissionGateAssist().
+    double mission_gate_advance_target_m_ {0.0};
     bool leg_bearing_override_valid_ {false};
     double leg_bearing_override_ {0.0};
 
@@ -313,18 +336,72 @@ private:
     double marker_latest_offset_east_{0.0};
     bool   marker_offset_filter_ready_{false};
     double last_marker_sample_s_{-1.0};
+    double marker_latest_tf_yaw_error_rad_{0.0};
+    bool   marker_tf_yaw_filter_ready_{false};
+    bool   marker_latest_tf_yaw_available_{false};
+    // Timestamp khusus orientasi TF yang benar-benar valid. Jangan memakai
+    // last_marker_sample_s_ untuk alignment awal karena pose posisi dapat
+    // masuk tanpa orientasi yang layak diproyeksikan ke bidang horizontal.
+    double last_marker_tf_yaw_s_{-1.0};
+    double marker_tf_yaw_command_{0.0};
+    int    marker_tf_centered_ticks_{0};
+    // Alignment handoff awal dibuat berurutan: kumpulkan bukti center,
+    // bekukan satu anchor N/E, baru selesaikan heading. Setelah posisi
+    // terkunci, koreksi pixel tidak boleh menggeser anchor lagi.
+    int    initial_centered_samples_{0};
+    bool   initial_position_locked_{false};
+    double initial_position_locked_s_{-1.0};
+    bool   initial_tf_correction_used_{false};
+    bool   initial_tf_fallback_used_{false};
     PositionNED marker_center_target_{};
     double yolo_center_best_offset_m_{std::numeric_limits<double>::infinity()};
     int    yolo_center_diverging_ticks_{0};
     double yolo_correction_sign_{1.0};
     bool   yolo_direction_reversed_{false};
+    bool   yolo_ui_centered_{false};
+    double yolo_ui_center_error_x_px_{0.0};
+    double yolo_ui_center_error_y_px_{0.0};
+    double last_yolo_ui_center_s_{-1.0};
+    YoloCenterStage yolo_center_stage_{YoloCenterStage::SAMPLE};
+    // Posisi saat box pertama tervalidasi. Semua langkah centering YOLO
+    // dibatasi di sekitar titik visual ini, bukan waypoint nominal 5,1 m.
+    PositionNED yolo_center_anchor_{};
+    PositionNED yolo_step_target_{};
+    double yolo_step_started_s_{0.0};
+    double yolo_accept_sample_after_s_{0.0};
+    int yolo_step_stable_ticks_{0};
+    int yolo_step_count_{0};
+    bool yolo_approach_brake_active_{false};
+    PositionNED yolo_approach_brake_anchor_{};
+    // Latch khusus transisi APPROACH -> CENTER YOLO. Tidak memakai flag
+    // sampel sekali-pakai supaya satu YOLO-RX segar tidak terlewat.
+    bool yolo_approach_interlock_consumed_{false};
     ControlModule::MarkerCentersSample marker_centers_latest_{};
     bool   marker_centers_available_{false};
     double last_marker_centers_s_{-1.0};
+    // Sampel pixel marker besar untuk alignment ArUco pertama dilatch
+    // terpisah. Detector tetap mem-publish array kosong pada frame miss;
+    // array kosong itu tidak boleh menghapus center valid yang baru diterima.
+    bool   initial_marker_center_available_{false};
+    bool   initial_marker_center_new_{false};
+    double initial_marker_center_x_px_{0.0};
+    double initial_marker_center_y_px_{0.0};
+    double initial_marker_frame_width_px_{0.0};
+    double initial_marker_frame_height_px_{0.0};
+    double last_initial_marker_center_s_{-1.0};
     double marker_heading_best_error_rad_{0.0};
     double marker_heading_best_yaw_{0.0};
     double marker_heading_align_started_s_{0.0};
     int    marker_heading_aligned_ticks_{0};
+    // Koreksi heading pilot-locked vs arah depan ArUco (pasangan
+    // marker_heading_back_id_/marker_heading_front_id_), sekali per
+    // handoff — lihat blok ALIGN_MARKER_HEADING di runTakeoffMarker().
+    // Tegas: satu kali putar profil accel-limited (reuse mekanisme
+    // turn antar-waypoint) kalau error > toleransi, else dilewati
+    // langsung tanpa delay.
+    bool   marker_heading_checked_{false};
+    bool   marker_heading_correction_active_{false};
+    double marker_heading_error_rad_{0.0};
     // Anchor lokal 3D tepat saat airborne handoff. Selama centering awal,
     // terutama Z tidak boleh mengikuti noise lidar/kemiringan kendaraan.
     PositionNED handoff_takeover_anchor_{};
@@ -359,6 +436,16 @@ private:
     bool gripper_drop_completed_ {false};
     double payload_released_at_s_ {-1.0};
     GripperDropState gripper_drop_state_ {GripperDropState::IDLE};
+    // Saat OPEN dimulai, Z EKF aktual dibekukan. Pembacaan TFmini dapat
+    // terganggu oleh payload/gripper yang bergerak dan tidak boleh memicu
+    // climb/descend selama urutan drop hingga yaw.
+    bool gripper_hold_down_valid_ {false};
+    double gripper_hold_down_px4_ {0.0};
+    // Titik center box saat payload dijatuhkan. Khusus yaw tepat setelah
+    // drop, titik ini menjadi anchor absolut: yaw dan koreksi sesudahnya
+    // wajib kembali ke sini, bukan memakai shift lateral dengan jarak tetap.
+    PositionNED post_drop_anchor_ {};
+    bool post_drop_anchor_valid_ {false};
 
     // Gate "boleh mulai maju" per waypoint — drone berputar di tempat
     // (vx=vy=0, hanya yaw+vz jalan) sampai yaw benar-benar pas
@@ -374,7 +461,18 @@ private:
     double yaw_profile_direction_ {1.0};
     int    yaw_hold_settle_ticks_ {0};
     double yaw_hold_start_yaw_ {0.0};
+    // Setelah turn, tinggi fisik tepat sebelum yaw dibekukan. Lidar dapat
+    // berubah beberapa cm saat badan miring sehingga tidak boleh memicu climb
+    // baru pada shift/leg maju yang seharusnya horizontal.
+    bool   altitude_hold_after_yaw_ {false};
+    // Safety koridor setiap leg maju. Follower normal dibiarkan bekerja pada
+    // error 2--7 cm; hanya drift darurat >10 cm yang menghentikan forward dan
+    // memakai position-hold ke garis sampai stabil.
+    bool   forward_drift_recovery_active_ {false};
+    int    forward_drift_recovery_stable_ticks_ {0};
+    PositionNED forward_drift_recovery_target_ {};
     bool   post_yaw_correction_active_ {false};
+    bool   post_yaw_return_to_drop_anchor_ {false};
     PositionNED post_yaw_correction_target_ {};
     int    post_yaw_correction_stable_ticks_ {0};
     double post_yaw_correction_started_s_ {0.0};

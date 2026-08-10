@@ -61,6 +61,7 @@
   <arg name="ground_lock_enable" default="true"/>
   <arg name="yolo_camera_fx_px" default="640.0"/>
   <arg name="yolo_camera_fy_px" default="640.0"/>
+  <arg name="yolo_ui_center_tolerance_px" default="50.0"/>
 
   <arg name="gripper_drop_enable" default="true"/>
   <arg name="gripper_cmd_topic" default="/gripper_cmd"/>
@@ -132,6 +133,7 @@
     <param name="ground_lock_enable" value="$(var ground_lock_enable)"/>
     <param name="yolo_camera_fx_px" value="$(var yolo_camera_fx_px)"/>
     <param name="yolo_camera_fy_px" value="$(var yolo_camera_fy_px)"/>
+    <param name="yolo_ui_center_tolerance_px" value="$(var yolo_ui_center_tolerance_px)"/>
     <param name="gripper_drop_enable" value="$(var gripper_drop_enable)"/>
     <param name="gripper_cmd_topic" value="$(var gripper_cmd_topic)"/>
     <param name="gripper_open_wait_ticks" value="$(var gripper_open_wait_ticks)"/>

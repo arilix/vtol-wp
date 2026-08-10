@@ -1,0 +1,7 @@
+realsense:
+source src/yolobox/ros2_ws/install_merged/setup.bash
+ros2 launch fiducial_detector realsense_with_yolo.launch.xml marker_size:=0.05 width:=640 height:=480 fps_limit:=15
+
+
+mission:
+ros2 launch px4 px4.launch.xml start_mode:=takeoff start_mission_after_hover:=true use_lidar_altitude:=true start_tfmini_lidar:=true vision_lock_enable:=true ground_lock_enable:=true gate_centering_enable:=false gripper_drop_enable:=true marker_heading_align_enable:=true 

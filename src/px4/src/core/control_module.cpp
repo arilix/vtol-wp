@@ -197,6 +197,13 @@ void ControlModule::onMarkerPose(
         MarkerPoseSample s;
         s.x = msg->pose.position.x;
         s.y = msg->pose.position.y;
+        s.qx = msg->pose.orientation.x;
+        s.qy = msg->pose.orientation.y;
+        s.qz = msg->pose.orientation.z;
+        s.qw = msg->pose.orientation.w;
+        const double q_norm_sq =
+            s.qx * s.qx + s.qy * s.qy + s.qz * s.qz + s.qw * s.qw;
+        s.orientation_valid = std::isfinite(q_norm_sq) && q_norm_sq > 0.5;
         marker_pose_cb_(s);
     }
 }

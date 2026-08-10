@@ -70,6 +70,13 @@ public:
         float detected_width_m{0.0f};
         bool  width_valid{false};
 
+        // Selisih yaw body terhadap normal bidang gate (rad). Nilai positif
+        // berarti normal gate berada di kiri arah depan sensor; putar yaw
+        // positif sebesar nilai ini agar badan benar-benar menghadap lurus
+        // melewati gate. Hanya valid jika dua tiang terdeteksi.
+        float heading_error_rad{0.0f};
+        bool  heading_valid{false};
+
         bool centered{false};       // |lateral_error_m| < tolerance frame ini
     };
 

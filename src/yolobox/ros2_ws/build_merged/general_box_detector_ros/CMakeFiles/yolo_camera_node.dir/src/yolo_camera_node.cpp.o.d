@@ -162,9 +162,16 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /usr/include/c++/13/bits/atomic_base.h \
  /usr/include/c++/13/bits/atomic_lockfree_defines.h \
  /usr/include/c++/13/backward/auto_ptr.h \
- /usr/include/c++/13/pstl/glue_memory_defs.h \
- /usr/include/c++/13/stdexcept /usr/include/c++/13/string \
- /usr/include/c++/13/bits/char_traits.h \
+ /usr/include/c++/13/pstl/glue_memory_defs.h /usr/include/c++/13/mutex \
+ /usr/include/aarch64-linux-gnu/c++/13/bits/error_constants.h \
+ /usr/include/c++/13/cerrno /usr/include/errno.h \
+ /usr/include/aarch64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/aarch64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/aarch64-linux-gnu/bits/types/error_t.h \
+ /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h /usr/include/c++/13/stdexcept \
+ /usr/include/c++/13/string /usr/include/c++/13/bits/char_traits.h \
  /usr/include/c++/13/bits/localefwd.h \
  /usr/include/aarch64-linux-gnu/c++/13/bits/c++locale.h \
  /usr/include/c++/13/clocale /usr/include/locale.h \
@@ -183,11 +190,7 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
  /usr/include/aarch64-linux-gnu/bits/stdio2-decl.h \
  /usr/include/aarch64-linux-gnu/bits/stdio.h \
- /usr/include/aarch64-linux-gnu/bits/stdio2.h /usr/include/c++/13/cerrno \
- /usr/include/errno.h /usr/include/aarch64-linux-gnu/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/aarch64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/aarch64-linux-gnu/bits/types/error_t.h \
+ /usr/include/aarch64-linux-gnu/bits/stdio2.h \
  /usr/include/c++/13/bits/charconv.h \
  /usr/include/c++/13/bits/basic_string.tcc \
  /usr/include/c++/13/bits/memory_resource.h /usr/include/c++/13/cstddef \
@@ -196,9 +199,8 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /usr/include/c++/13/ios /usr/include/c++/13/bits/ios_base.h \
  /usr/include/c++/13/bits/locale_classes.h \
  /usr/include/c++/13/bits/locale_classes.tcc \
- /usr/include/c++/13/system_error \
- /usr/include/aarch64-linux-gnu/c++/13/bits/error_constants.h \
- /usr/include/c++/13/streambuf /usr/include/c++/13/bits/streambuf.tcc \
+ /usr/include/c++/13/system_error /usr/include/c++/13/streambuf \
+ /usr/include/c++/13/bits/streambuf.tcc \
  /usr/include/c++/13/bits/basic_ios.h \
  /usr/include/c++/13/bits/locale_facets.h /usr/include/c++/13/cwctype \
  /usr/include/wctype.h /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
@@ -328,9 +330,7 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
  /usr/include/c++/13/complex \
  /usr/include/opencv4/opencv2/core/utility.hpp \
- /usr/include/c++/13/functional /usr/include/c++/13/mutex \
- /usr/include/c++/13/bits/std_mutex.h \
- /usr/include/c++/13/bits/unique_lock.h \
+ /usr/include/c++/13/functional \
  /usr/include/opencv4/opencv2/core/optim.hpp \
  /usr/include/opencv4/opencv2/core/ovx.hpp \
  /usr/include/opencv4/opencv2/core/cvdef.h \
@@ -341,6 +341,18 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /usr/include/opencv4/opencv2/core/core_c.h \
  /usr/include/opencv4/opencv2/core/types_c.h /usr/include/c++/13/stdlib.h \
  /opt/ros/jazzy/include/cv_bridge/cv_bridge/cv_bridge_export.h \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/transform_stamped.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__struct.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform__struct.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__struct.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__builder.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__traits.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform__traits.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/vector3__traits.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/quaternion__traits.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/transform_stamped__type_support.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
  /usr/local/include/hailo/hailort.hpp /usr/local/include/hailo/hailort.h \
  /usr/local/include/hailo/platform.h /usr/include/unistd.h \
  /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
@@ -820,6 +832,18 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_map.hpp \
  /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_event_handler.hpp \
  /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_service.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/camera_info.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__struct.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/region_of_interest__struct.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__builder.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__traits.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/region_of_interest__traits.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/camera_info__type_support.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/imu.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__struct.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__builder.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__traits.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/imu__type_support.hpp \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
@@ -840,6 +864,34 @@ CMakeFiles/yolo_camera_node.dir/src/yolo_camera_node.cpp.o: \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__builder.hpp \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__traits.hpp \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/u_int32__type_support.hpp \
+ /opt/ros/jazzy/include/tf2_ros/tf2_ros/transform_broadcaster.h \
+ /opt/ros/jazzy/include/tf2_ros/tf2_ros/transform_broadcaster.hpp \
+ /opt/ros/jazzy/include/tf2_ros/tf2_ros/visibility_control.hpp \
+ /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/tf_message.hpp \
+ /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__struct.hpp \
+ /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__builder.hpp \
+ /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__traits.hpp \
+ /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/detail/tf_message__type_support.hpp \
+ /opt/ros/jazzy/include/tf2_msgs/tf2_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+ /opt/ros/jazzy/include/tf2_ros/tf2_ros/qos.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/marker_array.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__struct.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__struct.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/pose__struct.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/point__struct.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/color_rgba__struct.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/uv_coordinate__struct.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__struct.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__builder.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__traits.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__traits.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/pose__traits.hpp \
+ /opt/ros/jazzy/include/geometry_msgs/geometry_msgs/msg/detail/point__traits.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/color_rgba__traits.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/uv_coordinate__traits.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__traits.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker_array__type_support.hpp \
+ /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
  /usr/include/aarch64-linux-gnu/sys/mman.h \
  /usr/include/aarch64-linux-gnu/bits/mman.h \
  /usr/include/aarch64-linux-gnu/bits/mman-map-flags-generic.h \

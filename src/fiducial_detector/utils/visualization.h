@@ -23,6 +23,14 @@ extern const cv::Scalar CLR_CELL_BORDER;
 
 enum class MarkerType : uint8_t { ARUCO = 0, UNKNOWN = 99 };
 
+struct YoloDetectionOverlay {
+    int class_id{0};
+    float confidence{0.0f};
+    cv::Rect box;
+    bool axis_valid{false};
+    double axis_screen_deg{-90.0};
+};
+
 class Visualizer {
 public:
     explicit Visualizer(int alignment_tolerance = 50);
@@ -31,6 +39,19 @@ public:
     int  getAlignmentTolerance() const  { return alignment_tol_; }
 
     void drawUI(cv::Mat& frame, bool any_marker_locked) const;
+    void drawUI(cv::Mat& frame, bool any_marker_locked,
+                bool compass_valid, double heading_deg) const;
+
+    void drawCompass(cv::Mat& frame, bool valid, double heading_deg) const;
+
+    void drawYoloDetections(
+        cv::Mat& frame,
+        const std::vector<YoloDetectionOverlay>& detections) const;
+    void drawYoloDetections(
+        cv::Mat& frame,
+        const std::vector<YoloDetectionOverlay>& detections,
+        bool compass_valid,
+        double heading_deg) const;
 
     void drawDetectedMarkers(
         cv::Mat& frame,
