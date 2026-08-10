@@ -139,6 +139,11 @@ private:
     bool   show_compass_{true};
     bool   show_yolo_overlay_{true};
     double yolo_overlay_timeout_sec_{0.5};
+    double compass_gyro_deadband_rad_s_{0.01};
+    std::vector<double> compass_imu_to_ned_matrix_{
+        0.0, -1.0, 0.0,
+        1.0,  0.0, 0.0,
+        0.0,  0.0, 1.0};
     double compass_heading_offset_deg_{0.0};
     double compass_heading_deg_{0.0};
     rclcpp::Time compass_last_imu_stamp_{};

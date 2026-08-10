@@ -32,6 +32,7 @@
   <arg name="publish_debug_image" default="false" description="Publish /fiducial/debug_image"/>
   <arg name="show_compass" default="true" description="Draw IMU-integrated compass on /fiducial/debug_image"/>
   <arg name="imu_topic" default="/camera/camera/imu" description="RealSense unified IMU topic"/>
+  <arg name="compass_gyro_deadband_rad_s" default="0.01" description="Ignore tiny transformed gyro yaw rates to reduce drift"/>
   <arg name="compass_heading_offset_deg" default="0.0" description="Heading offset added to integrated gyro compass"/>
   <arg name="show_yolo_overlay" default="true" description="Draw YOLO bbox overlay in the FiducialDetector window/debug image"/>
   <arg name="yolo_detections_topic" default="/general_box/detections_with_yaw"/>
@@ -82,6 +83,8 @@
     <param name="publish_debug_image" value="$(var publish_debug_image)"/>
     <param name="show_compass" value="$(var show_compass)"/>
     <param name="imu_topic" value="$(var imu_topic)"/>
+    <param name="compass_gyro_deadband_rad_s" value="$(var compass_gyro_deadband_rad_s)"/>
+    <param name="compass_imu_to_ned_matrix" value="[0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]"/>
     <param name="compass_heading_offset_deg" value="$(var compass_heading_offset_deg)"/>
     <param name="show_yolo_overlay" value="$(var show_yolo_overlay)"/>
     <param name="yolo_detections_topic" value="$(var yolo_detections_topic)"/>

@@ -126,6 +126,11 @@ void FiducialDetector::declareParameters() {
     declare_parameter("output_frame_id",        std::string(""));
     declare_parameter("imu_topic",              std::string("/camera/camera/imu"));
     declare_parameter("show_compass",           true);
+    declare_parameter("compass_gyro_deadband_rad_s", 0.01);
+    declare_parameter("compass_imu_to_ned_matrix", std::vector<double>{
+        0.0, -1.0, 0.0,
+        1.0,  0.0, 0.0,
+        0.0,  0.0, 1.0});
     declare_parameter("compass_heading_offset_deg", 0.0);
     declare_parameter("show_yolo_overlay",      true);
     declare_parameter("yolo_detections_topic",  std::string("/general_box/detections"));
@@ -164,6 +169,18 @@ void FiducialDetector::loadRosParams() {
     output_frame_id_         = get_parameter("output_frame_id").as_string();
     imu_topic_               = get_parameter("imu_topic").as_string();
     show_compass_            = get_parameter("show_compass").as_bool();
+    compass_gyro_deadband_rad_s_ =
+        std::max(0.0, get_parameter("compass_gyro_deadband_rad_s").as_double());
+    compass_imu_to_ned_matrix_ =
+        get_parameter("compass_imu_to_ned_matrix").as_double_array();
+    if (compass_imu_to_ned_matrix_.size() != 9) {
+        RCLCPP_WARN(get_logger(),
+            "compass_imu_to_ned_matrix harus 9 angka row-major; pakai default camera_optical->NED.");
+        compass_imu_to_ned_matrix_ = {
+            0.0, -1.0, 0.0,
+            1.0,  0.0, 0.0,
+            0.0,  0.0, 1.0};
+    }
     compass_heading_offset_deg_ = get_parameter("compass_heading_offset_deg").as_double();
     show_yolo_overlay_       = get_parameter("show_yolo_overlay").as_bool();
     yolo_detections_topic_   = get_parameter("yolo_detections_topic").as_string();
@@ -290,6 +307,13 @@ void FiducialDetector::initSubscriber() {
             imu_topic_, imu_qos,
             std::bind(&FiducialDetector::imuCallback, this, std::placeholders::_1));
         RCLCPP_INFO(get_logger(), "Subscribed IMU compass to '%s'", imu_topic_.c_str());
+        RCLCPP_INFO(get_logger(),
+            "Compass IMU->NED matrix rows: [%.1f %.1f %.1f] [%.1f %.1f %.1f] [%.1f %.1f %.1f], gyro deadband=%.4frad/s",
+            compass_imu_to_ned_matrix_[0], compass_imu_to_ned_matrix_[1],
+            compass_imu_to_ned_matrix_[2], compass_imu_to_ned_matrix_[3],
+            compass_imu_to_ned_matrix_[4], compass_imu_to_ned_matrix_[5],
+            compass_imu_to_ned_matrix_[6], compass_imu_to_ned_matrix_[7],
+            compass_imu_to_ned_matrix_[8], compass_gyro_deadband_rad_s_);
     }
 
     if (show_yolo_overlay_) {
@@ -324,11 +348,23 @@ void FiducialDetector::imuCallback(const sensor_msgs::msg::Imu::SharedPtr msg)
             const double dt = (stamp - compass_last_imu_stamp_).seconds();
             compass_last_imu_stamp_ = stamp;
             if (dt > 0.0 && dt < 0.25) {
-                // RealSense IMU publishes camera_imu_optical_frame. With the D455 facing
-                // down and the top of the image mounted toward drone front:
-                //   X_ned/front = -Y_optical, Y_ned/right = X_optical, Z_ned/down = Z_optical.
-                // Yaw in NED is positive about +Z down, so integrate optical gyro Z.
-                const double yaw_rate_ned = msg->angular_velocity.z;
+                const double gyro_x_ned =
+                    compass_imu_to_ned_matrix_[0] * msg->angular_velocity.x +
+                    compass_imu_to_ned_matrix_[1] * msg->angular_velocity.y +
+                    compass_imu_to_ned_matrix_[2] * msg->angular_velocity.z;
+                const double gyro_y_ned =
+                    compass_imu_to_ned_matrix_[3] * msg->angular_velocity.x +
+                    compass_imu_to_ned_matrix_[4] * msg->angular_velocity.y +
+                    compass_imu_to_ned_matrix_[5] * msg->angular_velocity.z;
+                (void)gyro_x_ned;
+                (void)gyro_y_ned;
+                double yaw_rate_ned =
+                    compass_imu_to_ned_matrix_[6] * msg->angular_velocity.x +
+                    compass_imu_to_ned_matrix_[7] * msg->angular_velocity.y +
+                    compass_imu_to_ned_matrix_[8] * msg->angular_velocity.z;
+                if (std::abs(yaw_rate_ned) < compass_gyro_deadband_rad_s_) {
+                    yaw_rate_ned = 0.0;
+                }
                 compass_heading_deg_ = normalizeDegrees(
                     compass_heading_deg_ + yaw_rate_ned * dt * 180.0 / CV_PI);
                 compass_has_imu_ = true;
@@ -561,9 +597,9 @@ void FiducialDetector::imageCallback(
     double compass_heading = 0.0;
     if (show_compass_) {
         std::lock_guard<std::mutex> lock(compass_mutex_);
-        compass_valid = compass_has_imu_ &&
-            compass_initialized_ &&
+        const bool imu_fresh = compass_has_imu_ &&
             (now() - compass_last_imu_stamp_).seconds() <= 1.0;
+        compass_valid = compass_initialized_ && imu_fresh;
         compass_heading = normalizeDegrees(compass_heading_deg_ + compass_heading_offset_deg_);
     }
     if (show_yolo_overlay_) {
