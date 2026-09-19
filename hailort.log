@@ -1,0 +1,1011 @@
+[2026-07-30 12:24:55.736] [2728] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 12:24:55.796] [2728] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 12:24:56.402] [2728] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 12:24:56.402] [2728] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 12:24:56.668] [2728] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 12:24:56.668] [2728] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:13:48.077] [3165] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 13:13:48.109] [3165] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 13:13:48.315] [3165] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:13:48.315] [3165] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:13:48.566] [3165] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:13:48.566] [3165] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:25:13.590] [3617] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 13:25:13.613] [3617] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 13:25:13.807] [3617] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:25:13.807] [3617] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:25:14.058] [3617] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 13:25:14.058] [3617] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 14:12:55.145] [4648] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 14:12:55.173] [4648] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 14:12:55.376] [4648] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 14:12:55.376] [4648] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 14:12:55.627] [4648] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 14:12:55.627] [4648] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 15:52:14.073] [3077] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 15:52:14.121] [3077] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 15:52:14.677] [3077] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 15:52:14.677] [3077] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 15:52:14.943] [3077] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 15:52:14.943] [3077] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:16:21.209] [2488] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 16:16:21.277] [2488] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 16:16:21.904] [2488] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:16:21.904] [2488] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:16:22.170] [2488] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:16:22.170] [2488] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:21:26.888] [2488] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-30 16:21:26.888] [2488] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:21:26.888] [2488] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:21:26.888] [2488] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:29:53.612] [3053] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 16:29:53.636] [3053] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 16:29:53.829] [3053] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:29:53.829] [3053] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:29:54.081] [3053] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:29:54.081] [3053] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:32:47.204] [3053] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-30 16:32:47.204] [3053] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:32:47.204] [3053] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:32:47.204] [3053] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:33:58.093] [3161] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 16:33:58.119] [3161] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 16:33:58.308] [3161] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:33:58.308] [3161] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:33:58.561] [3161] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:33:58.561] [3161] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 16:47:58.237] [3161] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-30 16:47:58.237] [3161] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:47:58.237] [3161] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 16:47:58.237] [3161] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 17:06:53.132] [4096] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-30 17:06:53.155] [4096] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-30 17:06:53.343] [4096] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 17:06:53.343] [4096] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 17:06:53.596] [4096] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 17:06:53.596] [4096] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-30 18:43:41.941] [4096] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-30 18:43:41.942] [4096] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 18:43:41.942] [4096] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-30 18:43:41.942] [4096] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 13:51:45.975] [2628] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 13:51:46.029] [2628] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 13:51:46.624] [2628] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 13:51:46.624] [2628] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 13:51:46.889] [2628] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 13:51:46.889] [2628] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:17:36.204] [2704] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 14:17:36.264] [2704] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 14:17:36.857] [2704] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:17:36.857] [2704] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:17:37.122] [2704] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:17:37.123] [2704] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:21:15.375] [2413] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 14:21:15.436] [2413] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 14:21:16.015] [2413] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:21:16.015] [2413] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:21:16.281] [2413] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:21:16.282] [2413] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:22:30.213] [2491] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 14:22:30.241] [2491] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 14:22:30.443] [2491] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:22:30.443] [2491] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:22:30.695] [2491] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:22:30.695] [2491] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:52:56.482] [3234] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 14:52:56.505] [3234] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 14:52:56.699] [3234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:52:56.699] [3234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:52:56.965] [3234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 14:52:56.966] [3234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 15:00:36.691] [3234] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-31 15:00:36.691] [3234] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 15:00:36.691] [3234] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 15:00:36.691] [3234] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 15:59:50.225] [2729] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 15:59:50.289] [2729] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 15:59:50.887] [2729] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 15:59:50.887] [2729] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 15:59:51.153] [2729] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 15:59:51.153] [2729] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 16:18:46.756] [2729] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-07-31 16:18:46.757] [2729] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 16:18:46.757] [2729] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 16:18:46.757] [2729] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-07-31 18:27:10.702] [3629] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 18:27:10.759] [3629] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 18:27:11.331] [3629] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 18:27:11.331] [3629] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 18:27:11.596] [3629] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 18:27:11.596] [3629] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 19:10:01.981] [3097] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-07-31 19:10:02.035] [3097] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-07-31 19:10:02.604] [3097] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 19:10:02.604] [3097] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 19:10:02.870] [3097] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-07-31 19:10:02.870] [3097] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 13:29:14.739] [3962] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-01 13:29:14.795] [3962] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-01 13:29:15.406] [3962] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 13:29:15.406] [3962] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 13:29:15.673] [3962] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 13:29:15.673] [3962] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 13:29:28.081] [3962] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-01 13:29:28.082] [3962] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-01 13:29:28.082] [3962] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-01 13:29:28.082] [3962] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-01 14:47:07.046] [4567] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-01 14:47:07.112] [4567] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-01 14:47:07.707] [4567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:47:07.707] [4567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:47:07.971] [4567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:47:07.971] [4567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:47:41.678] [4567] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-01 14:47:41.679] [4567] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-01 14:47:41.679] [4567] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-01 14:47:41.679] [4567] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-01 14:55:56.173] [4738] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-01 14:55:56.195] [4738] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-01 14:55:56.382] [4738] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:55:56.382] [4738] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:55:56.633] [4738] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 14:55:56.634] [4738] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 15:49:28.420] [5427] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-01 15:49:28.443] [5427] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-01 15:49:28.635] [5427] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 15:49:28.635] [5427] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 15:49:28.902] [5427] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-01 15:49:28.902] [5427] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 15:45:40.977] [2625] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 15:45:41.045] [2625] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 15:45:41.664] [2625] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 15:45:41.664] [2625] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 15:45:41.931] [2625] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 15:45:41.931] [2625] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:15:53.787] [2438] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 16:15:53.855] [2438] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 16:15:54.457] [2438] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:15:54.457] [2438] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:15:54.723] [2438] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:15:54.723] [2438] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:26:56.630] [2438] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-02 16:26:56.630] [2438] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 16:26:56.630] [2438] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 16:26:56.631] [2438] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 16:30:04.746] [2433] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 16:30:04.816] [2433] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 16:30:05.432] [2433] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:30:05.432] [2433] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:30:05.698] [2433] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:30:05.698] [2433] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:50:26.090] [2640] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 16:50:26.121] [2640] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 16:50:26.320] [2640] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:50:26.320] [2640] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:50:26.572] [2640] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 16:50:26.572] [2640] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:07:33.428] [2777] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 18:07:33.482] [2777] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 18:07:34.118] [2777] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:07:34.118] [2777] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:07:34.384] [2777] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:07:34.384] [2777] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:08:12.610] [2860] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 18:08:12.646] [2860] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 18:08:12.856] [2860] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:08:12.856] [2860] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:08:13.109] [2860] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:08:13.109] [2860] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:57:27.909] [3580] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 18:57:27.942] [3580] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 18:57:28.163] [3580] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:57:28.163] [3580] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:57:28.428] [3580] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 18:57:28.428] [3580] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:03:03.160] [4029] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 20:03:03.197] [4029] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 20:03:03.403] [4029] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:03:03.403] [4029] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:03:03.655] [4029] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:03:03.655] [4029] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:03:07.537] [4029] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-02 20:03:07.537] [4029] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 20:03:07.537] [4029] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 20:03:07.537] [4029] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 20:09:33.980] [4168] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 20:09:34.012] [4168] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 20:09:34.254] [4168] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:09:34.254] [4168] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:09:34.506] [4168] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:09:34.506] [4168] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:16:43.009] [4349] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 20:16:43.041] [4349] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 20:16:43.243] [4349] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:16:43.243] [4349] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:16:43.495] [4349] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:16:43.495] [4349] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 20:19:00.411] [4349] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-02 20:19:00.412] [4349] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 20:19:00.412] [4349] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 20:19:00.413] [4349] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 22:44:33.485] [2888] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-02 22:44:33.536] [2888] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-02 22:44:34.115] [2888] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 22:44:34.115] [2888] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 22:44:34.380] [2888] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 22:44:34.380] [2888] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-02 23:00:13.816] [2888] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-02 23:00:13.816] [2888] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 23:00:13.817] [2888] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-02 23:00:13.817] [2888] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 01:11:54.474] [2557] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-03 01:11:54.537] [2557] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-03 01:11:55.127] [2557] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 01:11:55.127] [2557] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 01:11:55.393] [2557] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 01:11:55.393] [2557] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 02:09:40.914] [4505] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-03 02:09:40.963] [4505] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-03 02:09:41.554] [4505] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 02:09:41.554] [4505] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 02:09:41.820] [4505] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 02:09:41.820] [4505] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 02:17:55.771] [4505] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-03 02:17:55.771] [4505] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 02:17:55.771] [4505] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 02:17:55.771] [4505] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 03:29:27.304] [5139] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-03 03:29:27.326] [5139] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-03 03:29:27.511] [5139] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:29:27.511] [5139] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:29:27.763] [5139] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:29:27.763] [5139] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:29:36.968] [5139] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-03 03:29:36.968] [5139] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 03:29:36.968] [5139] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 03:29:36.968] [5139] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 03:30:28.333] [5356] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-03 03:30:28.357] [5356] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-03 03:30:28.545] [5356] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:30:28.545] [5356] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:30:28.796] [5356] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 03:30:28.796] [5356] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 05:20:27.918] [3320] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-03 05:20:27.974] [3320] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-03 05:20:28.552] [3320] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 05:20:28.552] [3320] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 05:20:28.819] [3320] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 05:20:28.819] [3320] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-03 05:37:16.780] [3320] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-03 05:37:16.780] [3320] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 05:37:16.780] [3320] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-03 05:37:16.781] [3320] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 19:48:14.476] [46415] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 19:48:14.566] [46415] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 19:48:14.819] [46415] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 19:48:14.819] [46415] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 19:48:15.072] [46415] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 19:48:15.072] [46415] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:14:38.683] [3031] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:14:38.745] [3031] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:14:39.325] [3031] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:14:39.325] [3031] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:14:39.589] [3031] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:14:39.589] [3031] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:17:33.271] [3031] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-04 21:17:33.272] [3031] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 21:17:33.272] [3031] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 21:17:33.272] [3031] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 21:28:26.892] [3884] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:28:26.922] [3884] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:28:27.102] [3884] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:28:27.102] [3884] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:28:27.353] [3884] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:28:27.353] [3884] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:35:34.707] [6577] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:35:34.775] [6577] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:35:35.073] [6577] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:35:35.073] [6577] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:35:35.327] [6577] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:35:35.327] [6577] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:38:38.463] [7956] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:38:38.640] [7956] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:38:38.984] [7956] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:38:38.984] [7956] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:38:39.237] [7956] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:38:39.237] [7956] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:51:01.584] [5440] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:51:01.682] [5440] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:51:02.443] [5440] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:51:02.443] [5440] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:51:02.709] [5440] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:51:02.709] [5440] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:52:29.421] [5663] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:52:29.453] [5663] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:52:29.706] [5663] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:52:29.706] [5663] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:52:29.884] [5663] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:52:29.884] [5663] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:56:20.148] [7981] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:56:20.209] [7981] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:56:20.540] [7981] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:56:20.540] [7981] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:56:20.792] [7981] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:56:20.793] [7981] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:56:48.878] [7981] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-04 21:56:48.879] [7981] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 21:56:48.879] [7981] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 21:56:48.879] [7981] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-04 21:57:47.759] [8234] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 21:57:47.826] [8234] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 21:57:48.337] [8234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:57:48.337] [8234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:57:48.590] [8234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 21:57:48.590] [8234] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 22:09:10.486] [5662] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 22:09:10.613] [5662] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 22:09:11.349] [5662] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 22:09:11.349] [5662] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 22:09:11.618] [5662] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 22:09:11.618] [5662] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 23:55:16.037] [7071] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-04 23:55:16.124] [7071] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-04 23:55:16.915] [7071] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 23:55:16.915] [7071] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 23:55:17.189] [7071] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-04 23:55:17.190] [7071] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 01:47:43.670] [3339] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 01:47:43.723] [3339] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 01:47:44.314] [3339] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 01:47:44.314] [3339] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 01:47:44.578] [3339] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 01:47:44.578] [3339] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:11:33.321] [14481] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 03:11:33.366] [14481] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 03:11:33.636] [14481] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:11:33.636] [14481] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:11:33.895] [14481] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:11:33.895] [14481] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:12:36.251] [14661] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 03:12:36.300] [14661] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 03:12:36.679] [14661] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:12:36.680] [14661] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:12:36.944] [14661] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:12:36.944] [14661] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:37:51.415] [17706] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 03:37:51.562] [17706] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 03:37:52.003] [17706] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:37:52.003] [17706] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:37:52.181] [17706] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:37:52.181] [17706] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:39:48.701] [23398] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 03:39:48.846] [23398] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 03:39:49.654] [23398] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:39:49.654] [23398] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:39:49.854] [23398] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:39:49.854] [23398] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:41:20.003] [25157] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 03:41:20.693] [25157] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 03:41:21.743] [25157] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:41:21.743] [25157] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:41:21.941] [25157] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:41:21.941] [25157] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:45:12.777] [25157] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 03:45:12.778] [25157] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 03:45:12.778] [25157] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 03:45:12.778] [25157] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 03:50:00.776] [3369] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 03:50:00.833] [3369] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 03:50:01.452] [3369] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:50:01.452] [3369] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:50:01.716] [3369] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:50:01.716] [3369] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 03:59:46.857] [3369] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 03:59:46.857] [3369] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 03:59:46.857] [3369] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 03:59:46.857] [3369] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 06:43:34.720] [3259] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 06:43:34.796] [3259] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 06:43:35.532] [3259] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 06:43:35.533] [3259] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 06:43:35.808] [3259] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 06:43:35.808] [3259] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 06:47:20.043] [3259] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 06:47:20.056] [3259] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 07:03:43.209] [4309] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 07:03:43.259] [4309] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 07:03:43.863] [4309] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 07:03:43.863] [4309] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 07:03:44.127] [4309] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 07:03:44.127] [4309] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:02:16.368] [4454] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 10:02:16.428] [4454] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 10:02:17.025] [4454] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:02:17.025] [4454] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:02:17.294] [4454] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:02:17.294] [4454] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:05:40.223] [4454] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 10:05:40.223] [4454] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 10:05:40.223] [4454] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 10:05:40.223] [4454] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [driver_os_specific.cpp:121] [convert_errno_to_hailo_status] Ioctl HAILO_VDMA_LAUNCH_TRANSFER failed due to invalid address
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [hailort_driver.cpp:569] [launch_transfer] CHECK_SUCCESS failed with status=HAILO_INVALID_OPERATION(6) - Failed launch transfer
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [boundary_channel.cpp:169] [launch_transfer_internal] CHECK_SUCCESS failed with status=HAILO_INVALID_OPERATION(6)
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [boundary_channel.cpp:135] [launch_transfer] CHECK_SUCCESS failed with status=HAILO_INVALID_OPERATION(6)
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [pcie_session_internal.cpp:226] [read_async] CHECK_SUCCESS failed with status=HAILO_INVALID_OPERATION(6)
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [rpc_connection.cpp:109] [read_buffers] CHECK_SUCCESS failed with status=HAILO_INVALID_OPERATION(6)
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [client.cpp:104] [message_loop] CHECK_SUCCESS failed with status=HAILO_INVALID_OPERATION(6)
+[2026-08-05 10:05:40.237] [4515] [HailoRT] [error] [client.cpp:69] [operator()] Error in message loop: HAILO_INVALID_OPERATION(6)
+[2026-08-05 10:05:40.237] [4454] [HailoRT] [info] [configured_infer_model_hrpc_client.cpp:96] [~ConfiguredInferModelHrpcClient] Operation skipped, device is not reachable (status HAILO_COMMUNICATION_CLOSED(62))
+[2026-08-05 10:05:40.237] [4454] [HailoRT] [info] [infer_model_hrpc_client.cpp:63] [~InferModelHrpcClient] Operation skipped, device is not reachable (status HAILO_COMMUNICATION_CLOSED(62))
+[2026-08-05 10:05:40.246] [4454] [HailoRT] [info] [vdevice_hrpc_client.cpp:138] [~VDeviceHrpcClient] Operation skipped, device is not reachable (status HAILO_COMMUNICATION_CLOSED(62))
+[2026-08-05 10:05:40.246] [4454] [HailoRT] [info] [device_hrpc_client.cpp:92] [~DeviceHrpcClient] Operation skipped, device is not reachable (status HAILO_COMMUNICATION_CLOSED(62))
+[2026-08-05 10:19:21.557] [5944] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 10:19:21.580] [5944] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 10:19:21.773] [5944] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:19:21.773] [5944] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:19:22.036] [5944] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 10:19:22.036] [5944] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 11:15:58.005] [5944] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 11:15:58.006] [5944] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 11:15:58.006] [5944] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 11:15:58.006] [5944] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 11:49:33.882] [11547] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 11:49:33.906] [11547] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 11:49:34.103] [11547] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 11:49:34.103] [11547] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 11:49:34.356] [11547] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 11:49:34.356] [11547] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:16:52.475] [11547] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 12:16:52.476] [11547] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 12:16:52.476] [11547] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 12:16:52.476] [11547] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 12:21:05.237] [13874] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 12:21:05.263] [13874] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 12:21:05.443] [13874] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:21:05.443] [13874] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:21:05.696] [13874] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:21:05.696] [13874] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:40:23.652] [15367] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 12:40:23.674] [15367] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 12:40:23.850] [15367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:40:23.850] [15367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:40:24.102] [15367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:40:24.102] [15367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:48:40.887] [16101] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 12:48:40.911] [16101] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 12:48:41.096] [16101] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:48:41.096] [16101] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:48:41.348] [16101] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:48:41.348] [16101] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:49:02.051] [16285] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 12:49:02.075] [16285] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 12:49:02.256] [16285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:49:02.256] [16285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:49:02.508] [16285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:49:02.508] [16285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 12:52:24.767] [16285] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 12:52:24.768] [16285] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 12:52:24.768] [16285] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 12:52:24.768] [16285] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 13:50:00.799] [3209] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 13:50:00.850] [3209] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 13:50:01.422] [3209] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:50:01.422] [3209] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:50:01.685] [3209] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:50:01.685] [3209] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:52:33.861] [3209] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 13:52:33.862] [3209] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 13:52:33.862] [3209] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 13:52:33.862] [3209] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 13:55:51.174] [3721] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 13:55:51.206] [3721] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 13:55:51.406] [3721] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:55:51.406] [3721] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:55:51.657] [3721] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 13:55:51.657] [3721] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 14:49:03.679] [3034] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 14:49:03.731] [3034] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 14:49:04.306] [3034] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 14:49:04.306] [3034] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 14:49:04.570] [3034] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 14:49:04.570] [3034] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 15:44:59.468] [6011] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 15:44:59.530] [6011] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 15:45:00.114] [6011] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 15:45:00.114] [6011] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 15:45:00.378] [6011] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 15:45:00.378] [6011] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 16:07:58.589] [6011] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 16:07:58.589] [6011] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 16:07:58.589] [6011] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 16:07:58.589] [6011] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 20:42:12.161] [4412] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 20:42:12.216] [4412] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 20:42:12.823] [4412] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:42:12.823] [4412] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:42:13.089] [4412] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:42:13.089] [4412] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:52:45.841] [5610] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 20:52:45.874] [5610] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 20:52:46.057] [5610] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:52:46.057] [5610] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:52:46.308] [5610] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:52:46.308] [5610] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 20:57:29.398] [5610] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 20:57:29.399] [5610] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 20:57:29.399] [5610] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 20:57:29.399] [5610] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:03:09.111] [6257] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 21:03:09.139] [6257] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 21:03:09.322] [6257] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:03:09.322] [6257] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:03:09.573] [6257] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:03:09.573] [6257] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:03:36.658] [6257] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 21:03:36.658] [6257] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:03:36.658] [6257] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:03:36.658] [6257] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:08:41.437] [6715] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 21:08:41.463] [6715] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 21:08:41.655] [6715] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:08:41.655] [6715] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:08:41.906] [6715] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:08:41.906] [6715] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:18:00.121] [6715] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-05 21:18:00.121] [6715] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:18:00.121] [6715] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:18:00.121] [6715] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-05 21:19:15.192] [7683] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-05 21:19:15.215] [7683] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-05 21:19:15.400] [7683] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:19:15.400] [7683] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:19:15.651] [7683] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-05 21:19:15.651] [7683] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:29:07.873] [3066] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 00:29:07.934] [3066] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 00:29:08.477] [3066] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:29:08.477] [3066] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:29:08.742] [3066] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:29:08.742] [3066] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:35:09.242] [3462] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 00:35:09.266] [3462] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 00:35:09.415] [3462] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:35:09.415] [3462] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:35:09.667] [3462] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:35:09.667] [3462] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:36:05.108] [3677] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 00:36:05.129] [3677] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 00:36:05.279] [3677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:36:05.279] [3677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:36:05.533] [3677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 00:36:05.533] [3677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 01:24:04.130] [3710] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 01:24:04.195] [3710] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 01:24:04.767] [3710] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 01:24:04.767] [3710] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 01:24:05.032] [3710] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 01:24:05.032] [3710] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:14:26.041] [6399] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 02:14:26.075] [6399] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 02:14:26.230] [6399] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:14:26.230] [6399] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:14:26.482] [6399] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:14:26.482] [6399] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:24:10.707] [7682] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 02:24:10.736] [7682] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 02:24:10.897] [7682] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:24:10.897] [7682] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:24:11.149] [7682] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:24:11.149] [7682] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:31:57.790] [8159] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 02:31:57.813] [8159] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 02:31:57.977] [8159] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:31:57.977] [8159] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:31:58.229] [8159] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:31:58.229] [8159] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:38:01.555] [8527] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 02:38:01.578] [8527] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 02:38:01.737] [8527] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:38:01.737] [8527] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:38:01.990] [8527] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:38:01.990] [8527] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 02:38:50.573] [8527] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-06 02:38:50.575] [8527] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 02:38:50.575] [8527] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 02:38:50.575] [8527] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 04:27:08.393] [13677] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 04:27:08.416] [13677] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 04:27:08.577] [13677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:27:08.577] [13677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:27:08.828] [13677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:27:08.828] [13677] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:28:23.138] [13821] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 04:28:23.162] [13821] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 04:28:23.316] [13821] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:28:23.316] [13821] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:28:23.568] [13821] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:28:23.568] [13821] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 04:50:19.516] [13821] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-06 04:50:19.516] [13821] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 04:50:19.516] [13821] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 04:50:19.516] [13821] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 05:19:11.129] [16421] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 05:19:11.163] [16421] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 05:19:11.306] [16421] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 05:19:11.306] [16421] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 05:19:11.558] [16421] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 05:19:11.558] [16421] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 06:42:27.414] [11589] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 06:42:27.470] [11589] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 06:42:28.154] [11589] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 06:42:28.154] [11589] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 06:42:28.421] [11589] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 06:42:28.421] [11589] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:01:26.437] [5402] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 08:01:26.495] [5402] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 08:01:27.254] [5402] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:01:27.254] [5402] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:01:27.522] [5402] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:01:27.522] [5402] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:10:43.929] [7043] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 08:10:43.962] [7043] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 08:10:44.206] [7043] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:10:44.207] [7043] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:10:44.459] [7043] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:10:44.459] [7043] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:24:43.263] [5543] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 08:24:43.335] [5543] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 08:24:44.084] [5543] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:24:44.084] [5543] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:24:44.352] [5543] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:24:44.352] [5543] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:40:56.537] [5367] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 08:40:56.601] [5367] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 08:40:57.273] [5367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:40:57.273] [5367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:40:57.552] [5367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 08:40:57.552] [5367] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:30:49.158] [11536] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 09:30:49.242] [11536] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 09:30:49.533] [11536] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:30:49.534] [11536] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:30:49.799] [11536] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:30:49.799] [11536] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:32:26.428] [12112] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 09:32:26.480] [12112] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 09:32:26.829] [12112] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:32:26.829] [12112] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:32:27.090] [12112] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 09:32:27.090] [12112] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:00:57.861] [15993] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:00:57.996] [15993] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:00:58.384] [15993] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:00:58.384] [15993] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:00:58.571] [15993] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:00:58.571] [15993] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:01:09.015] [15993] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-06 10:01:09.016] [15993] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 10:01:09.016] [15993] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 10:01:09.016] [15993] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-06 10:02:25.451] [16969] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:02:25.528] [16969] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:02:25.952] [16969] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:02:25.952] [16969] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:02:26.131] [16969] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:02:26.131] [16969] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:07:03.973] [25621] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:07:04.413] [25621] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:07:05.402] [25621] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:07:05.404] [25621] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:07:05.623] [25621] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:07:05.623] [25621] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:09:00.389] [29567] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:09:00.407] [29567] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:09:00.724] [29567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:09:00.724] [29567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:09:00.905] [29567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:09:00.905] [29567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:11:09.859] [32895] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:11:09.873] [32895] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:11:10.247] [32895] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:11:10.247] [32895] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:11:10.424] [32895] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:11:10.424] [32895] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:18:11.442] [40539] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:18:11.531] [40539] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:18:12.144] [40539] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:18:12.144] [40539] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:18:12.333] [40539] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:18:12.333] [40539] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:27:22.663] [43289] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:27:22.678] [43289] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:27:22.906] [43289] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:27:22.906] [43289] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:27:23.087] [43289] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:27:23.087] [43289] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:29:14.771] [45210] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-06 10:29:14.918] [45210] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-06 10:29:16.655] [45210] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:29:16.655] [45210] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:29:16.862] [45210] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-06 10:29:16.862] [45210] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 10:15:13.397] [3734] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 10:15:13.451] [3734] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 10:15:14.041] [3734] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 10:15:14.041] [3734] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 10:15:14.305] [3734] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 10:15:14.305] [3734] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 10:19:51.421] [3734] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 10:19:51.422] [3734] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 10:19:51.422] [3734] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 10:19:51.422] [3734] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 11:14:22.360] [8718] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 11:14:22.412] [8718] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 11:14:22.989] [8718] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:14:22.989] [8718] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:14:23.253] [8718] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:14:23.253] [8718] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:28:21.492] [11492] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 11:28:21.519] [11492] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 11:28:21.726] [11492] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:28:21.726] [11492] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:28:21.979] [11492] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 11:28:21.979] [11492] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 12:44:23.575] [17686] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 12:44:23.598] [17686] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 12:44:23.797] [17686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 12:44:23.797] [17686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 12:44:24.049] [17686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 12:44:24.049] [17686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:16:45.771] [3306] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 15:16:45.832] [3306] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 15:16:46.425] [3306] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:16:46.425] [3306] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:16:46.689] [3306] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:16:46.689] [3306] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:33:23.435] [3306] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 15:33:23.435] [3306] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 15:33:23.435] [3306] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 15:33:23.435] [3306] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 15:37:36.981] [4476] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 15:37:37.004] [4476] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 15:37:37.197] [4476] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:37:37.197] [4476] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:37:37.449] [4476] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:37:37.449] [4476] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 15:59:36.786] [4476] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 15:59:36.787] [4476] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 15:59:36.787] [4476] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 15:59:36.787] [4476] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 16:00:53.066] [8110] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 16:00:53.087] [8110] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 16:00:53.292] [8110] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:00:53.292] [8110] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:00:53.545] [8110] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:00:53.545] [8110] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:59:53.569] [19709] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 16:59:53.602] [19709] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 16:59:53.822] [19709] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:59:53.822] [19709] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:59:54.074] [19709] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 16:59:54.074] [19709] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:00:11.205] [19799] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 17:00:11.229] [19799] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 17:00:11.474] [19799] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:00:11.474] [19799] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:00:11.730] [19799] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:00:11.731] [19799] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:33:45.548] [23176] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 17:33:45.576] [23176] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 17:33:45.778] [23176] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:33:45.778] [23176] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:33:46.032] [23176] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 17:33:46.032] [23176] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:04:11.699] [33308] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 19:04:11.733] [33308] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 19:04:11.929] [33308] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:04:11.929] [33308] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:04:12.183] [33308] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:04:12.183] [33308] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:15:54.488] [33308] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 19:15:54.488] [33308] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 19:15:54.488] [33308] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 19:15:54.488] [33308] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 19:46:00.148] [38592] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 19:46:00.183] [38592] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 19:46:00.380] [38592] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:46:00.380] [38592] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:46:00.635] [38592] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 19:46:00.635] [38592] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 21:11:55.048] [51761] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 21:11:55.074] [51761] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 21:11:55.267] [51761] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 21:11:55.267] [51761] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 21:11:55.520] [51761] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 21:11:55.520] [51761] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:48:43.156] [51761] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 22:48:43.156] [51761] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 22:48:43.156] [51761] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 22:48:43.156] [51761] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 22:51:36.995] [68363] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 22:51:37.037] [68363] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 22:51:47.038] [68363] [HailoRT] [error] [device_hrpc_client.cpp:336] [set_notification_callback] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 22:51:47.038] [68363] [HailoRT] [error] [device.cpp:700] [set_default_notification_callbacks] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 22:51:47.038] [68363] [HailoRT] [error] [device_hrpc_client.cpp:59] [create] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4) - Failed to set default notification callbacks for Device HRPC-client
+[2026-08-10 22:51:47.055] [68363] [HailoRT] [error] [vdevice_hrpc_client.cpp:110] [create] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 22:51:47.073] [68363] [HailoRT] [error] [vdevice.cpp:244] [create] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 22:52:50.935] [69353] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 22:52:50.966] [69353] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 22:52:51.222] [69353] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:52:51.223] [69353] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:52:51.476] [69353] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:52:51.476] [69353] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:54:11.660] [69353] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 22:54:11.661] [69353] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 22:54:11.661] [69353] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 22:54:11.661] [69353] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 22:56:32.442] [76964] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 22:56:32.543] [76964] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 22:56:32.828] [76964] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:56:32.828] [76964] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:56:33.090] [76964] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 22:56:33.090] [76964] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:00:19.941] [88768] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 23:00:20.023] [88768] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 23:00:20.719] [88768] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:00:20.720] [88768] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:00:20.991] [88768] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:00:20.991] [88768] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:03:01.893] [88768] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-10 23:03:01.893] [88768] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 23:03:01.893] [88768] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 23:03:01.893] [88768] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-10 23:04:08.828] [100215] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 23:04:18.863] [100215] [HailoRT] [error] [vdevice_hrpc_client.cpp:72] [create_available_vdevice] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 23:04:18.880] [100215] [HailoRT] [error] [vdevice_hrpc_client.cpp:95] [create] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 23:04:18.880] [100215] [HailoRT] [error] [vdevice.cpp:244] [create] CHECK_SUCCESS failed with status=HAILO_TIMEOUT(4)
+[2026-08-10 23:11:57.108] [117146] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-10 23:11:57.147] [117146] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-10 23:11:57.443] [117146] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:11:57.443] [117146] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:11:57.697] [117146] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-10 23:11:57.697] [117146] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 00:57:23.897] [164169] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 00:57:23.946] [164169] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 00:57:24.185] [164169] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 00:57:24.185] [164169] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 00:57:24.439] [164169] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 00:57:24.439] [164169] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:13:28.521] [174686] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:13:28.568] [174686] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:13:28.877] [174686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:13:28.877] [174686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:13:29.159] [174686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:13:29.159] [174686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:13:51.692] [174686] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 01:13:51.694] [174686] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:13:51.696] [174686] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:13:51.696] [174686] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:16:25.937] [175305] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:16:25.993] [175305] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:16:26.286] [175305] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:16:26.286] [175305] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:16:26.564] [175305] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:16:26.564] [175305] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:18:39.677] [175758] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:18:39.709] [175758] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:18:39.991] [175758] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:18:39.991] [175758] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:18:40.251] [175758] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:18:40.251] [175758] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:22:49.359] [175758] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 01:22:49.360] [175758] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:22:49.360] [175758] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:22:49.360] [175758] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:23:01.436] [176686] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:23:01.465] [176686] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:23:01.813] [176686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:23:01.813] [176686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:23:02.072] [176686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:23:02.072] [176686] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:28:33.252] [176686] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 01:28:33.253] [176686] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:28:33.253] [176686] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:28:33.253] [176686] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:29:04.805] [177627] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:29:04.828] [177627] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:29:05.106] [177627] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:29:05.107] [177627] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:29:05.369] [177627] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:29:05.369] [177627] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:30:12.566] [177627] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 01:30:12.566] [177627] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:30:12.566] [177627] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:30:12.566] [177627] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:31:14.583] [178137] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:31:14.619] [178137] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:31:14.889] [178137] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:31:14.889] [178137] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:31:15.145] [178137] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:31:15.145] [178137] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:37:22.846] [179853] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:37:22.880] [179853] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:37:23.126] [179853] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:37:23.127] [179853] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:37:23.384] [179853] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:37:23.384] [179853] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:48:10.348] [184098] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:48:10.381] [184098] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:48:10.661] [184098] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:48:10.661] [184098] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:48:10.926] [184098] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:48:10.926] [184098] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:51:53.672] [185057] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:51:53.698] [185057] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:51:53.988] [185057] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:51:53.988] [185057] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:51:54.258] [185057] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:51:54.258] [185057] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:56:23.631] [185057] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 01:56:23.632] [185057] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:56:23.632] [185057] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:56:23.632] [185057] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 01:56:37.041] [186223] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 01:56:37.075] [186223] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 01:56:37.337] [186223] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:56:37.337] [186223] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:56:37.593] [186223] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 01:56:37.593] [186223] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:03:53.832] [187596] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 02:03:53.865] [187596] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 02:03:54.169] [187596] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:03:54.169] [187596] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:03:54.431] [187596] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:03:54.431] [187596] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:08:38.489] [187596] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 02:08:38.489] [187596] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:08:38.489] [187596] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:08:38.489] [187596] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:08:47.732] [188567] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 02:08:47.759] [188567] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 02:08:48.040] [188567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:08:48.040] [188567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:08:48.302] [188567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:08:48.302] [188567] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:11:11.517] [189869] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 02:11:11.548] [189869] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 02:11:11.848] [189869] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:11:11.848] [189869] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:11:12.104] [189869] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:11:12.104] [189869] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:13:57.595] [189869] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 02:13:57.596] [189869] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:13:57.596] [189869] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:13:57.596] [189869] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:15:48.997] [193063] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 02:15:49.039] [193063] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 02:15:49.262] [193063] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:15:49.262] [193063] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:15:49.519] [193063] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:15:49.519] [193063] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:24:26.537] [193063] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 02:24:26.537] [193063] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:24:26.537] [193063] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:24:26.537] [193063] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:28:14.934] [200490] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 02:28:14.962] [200490] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 02:28:15.198] [200490] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:28:15.198] [200490] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:28:15.459] [200490] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:28:15.459] [200490] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:36:43.189] [200490] [HailoRT] [error] [event.cpp:113] [eventfd_poll] poll failed with errno=4
+[2026-08-11 02:36:43.190] [200490] [HailoRT] [error] [event.cpp:55] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:36:43.190] [200490] [HailoRT] [error] [configured_infer_model_hrpc_client.cpp:32] [wait] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:36:43.190] [200490] [HailoRT] [error] [infer_model.cpp:754] [run] CHECK_SUCCESS failed with status=HAILO_INTERNAL_FAILURE(8)
+[2026-08-11 02:40:16.371] [207285] [HailoRT] [info] [vdevice.cpp:228] [create] Creating vdevice with params: device_count: 1, scheduling_algorithm: ROUND_ROBIN, multi_process_service: false
+[2026-08-11 02:40:16.412] [207285] [HailoRT] [info] [device.cpp:54] [Device] OS Version: Linux 6.8.0-1060-raspi #64-Ubuntu SMP PREEMPT_DYNAMIC Mon Jun 29 09:05:15 UTC 2026 aarch64
+[2026-08-11 02:40:16.682] [207285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:40:16.682] [207285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:40:16.940] [207285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box
+[2026-08-11 02:40:16.940] [207285] [HailoRT] [info] [hef.cpp:1973] [get_network_group_and_network_name] No name was given. Addressing all networks of default network_group: general_box

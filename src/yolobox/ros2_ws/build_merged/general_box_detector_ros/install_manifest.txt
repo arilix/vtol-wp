@@ -1,0 +1,16 @@
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/lib/general_box_detector_ros/yolo_camera_node
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/launch/general_box_camera.launch.py
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/config/general_box.rviz
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/ament_index/resource_index/package_run_dependencies/general_box_detector_ros
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/ament_index/resource_index/parent_prefix_path/general_box_detector_ros
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/environment/ament_prefix_path.dsv
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/environment/path.dsv
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/local_setup.bash
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/local_setup.sh
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/local_setup.zsh
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/local_setup.dsv
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/package.dsv
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/ament_index/resource_index/packages/general_box_detector_ros
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/cmake/general_box_detector_rosConfig.cmake
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/cmake/general_box_detector_rosConfig-version.cmake
+/home/vtol/wayfix_ws/src/yolobox/ros2_ws/install_merged/share/general_box_detector_ros/package.xml

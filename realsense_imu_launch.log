@@ -1,0 +1,159 @@
+nohup: ignoring input
+[INFO] [launch]: All log files can be found below /home/vtol/.ros/log/2026-08-10-22-49-49-709958-raspi-67124
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [realsense2_camera_node-1]: process started with pid [67153]
+[INFO] [aruco_node-2]: process started with pid [67154]
+[realsense2_camera_node-1] [INFO] [1786376990.235372735] [camera.camera]: RealSense ROS v4.58.1
+[realsense2_camera_node-1] [INFO] [1786376990.235593290] [camera.camera]: Built with LibRealSense v2.58.1
+[realsense2_camera_node-1] [INFO] [1786376990.235621587] [camera.camera]: Running with LibRealSense v2.58.1
+[realsense2_camera_node-1] [INFO] [1786376990.289853698] [camera.camera]: Device with serial number 151422254839 was found.
+[realsense2_camera_node-1] 
+[realsense2_camera_node-1] [INFO] [1786376990.289962975] [camera.camera]: Device with physical ID /sys/devices/platform/axi/1000120000.pcie/1f00300000.usb/xhci-hcd.1/usb5/5-1/5-1:1.0/video4linux/video0 was found.
+[realsense2_camera_node-1] [INFO] [1786376990.289983124] [camera.camera]: Device with name Intel RealSense D455 was found.
+[realsense2_camera_node-1] [INFO] [1786376990.290342438] [camera.camera]: Device with port number 5-1 was found.
+[realsense2_camera_node-1] [INFO] [1786376990.290435624] [camera.camera]: Device USB type: 3.2
+[realsense2_camera_node-1] [INFO] [1786376990.290700087] [camera.camera]: getParameters...
+[realsense2_camera_node-1] [WARN] [1786376990.291638327] [camera.camera]: For the 'unite_imu_method' param update to take effect, re-enable either gyro or accel stream.
+[realsense2_camera_node-1] [INFO] [1786376990.291732901] [camera.camera]: JSON file is not provided
+[realsense2_camera_node-1] [INFO] [1786376990.291773790] [camera.camera]: Device Name: Intel RealSense D455
+[realsense2_camera_node-1] [INFO] [1786376990.294542901] [camera.camera]: Device Serial No: 151422254839
+[realsense2_camera_node-1] [INFO] [1786376990.294687864] [camera.camera]: Device physical port: /sys/devices/platform/axi/1000120000.pcie/1f00300000.usb/xhci-hcd.1/usb5/5-1/5-1:1.0/video4linux/video0
+[realsense2_camera_node-1] [INFO] [1786376990.294716531] [camera.camera]: Device FW version: 5.17.3.10
+[realsense2_camera_node-1] [INFO] [1786376990.294730161] [camera.camera]: Device Product ID: 0x0B5C
+[realsense2_camera_node-1] [INFO] [1786376990.294744031] [camera.camera]: Sync Mode: Off
+[aruco_node-2] [INFO] [1786376990.418875253] [aruco_node]: Camera intrinsics loaded
+[aruco_node-2] [INFO] [1786376990.419761512] [aruco_node]: Hailo NPU: detected. ArUco preprocessing remains CPU because no HEF model is used.
+[aruco_node-2] [INFO] [1786376990.419832920] [aruco_node]: DICT_7X7_50 detector initialized (ID 0-49)
+[aruco_node-2] [INFO] [1786376990.446089068] [aruco_node]: Publishers: /fiducial/{pose,markers,marker_centers,debug_image,alignment,fps,rejected_candidates}
+[aruco_node-2] [INFO] [1786376990.454427512] [aruco_node]: Subscribed to '/camera/camera/color/image_raw'
+[aruco_node-2] [INFO] [1786376990.456091994] [aruco_node]: ═══════════════════════════════════════
+[aruco_node-2] [INFO] [1786376990.456261883] [aruco_node]:  DICT_7X7_50 Gate Centering - ROS2 Jazzy
+[aruco_node-2] [INFO] [1786376990.456304105] [aruco_node]: ═══════════════════════════════════════
+[aruco_node-2] [INFO] [1786376990.456317568] [aruco_node]:   camera_topic : /camera/camera/color/image_raw
+[aruco_node-2] [INFO] [1786376990.456349790] [aruco_node]:   marker_size  : 0.050 m
+[aruco_node-2] [INFO] [1786376990.456375160] [aruco_node]:   align_tol    : 50 px
+[aruco_node-2] [INFO] [1786376990.456387457] [aruco_node]:   stable_frames: 10
+[aruco_node-2] [INFO] [1786376990.456563994] [aruco_node]: Spinning on SingleThreadedExecutor
+[realsense2_camera_node-1] [WARN] [1786376990.548151068] [camera.camera]: re-enable the stream for the change to take effect.
+[realsense2_camera_node-1] [WARN] [1786376990.548461697] [camera.camera]: re-enable the color stream for the change to take effect.
+[realsense2_camera_node-1] [INFO] [1786376990.562123457] [camera.camera]: Stopping Sensor: RGB Camera
+[realsense2_camera_node-1] [INFO] [1786376990.562273994] [camera.camera]: Stopping Sensor: Motion Module
+[realsense2_camera_node-1] [INFO] [1786376990.588023031] [camera.camera]: Starting Sensor: RGB Camera
+[realsense2_camera_node-1] [INFO] [1786376990.599448734] [camera.camera]: Open profile: stream_type: Color(0), Format: YUYV, Width: 640, Height: 480, FPS: 15
+[realsense2_camera_node-1]  10/08 22:49:50,604 WARNING [281472783736896] (ds-calib-parsers.cpp:36) IMU Calibration is not available, default intrinsic and extrinsic will be used.
+[realsense2_camera_node-1] [INFO] [1786376990.616499772] [camera.camera]: Starting Sensor: Motion Module
+[realsense2_camera_node-1] [INFO] [1786376990.623172160] [camera.camera]: Open profile: stream_type: Accel(0)Format: MOTION_XYZ32F, FPS: 100
+[realsense2_camera_node-1] [INFO] [1786376990.623273420] [camera.camera]: Open profile: stream_type: Gyro(0)Format: MOTION_XYZ32F, FPS: 200
+[realsense2_camera_node-1]  10/08 22:49:50,625 WARNING [281472308207680] (backend-hid.cpp:740) HID set_power 1 failed for /sys/devices/platform/axi/1000120000.pcie/1f00300000.usb/xhci-hcd.1/usb5/5-1/5-1:1.5/0003:8086:0B5C.000A/HID-SENSOR-200073.2.auto/iio:device0/buffer/enable
+[realsense2_camera_node-1] [INFO] [1786376990.652647771] [camera.camera]: RealSense Node Is Up!
+[aruco_node-2] [INFO] [1786376991.104042438] [aruco_node]: [Camera] frame=1 | size=640x480 | no ArUco | FPS=0.0 | Lat=0.0ms
+[aruco_node-2] [INFO] [1786376992.156925048] [aruco_node]: [Camera] frame=17 | size=640x480 | no ArUco | FPS=15.2 | Lat=68.5ms
+[aruco_node-2] [INFO] [1786376993.226356400] [aruco_node]: [Camera] frame=33 | size=640x480 | no ArUco | FPS=15.1 | Lat=67.5ms
+[aruco_node-2] [INFO] [1786376994.289611603] [aruco_node]: [Camera] frame=49 | size=640x480 | no ArUco | FPS=15.1 | Lat=65.4ms
+[aruco_node-2] [INFO] [1786376995.304950121] [aruco_node]: [Camera] frame=64 | size=640x480 | no ArUco | FPS=14.9 | Lat=78.3ms
+[aruco_node-2] 
+[aruco_node-2] ======================================================
+[aruco_node-2]   DICT_7X7_50 DICTIONARY SELF-TEST
+[aruco_node-2]   Note         : not a camera detection
+[aruco_node-2] ------------------------------------------------------
+[aruco_node-2]   Dictionary   : DICT_7X7_50
+[aruco_node-2]   MarkerBits   : 7
+[aruco_node-2]   TotalMarkers : 50
+[aruco_node-2]   BorderBits   : 1
+[aruco_node-2]   BytesList    : OK (50 rows)
+[aruco_node-2]   Status       : VALID ✓
+[aruco_node-2] ======================================================
+[aruco_node-2] 
+[aruco_node-2] [INFO] [1786376996.358970250] [aruco_node]: [Camera] frame=80 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.9ms
+[aruco_node-2] [INFO] [1786376997.360603490] [aruco_node]: [Camera] frame=95 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.0ms
+[aruco_node-2] [INFO] [1786376998.363500952] [aruco_node]: [Camera] frame=110 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.0ms
+[aruco_node-2] [INFO] [1786376999.427727266] [aruco_node]: [Camera] frame=126 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.6ms
+[aruco_node-2] [INFO] [1786377000.444405710] [aruco_node]: [Camera] frame=141 | size=640x480 | no ArUco | FPS=14.9 | Lat=67.5ms
+[aruco_node-2] [INFO] [1786377001.497539413] [aruco_node]: [Camera] frame=157 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.2ms
+[aruco_node-2] [INFO] [1786377002.503040839] [aruco_node]: [Camera] frame=172 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.4ms
+[aruco_node-2] [INFO] [1786377003.513475838] [aruco_node]: [Camera] frame=187 | size=640x480 | no ArUco | FPS=14.9 | Lat=78.3ms
+[aruco_node-2] [INFO] [1786377004.567560430] [aruco_node]: [Camera] frame=203 | size=640x480 | no ArUco | FPS=15.0 | Lat=55.6ms
+[aruco_node-2] [INFO] [1786377005.571616337] [aruco_node]: [Camera] frame=218 | size=640x480 | no ArUco | FPS=15.0 | Lat=70.5ms
+[aruco_node-2] [INFO] [1786377006.634391725] [aruco_node]: [Camera] frame=234 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.2ms
+[aruco_node-2] [INFO] [1786377007.717771243] [aruco_node]: [Camera] frame=250 | size=640x480 | no ArUco | FPS=14.9 | Lat=77.9ms
+[aruco_node-2] [INFO] [1786377008.771090316] [aruco_node]: [Camera] frame=266 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.1ms
+[aruco_node-2] [INFO] [1786377009.836332556] [aruco_node]: [Camera] frame=282 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377010.837074296] [aruco_node]: [Camera] frame=297 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377011.839912222] [aruco_node]: [Camera] frame=312 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.5ms
+[aruco_node-2] [INFO] [1786377012.841222555] [aruco_node]: [Camera] frame=327 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.5ms
+[aruco_node-2] [INFO] [1786377013.920540795] [aruco_node]: [Camera] frame=343 | size=640x480 | no ArUco | FPS=14.9 | Lat=78.6ms
+[aruco_node-2] [INFO] [1786377014.974564516] [aruco_node]: [Camera] frame=359 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.7ms
+[aruco_node-2] [INFO] [1786377015.977266349] [aruco_node]: [Camera] frame=374 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.4ms
+[aruco_node-2] [INFO] [1786377016.982399404] [aruco_node]: [Camera] frame=389 | size=640x480 | no ArUco | FPS=15.0 | Lat=57.0ms
+[aruco_node-2] [INFO] [1786377017.988711292] [aruco_node]: [Camera] frame=404 | size=640x480 | no ArUco | FPS=14.9 | Lat=79.1ms
+[aruco_node-2] [INFO] [1786377019.004748495] [aruco_node]: [Camera] frame=419 | size=640x480 | no ArUco | FPS=14.9 | Lat=68.9ms
+[aruco_node-2] [INFO] [1786377020.055501661] [aruco_node]: [Camera] frame=435 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.1ms
+[aruco_node-2] [INFO] [1786377021.119875031] [aruco_node]: [Camera] frame=451 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.6ms
+[aruco_node-2] [INFO] [1786377022.197212345] [aruco_node]: [Camera] frame=467 | size=640x480 | no ArUco | FPS=14.9 | Lat=75.5ms
+[aruco_node-2] [INFO] [1786377023.248679141] [aruco_node]: [Camera] frame=483 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.7ms
+[aruco_node-2] [INFO] [1786377024.254607103] [aruco_node]: [Camera] frame=498 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.8ms
+[aruco_node-2] [INFO] [1786377025.254865751] [aruco_node]: [Camera] frame=513 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.1ms
+[aruco_node-2] [INFO] [1786377026.319316102] [aruco_node]: [Camera] frame=529 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377027.322063398] [aruco_node]: [Camera] frame=544 | size=640x480 | no ArUco | FPS=15.0 | Lat=54.5ms
+[aruco_node-2] [INFO] [1786377028.386217990] [aruco_node]: [Camera] frame=560 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.6ms
+[aruco_node-2] [INFO] [1786377029.392270063] [aruco_node]: [Camera] frame=575 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.9ms
+[aruco_node-2] [INFO] [1786377030.398481896] [aruco_node]: [Camera] frame=590 | size=640x480 | no ArUco | FPS=15.0 | Lat=57.2ms
+[aruco_node-2] [INFO] [1786377031.457728025] [aruco_node]: [Camera] frame=606 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.0ms
+[aruco_node-2] [INFO] [1786377032.476697654] [aruco_node]: [Camera] frame=621 | size=640x480 | no ArUco | FPS=14.9 | Lat=79.4ms
+[aruco_node-2] [INFO] [1786377033.536952857] [aruco_node]: [Camera] frame=637 | size=640x480 | no ArUco | FPS=14.9 | Lat=77.7ms
+[aruco_node-2] [INFO] [1786377034.593896227] [aruco_node]: [Camera] frame=653 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.3ms
+[aruco_node-2] [INFO] [1786377035.602500967] [aruco_node]: [Camera] frame=668 | size=640x480 | no ArUco | FPS=15.0 | Lat=54.8ms
+[aruco_node-2] [INFO] [1786377036.607133892] [aruco_node]: [Camera] frame=683 | size=640x480 | no ArUco | FPS=14.9 | Lat=78.4ms
+[aruco_node-2] [INFO] [1786377037.661017762] [aruco_node]: [Camera] frame=699 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.6ms
+[aruco_node-2] [INFO] [1786377038.661125391] [aruco_node]: [Camera] frame=714 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.9ms
+[aruco_node-2] [INFO] [1786377039.661722131] [aruco_node]: [Camera] frame=729 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.7ms
+[aruco_node-2] [INFO] [1786377040.663105649] [aruco_node]: [Camera] frame=744 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.7ms
+[aruco_node-2] [INFO] [1786377041.664567093] [aruco_node]: [Camera] frame=759 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.5ms
+[aruco_node-2] [INFO] [1786377042.673145352] [aruco_node]: [Camera] frame=774 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.6ms
+[aruco_node-2] [INFO] [1786377043.734561721] [aruco_node]: [Camera] frame=790 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.9ms
+[aruco_node-2] [INFO] [1786377044.803849110] [aruco_node]: [Camera] frame=806 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.5ms
+[aruco_node-2] [INFO] [1786377045.871624850] [aruco_node]: [Camera] frame=822 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.9ms
+[aruco_node-2] [INFO] [1786377046.935198682] [aruco_node]: [Camera] frame=838 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377047.941427441] [aruco_node]: [Camera] frame=853 | size=640x480 | no ArUco | FPS=15.0 | Lat=53.6ms
+[aruco_node-2] [INFO] [1786377049.003168514] [aruco_node]: [Camera] frame=869 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377050.017911551] [aruco_node]: [Camera] frame=884 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.6ms
+[aruco_node-2] [INFO] [1786377051.081578198] [aruco_node]: [Camera] frame=900 | size=640x480 | no ArUco | FPS=14.9 | Lat=77.2ms
+[aruco_node-2] [INFO] [1786377052.141858198] [aruco_node]: [Camera] frame=916 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.5ms
+[aruco_node-2] [INFO] [1786377053.210587253] [aruco_node]: [Camera] frame=932 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.4ms
+[aruco_node-2] [INFO] [1786377054.275092585] [aruco_node]: [Camera] frame=948 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.2ms
+[aruco_node-2] [INFO] [1786377055.278910511] [aruco_node]: [Camera] frame=963 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.1ms
+[aruco_node-2] [INFO] [1786377056.280390621] [aruco_node]: [Camera] frame=978 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.4ms
+[aruco_node-2] [INFO] [1786377057.343795695] [aruco_node]: [Camera] frame=994 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.9ms
+[aruco_node-2] [INFO] [1786377058.359426139] [aruco_node]: [Camera] frame=1009 | size=640x480 | no ArUco | FPS=14.9 | Lat=79.6ms
+[aruco_node-2] [INFO] [1786377059.428934656] [aruco_node]: [Camera] frame=1025 | size=640x480 | no ArUco | FPS=14.9 | Lat=76.7ms
+[aruco_node-2] [INFO] [1786377060.482709674] [aruco_node]: [Camera] frame=1041 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.2ms
+[aruco_node-2] [INFO] [1786377061.485311637] [aruco_node]: [Camera] frame=1056 | size=640x480 | no ArUco | FPS=15.0 | Lat=56.6ms
+[aruco_node-2] [INFO] [1786377062.485465803] [aruco_node]: [Camera] frame=1071 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.6ms
+[aruco_node-2] [INFO] [1786377063.488200228] [aruco_node]: [Camera] frame=1086 | size=640x480 | no ArUco | FPS=15.0 | Lat=61.4ms
+[aruco_node-2] [INFO] [1786377064.553111783] [aruco_node]: [Camera] frame=1102 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.8ms
+[aruco_node-2] [INFO] [1786377065.618503819] [aruco_node]: [Camera] frame=1118 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377066.623565300] [aruco_node]: [Camera] frame=1133 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.6ms
+[aruco_node-2] [INFO] [1786377067.624070633] [aruco_node]: [Camera] frame=1148 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.9ms
+[aruco_node-2] [INFO] [1786377068.693812021] [aruco_node]: [Camera] frame=1164 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.1ms
+[aruco_node-2] [INFO] [1786377069.755089150] [aruco_node]: [Camera] frame=1180 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377070.756470057] [aruco_node]: [Camera] frame=1195 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377071.756484149] [aruco_node]: [Camera] frame=1210 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377072.757821834] [aruco_node]: [Camera] frame=1225 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.1ms
+[aruco_node-2] [INFO] [1786377073.762210740] [aruco_node]: [Camera] frame=1240 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.3ms
+[aruco_node-2] [INFO] [1786377074.825609295] [aruco_node]: [Camera] frame=1256 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.1ms
+[aruco_node-2] [INFO] [1786377075.826595721] [aruco_node]: [Camera] frame=1271 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.1ms
+[aruco_node-2] [INFO] [1786377076.831092424] [aruco_node]: [Camera] frame=1286 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.8ms
+[aruco_node-2] [INFO] [1786377077.907256608] [aruco_node]: [Camera] frame=1302 | size=640x480 | no ArUco | FPS=15.0 | Lat=78.6ms
+[aruco_node-2] [INFO] [1786377078.919293941] [aruco_node]: [Camera] frame=1317 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.9ms
+[aruco_node-2] [INFO] [1786377079.926304107] [aruco_node]: [Camera] frame=1332 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.2ms
+[aruco_node-2] [INFO] [1786377080.926801477] [aruco_node]: [Camera] frame=1347 | size=640x480 | no ArUco | FPS=14.9 | Lat=75.6ms
+[aruco_node-2] [INFO] [1786377081.982780032] [aruco_node]: [Camera] frame=1363 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.0ms
+[aruco_node-2] [INFO] [1786377083.035298216] [aruco_node]: [Camera] frame=1379 | size=640x480 | no ArUco | FPS=15.0 | Lat=66.7ms
+[aruco_node-2] [INFO] [1786377084.051629197] [aruco_node]: [Camera] frame=1394 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.3ms
+[aruco_node-2] [INFO] [1786377085.054947882] [aruco_node]: [Camera] frame=1409 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.6ms
+[aruco_node-2] [INFO] [1786377086.056240270] [aruco_node]: [Camera] frame=1424 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.3ms
+[aruco_node-2] [INFO] [1786377087.127683770] [aruco_node]: [Camera] frame=1440 | size=640x480 | no ArUco | FPS=14.9 | Lat=76.6ms
+[aruco_node-2] [INFO] [1786377088.201217973] [aruco_node]: [Camera] frame=1456 | size=640x480 | no ArUco | FPS=15.0 | Lat=68.1ms
+[aruco_node-2] [INFO] [1786377089.254775490] [aruco_node]: [Camera] frame=1472 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.4ms
+[aruco_node-2] [INFO] [1786377090.256843120] [aruco_node]: [Camera] frame=1487 | size=640x480 | no ArUco | FPS=15.0 | Lat=65.3ms
+[aruco_node-2] [INFO] [1786377091.266379674] [aruco_node]: [Camera] frame=1502 | size=640x480 | no ArUco | FPS=15.0 | Lat=67.3ms

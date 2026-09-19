@@ -1,0 +1,42 @@
+<launch>
+  <!--
+    Uji sensor Livox MID360 di darat.
+
+    Launch ini HANYA menjalankan driver Livox dan menerbitkan PointCloud2 di
+    /livox/points. Tidak ada node px4/mission_manager, koneksi PX4, perintah
+    arm, takeoff, maupun setpoint gerak yang dijalankan.
+
+    Hentikan dengan Ctrl+C setelah memeriksa cloud/topik sensor.
+  -->
+  <arg name="livox_user_config_path" default="$(find-pkg-share livox_ros_driver2)/config/MID360_config.json"/>
+  <arg name="livox_publish_freq" default="10.0"/>
+  <arg name="livox_frame_id" default="livox_frame"/>
+  <arg name="detection_range_min" default="1.0"/>
+  <arg name="detection_range_max" default="10.0"/>
+  <arg name="roi_lateral" default="3.0"/>
+  <arg name="gate_width" default="1.5"/>
+  <arg name="centering_tolerance" default="0.20"/>
+  <arg name="min_cluster_points" default="5"/>
+
+  <node pkg="livox_ros_driver2" exec="livox_ros_driver2_node" name="livox_lidar_publisher" output="screen">
+    <param name="xfer_format" value="0"/>
+    <param name="multi_topic" value="0"/>
+    <param name="data_src" value="0"/>
+    <param name="publish_freq" value="$(var livox_publish_freq)"/>
+    <param name="output_data_type" value="0"/>
+    <param name="frame_id" value="$(var livox_frame_id)"/>
+    <param name="user_config_path" value="$(var livox_user_config_path)"/>
+    <param name="cmdline_input_bd_code" value="livox0000000001"/>
+    <remap from="livox/lidar" to="/livox/points"/>
+    <remap from="livox/imu" to="/livox/imu"/>
+  </node>
+
+  <node pkg="px4" exec="livox_gate_center_monitor" name="livox_gate_center_monitor" output="screen">
+    <param name="detection_range_min" value="$(var detection_range_min)"/>
+    <param name="detection_range_max" value="$(var detection_range_max)"/>
+    <param name="roi_lateral" value="$(var roi_lateral)"/>
+    <param name="gate_width" value="$(var gate_width)"/>
+    <param name="centering_tolerance" value="$(var centering_tolerance)"/>
+    <param name="min_cluster_points" value="$(var min_cluster_points)"/>
+  </node>
+</launch>

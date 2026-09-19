@@ -1,0 +1,82 @@
+<!--
+  realsense_with_yolo.launch.xml
+  Intel RealSense + ArUco (aruco_node) + box detector YOLO (yolo_camera_node,
+  package general_box_detector_ros) SEKALIGUS.
+
+  Sama seperti webcam_with_yolo.launch.xml, tapi sumber gambar realsense2_camera_node
+  (bukan capture_node) — WAJIB dipakai kalau kamera fisiknya RealSense, karena
+  device video RealSense (/dev/videoN multi-stream: color/depth/infra) tidak
+  bisa dibuka V4L2 generik seperti capture_node.
+
+  Usage:
+    ros2 launch fiducial_detector realsense_with_yolo.launch.xml
+    ros2 launch fiducial_detector realsense_with_yolo.launch.xml yolo_model_path:=/path/model.hef
+    ros2 launch fiducial_detector realsense_with_yolo.launch.xml yolo_enable:=false   # ArUco saja
+-->
+<launch>
+  <!-- ── Kamera (realsense2_camera_node, sama seperti realsense.launch.xml) ── -->
+  <arg name="width"       default="640"/>
+  <arg name="height"      default="480"/>
+  <arg name="fps_limit"   default="15"   description="Camera FPS (integer)"/>
+  <arg name="color_format" default="YUYV" description="RealSense color format"/>
+
+  <!-- ── ArUco (aruco_node) ─────────────────────────────────────────── -->
+  <arg name="marker_size" default="0.05" description="Physical marker size in metres"/>
+  <arg name="min_detection_confidence" default="0.50" description="Minimum accepted detector confidence"/>
+  <arg name="show_window" default="false"/>
+  <arg name="publish_debug_image" default="true" description="Publish /fiducial/debug_image"/>
+  <arg name="pose_yaw_offset_deg" default="180.0" description="Rotate ArUco pose axes for the inverted camera mount"/>
+  <arg name="npu"         default="true"  description="true/false - probe Raspberry Pi AI HAT / Hailo NPU"/>
+
+  <!-- ── YOLO box detector (yolo_camera_node) ────────────────────────── -->
+  <arg name="yolo_enable"      default="true"  description="false = jangan jalankan yolo_camera_node sama sekali"/>
+  <arg name="yolo_model_path"  default="/home/vtol/wayfix_ws/src/yolobox/models/model.hef"/>
+  <arg name="yolo_confidence"  default="0.70"/>
+  <arg name="yolo_target_class_id" default="3"/>
+  <arg name="yolo_preprocess_mode" default="letterbox"/>
+
+  <!-- Intel RealSense ROS2 driver - publishes /camera/camera/color/image_raw -->
+  <node pkg="realsense2_camera" exec="realsense2_camera_node"
+        namespace="camera" output="screen">
+    <param name="camera_name"              value="camera"/>
+    <param name="enable_color"             value="true"/>
+    <param name="enable_depth"             value="false"/>
+    <param name="enable_infra"             value="false"/>
+    <param name="enable_infra1"            value="false"/>
+    <param name="enable_infra2"            value="false"/>
+    <param name="enable_gyro"              value="false"/>
+    <param name="enable_accel"             value="false"/>
+    <param name="rgb_camera.color_profile" value="$(var width),$(var height),$(var fps_limit)"/>
+    <param name="rgb_camera.color_format"  value="$(var color_format)"/>
+  </node>
+
+  <!-- DICT_7X7_50 Gate Centering Node -->
+  <node pkg="fiducial_detector" exec="aruco_node" name="aruco_node" output="screen">
+    <param from="$(find-pkg-share fiducial_detector)/config/detector.yaml"/>
+    <param name="camera_topic" value="/camera/camera/color/image_raw"/>
+    <param name="marker_size"  value="$(var marker_size)"/>
+    <param name="min_detection_confidence" value="$(var min_detection_confidence)"/>
+    <param name="show_window"  value="$(var show_window)"/>
+    <param name="publish_debug_image" value="$(var publish_debug_image)"/>
+    <param name="pose_yaw_offset_deg" value="$(var pose_yaw_offset_deg)"/>
+    <param name="output_frame_id" value="camera_link"/>
+    <param name="npu"          value="$(var npu)"/>
+  </node>
+
+  <!-- Box detector YOLO — sumber centering khusus WP2 (lihat mission_manager) -->
+  <node pkg="general_box_detector_ros" exec="yolo_camera_node" name="general_box_camera"
+        output="screen" if="$(var yolo_enable)">
+    <param name="camera_topic"       value="/camera/camera/color/image_raw"/>
+    <param name="model_path"         value="$(var yolo_model_path)"/>
+    <param name="confidence"         value="$(var yolo_confidence)"/>
+    <param name="save_video"         value="false"/>
+    <param name="publish_topic"      value="/general_box/image_annotated"/>
+    <param name="count_topic"        value="/general_box/detection_count"/>
+    <param name="boxes_topic"        value="/general_box/detections"/>
+    <param name="center_topic"       value="/general_box/target_center"/>
+    <param name="frame_id"           value="general_box_camera"/>
+    <param name="target_class_id"    value="$(var yolo_target_class_id)"/>
+    <param name="preprocess_mode"    value="$(var yolo_preprocess_mode)"/>
+    <param name="input_color_order"  value="rgb"/>
+  </node>
+</launch>
